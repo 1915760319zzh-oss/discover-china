@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giant Panda Base, Chengdu - Complete Travel Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-size: 1.8rem; font-weight: bold; letter-spacing: 1px; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; font-size: 1rem; }
+        .nav-links a:hover { opacity: 0.8; }
+        .back-btn { background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.3s; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .hero-banner { height: 500px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/panda-base-1.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        .hero-banner h1 { font-size: 4rem; font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero-banner p { font-size: 1.5rem; margin-top: 1rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+        .content-section { padding: 60px 20px; background: white; }
+        .content-section h2 { font-size: 2.5rem; margin-bottom: 2rem; color: #667eea; border-bottom: 3px solid #667eea; padding-bottom: 1rem; }
+        .content-section h3 { font-size: 1.8rem; margin: 2rem 0 1rem; color: #764ba2; }
+        .content-section p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; color: #555; }
+        .info-box { background: #f8f9fa; padding: 2rem; border-radius: 15px; margin: 2rem 0; border-left: 4px solid #667eea; }
+        .info-box h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .info-box ul { margin-left: 1.5rem; }
+        .info-box li { margin-bottom: 0.8rem; color: #555; line-height: 1.6; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .gallery-item { border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .gallery-item:hover { transform: translateY(-10px); }
+        .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; }
+        .gallery-item .caption { padding: 1rem; background: white; text-align: center; font-weight: 600; color: #667eea; }
+        .transport-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .transport-card { background: #f8f9fa; padding: 2rem; border-radius: 15px; border-top: 4px solid #667eea; }
+        .transport-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .transport-card p { color: #555; line-height: 1.6; }
+        .route-timeline { position: relative; padding-left: 40px; margin: 2rem 0; }
+        .route-timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: #667eea; }
+        .route-item { position: relative; margin-bottom: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px; }
+        .route-item::before { content: ''; position: absolute; left: -33px; top: 20px; width: 15px; height: 15px; border-radius: 50%; background: #667eea; border: 3px solid white; }
+        .route-item h4 { color: #667eea; margin-bottom: 0.5rem; }
+        .route-item p { color: #555; margin: 0; }
+        .restaurant-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .restaurant-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 4px solid #667eea; }
+        .restaurant-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .restaurant-card .cuisine { color: #764ba2; font-weight: 600; margin-bottom: 1rem; }
+        .restaurant-card p { color: #555; margin-bottom: 0.5rem; }
+        .restaurant-card .price { color: #667eea; font-weight: bold; font-size: 1.1rem; }
+        .hotel-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .hotel-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 4px solid #667eea; }
+        .hotel-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .hotel-card .stars { color: #ffc107; margin-bottom: 1rem; }
+        .hotel-card p { color: #555; margin-bottom: 0.5rem; }
+        .hotel-card .price { color: #667eea; font-weight: bold; font-size: 1.2rem; margin-top: 1rem; }
+        .tips-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem; border-radius: 15px; margin: 3rem 0; }
+        .tips-box h3 { color: white; font-size: 2rem; margin-bottom: 1.5rem; }
+        .tips-box ul { margin-left: 1.5rem; }
+        .tips-box li { margin-bottom: 1rem; line-height: 1.6; }
+        footer { background: #333; color: white; text-align: center; padding: 2.5rem 20px; }
+        footer p { margin: 0.5rem 0; opacity: 0.9; }
+        @media (max-width: 768px) { .hero-banner h1 { font-size: 2.5rem; } .hero-banner p { font-size: 1.2rem; } .content-section h2 { font-size: 2rem; } .gallery { grid-template-columns: 1fr; } .nav-links { gap: 1rem; font-size: 0.9rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Discover China</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#attractions">Attractions</a></li>
+                <li><a href="index.html#visa-info">Visa Info</a></li>
+                <li><a href="index.html#forum">Travel Forum</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+            <button class="back-btn" onclick="window.location.href='index.html#attractions'">← Back to Attractions</button>
+        </nav>
+    </header>
+
+    <div class="hero-banner">
+        <div>
+            <h1>Giant Panda Base, Chengdu</h1>
+            <p>成都大熊猫繁育研究基地 - Home of China's National Treasure</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="content-section">
+            <h2>Overview</h2>
+            <p>The Chengdu Research Base of Giant Panda Breeding is the world's largest panda breeding center, home to over 200 giant pandas and red pandas. Located just 10 km from downtown Chengdu, this 600-acre facility offers visitors the chance to see these adorable creatures in a natural habitat setting. Watch pandas eat bamboo, play, climb trees, and sleep - an unforgettable experience for visitors of all ages.</p>
+            
+            <div class="info-box">
+                <h4>Quick Facts</h4>
+                <ul>
+                    <li><strong>Location:</strong> No. 1375, Panda Avenue, Chenghua District, Chengdu</li>
+                    <li><strong>Size:</strong> 600 acres (240 hectares)</li>
+                    <li><strong>Pandas:</strong> 200+ giant pandas and red pandas</li>
+                    <li><strong>Best Time to Visit:</strong> Early morning (7:30-9:00 AM) when pandas are most active</li>
+                    <li><strong>Entrance Fee:</strong> ¥58 (adults), ¥20 (children/students)</li>
+                    <li><strong>Opening Hours:</strong> 7:30 AM - 6:00 PM (last entry 5:00 PM)</li>
+                </ul>
+            </div>
+
+            <h2>📸 Gallery - 6 Beautiful Photos</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/panda-base-1.jpg" alt="Panda Eating Bamboo">
+                    <div class="caption">Giant Panda Enjoying Fresh Bamboo</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/panda-base-2.jpg" alt="Panda Valley Entrance">
+                    <div class="caption">Panda Valley Entrance with Traditional Stone</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/panda-base-3.jpg" alt="Panda Climbing Tree">
+                    <div class="caption">Playful Panda Climbing High in Trees</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/panda-base-4.jpg" alt="Multiple Pandas">
+                    <div class="caption">Three Pandas Playing Together on Trees</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/panda-base-5.jpg" alt="Research Base Entrance">
+                    <div class="caption">Chengdu Research Base Main Entrance</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/panda-base-6.jpg" alt="Red Pandas">
+                    <div class="caption">Adorable Red Pandas (Lesser Pandas)</div>
+                </div>
+            </div>
+
+            <h2> How to Get There - Transportation</h2>
+            <div class="transport-grid">
+                <div class="transport-card">
+                    <h4>By Metro (Recommended)</h4>
+                    <p><strong>Metro Line 3:</strong> Take Line 3 to Panda Avenue Station (熊猫大道站), Exit A. Then take shuttle bus D025 to the base (10 min, ¥2). Total cost: ¥4-5.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Tourist Bus</h4>
+                    <p><strong>Bus 902:</strong> Departs from Wuhou Shrine (武侯祠) directly to the panda base. Runs every 30 minutes from 8:00 AM. Cost: ¥2. Travel time: 40 minutes.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Taxi/Ride-hailing</h4>
+                    <p><strong>DiDi/Taxi:</strong> From downtown Chengdu (Tianfu Square): 30-40 minutes, ¥40-60. From Chengdu East Railway Station: 25 minutes, ¥35-50.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Private Tour</h4>
+                    <p><strong>Half-day Tour:</strong> Many hotels offer panda base tours including transport and guide. Cost: ¥150-250 per person. Includes hotel pickup.</p>
+                </div>
+            </div>
+
+            <h2>🗺️ Recommended Tour Routes</h2>
+            <div class="route-timeline">
+                <div class="route-item">
+                    <h4>Route 1: Express Panda Visit (2-3 hours)</h4>
+                    <p><strong>Best for:</strong> Short on time, families with young children<br>
+                    <strong>Route:</strong> Main Gate → Baby Panda Nursery → Adult Panda Villas → Red Panda Area → Exit<br>
+                    <strong>Highlights:</strong> See baby pandas, feeding time, photo opportunities<br>
+                    <strong>Tips:</strong> Arrive at 7:30 AM opening, pandas most active before 9 AM</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 2: Complete Experience (4-5 hours)</h4>
+                    <p><strong>Best for:</strong> Panda enthusiasts, photographers<br>
+                    <strong>Route:</strong> Main Gate → Moon Delivery House → Baby Panda Nursery → Sun Delivery House → Adult Panda Area → Red Panda Forest → Panda Museum → Exit<br>
+                    <strong>Highlights:</strong> All panda areas, museum, gift shop</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 3: Panda Volunteer Program (Full Day)</h4>
+                    <p><strong>Best for:</strong> Animal lovers willing to work<br>
+                    <strong>Activities:</strong> Clean enclosures, prepare food, observe pandas up close<br>
+                    <strong>Cost:</strong> ¥200-300 (includes lunch and certificate)<br>
+                    <strong>Booking:</strong> Must book 2-4 weeks in advance</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 4: Photography Special (3 hours)</h4>
+                    <p><strong>Best for:</strong> Photographers<br>
+                    <strong>Tips:</strong> Arrive at opening (7:30 AM), bring telephoto lens (200mm+), visit nursery first for baby pandas, then adult areas. Best light: 8-10 AM.</p>
+                </div>
+            </div>
+
+            <h2>️ Restaurants Near the Panda Base</h2>
+            <div class="restaurant-list">
+                <div class="restaurant-card">
+                    <h4>Panda Base Restaurant</h4>
+                    <div class="cuisine">Chinese Fast Food</div>
+                    <p><strong>Location:</strong> Inside the panda base<br>
+                    <strong>Specialty:</strong> Noodles, rice dishes, snacks<br>
+                    <strong>Hours:</strong> 8:00 AM - 5:00 PM</p>
+                    <div class="price">¥30-50 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Chunxi Road Food Street</h4>
+                    <div class="cuisine">Sichuan Street Food</div>
+                    <p><strong>Location:</strong> Downtown Chengdu (30 min from base)<br>
+                    <strong>Specialty:</strong> Sichuan hotpot, dan dan noodles, mapo tofu<br>
+                    <strong>Hours:</strong> 11:00 AM - 10:00 PM</p>
+                    <div class="price">¥50-100 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Shu Daxia Hotpot</h4>
+                    <div class="cuisine">Sichuan Hotpot</div>
+                    <p><strong>Location:</strong> Multiple locations in Chengdu<br>
+                    <strong>Specialty:</strong> Authentic Sichuan spicy hotpot<br>
+                    <strong>Hours:</strong> 11:00 AM - 2:00 AM</p>
+                    <div class="price">¥100-150 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Long Chao Shou</h4>
+                    <div class="cuisine">Chengdu Snacks</div>
+                    <p><strong>Location:</strong> Downtown Chengdu<br>
+                    <strong>Specialty:</strong> Wontons, dumplings, sweet water noodles<br>
+                    <strong>Hours:</strong> 7:00 AM - 9:00 PM</p>
+                    <div class="price">¥20-40 per person</div>
+                </div>
+            </div>
+
+            <h2> Accommodation Options & Prices</h2>
+            <div class="hotel-list">
+                <div class="hotel-card">
+                    <h4>Chengdu Panda Theme Hotel</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> Near panda base (2 km)<br>
+                    <strong>Features:</strong> Panda-themed rooms, Family-friendly<br>
+                    <strong>Distance to Base:</strong> 5 min drive</p>
+                    <div class="price">¥400-800/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Niccolo Chengdu</h4>
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Location:</strong> Downtown Chengdu (IFS building)<br>
+                    <strong>Features:</strong> Luxury, Shopping mall access, City views<br>
+                    <strong>Distance to Base:</strong> 30 min drive</p>
+                    <div class="price">¥1200-2500/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Chengdu Holiday Inn</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> Wuhou District<br>
+                    <strong>Features:</strong> International standard, Good transport links<br>
+                    <strong>Distance to Base:</strong> 40 min drive</p>
+                    <div class="price">¥500-900/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Budget Hotels (Chunxi Road Area)</h4>
+                    <div class="stars">★★★</div>
+                    <p><strong>Location:</strong> Chunxi Road shopping district<br>
+                    <strong>Features:</strong> Central location, Shopping, Street food<br>
+                    <strong>Distance to Base:</strong> 30-40 min by metro</p>
+                    <div class="price">¥200-400/night</div>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h3>💡 Essential Travel Tips</h3>
+                <ul>
+                    <li><strong>Arrive Early:</strong> Get there at 7:30 AM opening - pandas are most active in the morning (feeding time)</li>
+                    <li><strong>Avoid Afternoons:</strong> Pandas sleep most of the afternoon after lunch (11 AM - 2 PM)</li>
+                    <li><strong>Book Tickets:</strong> Buy tickets online in advance to skip queues, especially on weekends</li>
+                    <li><strong>What to Bring:</strong> Comfortable walking shoes, water bottle, camera with zoom lens</li>
+                    <li><strong>Quiet Please:</strong> Keep noise down - loud sounds stress the pandas</li>
+                    <li><strong>No Flash:</strong> Don't use flash photography - it disturbs the animals</li>
+                    <li><strong>Best Season:</strong> Spring (March-May) and Autumn (September-November) for mild weather</li>
+                    <li><strong>Spicy Food Warning:</strong> Chengdu food is VERY spicy - ask for "wei la" (mild spicy) if sensitive</li>
+                    <li><strong>Payment:</strong> WeChat Pay and Alipay accepted everywhere; carry some cash as backup</li>
+                    <li><strong>Combine with:</strong> Visit Wuhou Shrine and Jinli Street in the afternoon after panda base</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Discover China. All rights reserved.</p>
+            <p>Your gateway to authentic Chinese travel experiences</p>
+        </div>
+    </footer>
+</body>
+</html>

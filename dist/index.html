@@ -1,0 +1,1141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discover China - Your Ultimate Travel Guide to 15 Amazing Destinations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 20px;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .hero-content p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+        }
+
+        .cta-button {
+            background: white;
+            color: #667eea;
+            padding: 18px 50px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(0,0,0,0.3);
+        }
+
+        .attractions-section {
+            padding: 80px 20px;
+            background: #f5f5f5;
+        }
+
+        .attractions-section h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 3rem;
+        }
+
+        .attractions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .attraction-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            cursor: pointer;
+        }
+
+        .attraction-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        .card-image {
+            height: 220px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .card-number {
+            background: rgba(255,255,255,0.9);
+            color: #667eea;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-content h3 {
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-size: 1.3rem;
+        }
+
+        .card-content p {
+            color: #666;
+            font-size: 0.95rem;
+        }
+
+        .visa-section {
+            background: white;
+            padding: 80px 20px;
+        }
+
+        .visa-section h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .info-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .info-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .info-card p {
+            color: #555;
+            line-height: 1.8;
+        }
+
+        .info-card strong {
+            color: #333;
+        }
+
+        .forum-section {
+            padding: 80px 20px;
+            background: #f5f5f5;
+        }
+
+        .forum-section h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .forum-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .forum-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .new-topic-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .new-topic-btn:hover {
+            background: #764ba2;
+        }
+
+        .topic-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background: white;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: transform 0.3s;
+        }
+
+        .topic-item:hover {
+            transform: translateX(5px);
+        }
+
+        .topic-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+            flex-shrink: 0;
+        }
+
+        .topic-content h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .topic-meta {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .topic-preview {
+            color: #666;
+        }
+
+        .about-section {
+            padding: 80px 20px;
+            background: white;
+            text-align: center;
+        }
+
+        .about-section h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .about-section p {
+            max-width: 800px;
+            margin: 0 auto 1.5rem;
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2.5rem 20px;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            opacity: 0.9;
+        }
+
+        .modal {
+            display: block;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+            animation: fadeIn 0.3s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 2.5rem;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            overflow-y: auto;
+            position: relative;
+            animation: slideDown 0.3s;
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close-btn {
+            color: #aaa;
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+            position: absolute;
+            right: 20px;
+            top: 15px;
+        }
+
+        .close-btn:hover {
+            color: #333;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 1rem;
+            color: #667eea;
+            font-size: 2rem;
+            padding-right: 40px;
+        }
+
+        .modal-description {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .modal-content h3 {
+            margin-top: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: #764ba2;
+            font-size: 1.3rem;
+        }
+
+        .modal-content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .modal-content li {
+            margin-bottom: 0.5rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .modal-content p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+            
+            .attractions-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+            
+            .logo {
+                font-size: 1.4rem;
+            }
+            
+            .attractions-section h2,
+            .visa-section h2,
+            .forum-section h2,
+            .about-section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .reply-btn { background: none; border: 1px solid #667eea; color: #667eea; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 0.85rem; margin-top: 8px; transition: all 0.3s; }
+        .reply-btn:hover { background: #667eea; color: white; }
+        .topic-replies { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #eee; }
+        .reply-item { display: flex; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0f0f0; }
+        .reply-item:last-child { border-bottom: none; }
+        .reply-avatar { width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0; }
+        .reply-content { flex: 1; }
+        .reply-author { font-weight: 600; font-size: 0.85rem; color: #667eea; }
+        .reply-text { font-size: 0.9rem; color: #555; margin-top: 4px; }
+        .reply-time { font-size: 0.75rem; color: #999; }
+        .reply-form { display: flex; gap: 10px; margin-top: 10px; }
+        .reply-input { flex: 1; padding: 10px 14px; border: 1px solid #ddd; border-radius: 8px; font-size: 0.9rem; resize: vertical; min-height: 40px; font-family: inherit; }
+        .reply-submit { background: #667eea; color: white; border: none; padding: 10px 18px; border-radius: 8px; cursor: pointer; font-weight: 600; white-space: nowrap; }
+        .reply-submit:hover { background: #764ba2; }
+        .forum-login-hint { text-align: center; padding: 2rem; color: #888; }
+        .forum-login-hint button { background: #4285f4; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 1rem; font-weight: 600; margin-top: 1rem; }
+        .forum-login-hint button:hover { background: #3367d6; }
+        .topic-modal-overlay { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.5); z-index: 2000; display: flex; align-items: center; justify-content: center; }
+        .topic-modal { background: white; border-radius: 15px; padding: 2rem; max-width: 600px; width: 90%; max-height: 80vh; overflow-y: auto; }
+        .topic-modal h3 { color: #667eea; margin-bottom: 1rem; }
+        .topic-modal input, .topic-modal textarea { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 1rem; margin-bottom: 1rem; font-family: inherit; box-sizing: border-box; }
+        .topic-modal textarea { min-height: 120px; resize: vertical; }
+        .topic-modal .modal-actions { display: flex; gap: 10px; justify-content: flex-end; }
+        .topic-modal .btn-cancel { background: #eee; color: #333; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; }
+        .topic-modal .btn-submit { background: #667eea; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+        .loading-spinner { text-align: center; padding: 2rem; color: #888; }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Discover China</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#attractions">Attractions</a></li>
+                <li><a href="#visa-info">Visa Info</a></li>
+                <li><a href="forum.html">游遍中国</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+            <div id="auth-area" style="display:flex;align-items:center;gap:10px;margin-left:15px;">
+                <button id="google-signin-btn" class="back-btn" onclick="googleSignIn()" style="display:none;background:rgba(255,255,255,0.95);color:#333;font-size:0.9rem;padding:8px 16px;">Sign In with Google</button>
+                <div id="user-info" style="display:none;align-items:center;gap:8px;">
+                    <img id="user-avatar" src="" alt="avatar" style="width:32px;height:32px;border-radius:50%;border:2px solid white;">
+                    <span id="user-name" style="color:white;font-size:0.9rem;font-weight:500;"></span>
+                    <button class="back-btn" onclick="googleSignOut()" style="font-size:0.8rem;padding:6px 12px;">Sign Out</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Discover the Real China</h1>
+            <p>Explore 15 breathtaking destinations beyond the typical tourist trail</p>
+            <button class="cta-button" onclick="document.getElementById('attractions').scrollIntoView({behavior: 'smooth'})">Start Exploring</button>
+        </div>
+    </section>
+
+    <section id="attractions" class="attractions-section">
+        <div class="container">
+            <h2>15 Must-Visit Destinations</h2>
+            <p class="section-subtitle">From ancient mountains to mystical lakes, experience China's hidden gems</p>
+            
+            <div class="attractions-grid">
+                <div class="attraction-card" onclick="window.location.href='great-wall.html'">
+                    <div class="card-image" style="background-image: url('images/great-wall-1.jpg');">
+                        <span class="card-number">1</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Great Wall</h3>
+                        <p>Iconic ancient fortification stretching across mountains</p>
+                    </div>
+                </div>
+
+                <div class="attraction-card" onclick="window.location.href='the-bund.html'">
+                    <div class="card-image" style="background-image: url('images/the-bund-1.jpg');">
+                        <span class="card-number">2</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>The Bund, Shanghai</h3>
+                        <p>Where colonial architecture meets modern skyline</p>
+                    </div>
+                </div>
+
+                <div class="attraction-card" onclick="window.location.href='panda-base.html'">
+                    <div class="card-image" style="background-image: url('images/panda-base-1.jpg');">
+                        <span class="card-number">3</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Giant Panda Base, Chengdu</h3>
+                        <p>Get up close with China's beloved national treasure</p>
+                    </div>
+                </div>
+
+                <div class="attraction-card" onclick="window.location.href='west-lake.html'">
+                    <div class="card-image" style="background-image: url('images/west-lake-1.jpg');">
+                        <span class="card-number">4</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>West Lake, Hangzhou</h3>
+                        <p>Serene lakescape immortalized in Chinese poetry</p>
+                    </div>
+                </div>
+
+                <div class="attraction-card" onclick="window.location.href='li-river.html'">
+                    <div class="card-image" style="background-image: url('images/li-river-1.jpg');">
+                        <span class="card-number">5</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Li River, Guilin</h3>
+                        <p>Karst mountains and bamboo rafts in a living painting</p>
+                    </div>
+                </div>
+
+                <div class="attraction-card" onclick="window.location.href='zhangjiajie.html'">
+                    <div class="card-image" style="background-image: url('images/zhangjiajie-1.jpg');">
+                        <span class="card-number">6</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Zhangjiajie</h3>
+                        <p>Avatar mountains and glass bridge in the clouds</p>
+                    </div>
+                </div>
+
+                <div class="attraction-card" onclick="window.location.href='huangshan.html'">
+                    <div class="card-image" style="background-image: url('images/huangshan-1.jpg');">
+                        <span class="card-number">7</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Huangshan (Yellow Mountain)</h3>
+                        <p>Sea of clouds and ancient pine trees on granite peaks</p>
+                    </div>
+                </div>
+
+                <div class="attraction-card" onclick="window.location.href='lijiang.html'">
+                    <div class="card-image" style="background-image: url('images/lijiang-1.jpg');">
+                        <span class="card-number">8</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Lijiang Old Town</h3>
+                        <p>Naxi culture and cobblestone streets in Yunnan</p>
+                    </div>
+                </div>
+
+                <div class="attraction-card" onclick="window.location.href='jiuzhaigou.html'">
+                    <div class="card-image" style="background-image: url('images/jiuzhaigou-1.jpg');">
+                        <span class="card-number">9</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Jiuzhaigou Valley</h3>
+                        <p>Fairy-tale lakes and waterfalls in Sichuan</p>
+                    </div>
+                </div>
+
+                <div class="attraction-card" onclick="window.location.href='emei.html'">
+                    <div class="card-image" style="background-image: url('images/emei-1.jpg');">
+                        <span class="card-number">10</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Emei Mountain</h3>
+                        <p>Sacred Buddhist peak with golden summit above clouds</p>
+                    </div>
+                </div>
+
+                <div class="attraction-card" onclick="window.location.href='fenghuang.html'">
+                    <div class="card-image" style="background-image: url('images/fenghuang-1.jpg');">
+                        <span class="card-number">11</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Fenghuang Ancient Town</h3>
+                        <p>Miao minority stilted houses by the Tuojiang River</p>
+                    </div>
+                </div>
+
+                <div class="attraction-card" onclick="window.location.href='kanas.html'">
+                    <div class="card-image" style="background-image: url('images/kanas-1.jpg');">
+                        <span class="card-number">12</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Kanas Lake, Xinjiang</h3>
+                        <p>Mysterious color-changing lake in Altai Mountains</p>
+                    </div>
+                </div>
+
+                <div class="attraction-card" onclick="window.location.href='lushan.html'">
+                    <div class="card-image" style="background-image: url('images/lushan-1.jpg');">
+                        <span class="card-number">13</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Lushan Mountain</h3>
+                        <p>Misty retreat with waterfalls and historical villas</p>
+                    </div>
+                </div>
+
+                <div class="attraction-card" onclick="window.location.href='three-gorges.html'">
+                    <div class="card-image" style="background-image: url('images/three-gorges-1.jpg');">
+                        <span class="card-number">14</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Three Gorges</h3>
+                        <p>Mighty Yangtze River through dramatic cliff scenery</p>
+                    </div>
+                </div>
+
+                <div class="attraction-card" onclick="window.location.href='putuo.html'">
+                    <div class="card-image" style="background-image: url('images/putuo-1.jpg');">
+                        <span class="card-number">15</span>
+                    </div>
+                    <div class="card-content">
+                        <h3>Putuo Mountain</h3>
+                        <p>Sacred Buddhist island with coastal temples</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="visa-info" class="visa-section">
+        <div class="container">
+            <h2>Visa & Travel Information</h2>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>Visa-Free Entry</h3>
+                    <p>As of 2026, citizens from <strong>50 countries</strong> can enter China visa-free for 15-30 days, including USA, UK, Canada, Australia, Germany, France, Italy, Spain, and more.</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>Best Time to Visit</h3>
+                    <p><strong>Spring (April-May):</strong> Mild weather, cherry blossoms<br>
+                    <strong>Autumn (September-October):</strong> Clear skies, colorful foliage<br>
+                    Avoid: National holidays (Oct 1-7, May 1-5)</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>Essential Apps</h3>
+                    <p><strong>WeChat:</strong> Payments, messaging, mini-programs<br>
+                    <strong>Alipay:</strong> Mobile payments everywhere<br>
+                    <strong>DiDi:</strong> Ride-hailing (like Uber)<br>
+                    <strong>Baidu Maps:</strong> Navigation (Google Maps blocked)</p>
+                </div>
+                
+                <div class="info-card">
+                    <h3>Emergency Contacts</h3>
+                    <p><strong>Police:</strong> 110<br>
+                    <strong>Ambulance:</strong> 120<br>
+                    <strong>Fire:</strong> 119<br>
+                    <strong>Tourist Hotline:</strong> 12301<br>
+                    <strong>Embassy:</strong> Contact your country's embassy in Beijing</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="forum" class="forum-section">
+        <div class="container">
+            <h2>游遍中国 - 旅游社区</h2>
+            <p class="section-subtitle">分享你的旅行故事，发现中国之美</p>
+            
+            <div style="text-align:center;padding:40px 20px;">
+                <div style="background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);border-radius:20px;padding:60px 40px;color:white;max-width:800px;margin:0 auto;box-shadow:0 10px 40px rgba(102,126,234,0.3);">
+                    <div style="font-size:4rem;margin-bottom:20px;">🏞️</div>
+                    <h3 style="font-size:2rem;margin-bottom:15px;">加入我们的旅行社区</h3>
+                    <p style="font-size:1.1rem;margin-bottom:30px;opacity:0.95;">分享美景照片、旅行攻略、美食探索，与千万旅行者交流经验</p>
+                    <div style="display:flex;gap:20px;justify-content:center;flex-wrap:wrap;">
+                        <a href="forum.html" style="background:white;color:#667eea;padding:15px 40px;border-radius:30px;text-decoration:none;font-weight:600;font-size:1.1rem;transition:transform 0.3s,box-shadow 0.3s;display:inline-block;">进入社区</a>
+                        <a href="forum.html" style="background:rgba(255,255,255,0.2);color:white;padding:15px 40px;border-radius:30px;text-decoration:none;font-weight:600;font-size:1.1rem;border:2px solid white;transition:background 0.3s;display:inline-block;">发布帖子</a>
+                    </div>
+                </div>
+                
+                <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:20px;max-width:900px;margin:40px auto 0;">
+                    <div style="background:white;padding:25px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.08);">
+                        <div style="font-size:2rem;margin-bottom:10px;">📸</div>
+                        <h4 style="color:#333;margin-bottom:8px;">美景分享</h4>
+                        <p style="color:#666;font-size:0.9rem;">分享你拍摄的美丽风景</p>
+                    </div>
+                    <div style="background:white;padding:25px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.08);">
+                        <div style="font-size:2rem;margin-bottom:10px;">📖</div>
+                        <h4 style="color:#333;margin-bottom:8px;">旅行攻略</h4>
+                        <p style="color:#666;font-size:0.9rem;">实用的旅行指南和贴士</p>
+                    </div>
+                    <div style="background:white;padding:25px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.08);">
+                        <div style="font-size:2rem;margin-bottom:10px;">🍜</div>
+                        <h4 style="color:#333;margin-bottom:8px;">美食探索</h4>
+                        <p style="color:#666;font-size:0.9rem;">各地美食推荐和探店</p>
+                    </div>
+                    <div style="background:white;padding:25px;border-radius:15px;box-shadow:0 5px 20px rgba(0,0,0,0.08);">
+                        <div style="font-size:2rem;margin-bottom:10px;">🏛️</div>
+                        <h4 style="color:#333;margin-bottom:8px;">文化体验</h4>
+                        <p style="color:#666;font-size:0.9rem;">历史文化和民俗体验</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="container">
+            <h2>About Discover China</h2>
+            <p>We're passionate travelers dedicated to helping you experience the authentic beauty of China. Our guide features carefully selected destinations that showcase China's diverse landscapes, rich culture, and warm hospitality.</p>
+            <p>Whether you're seeking ancient mountains, mystical lakes, or vibrant minority cultures, we've got you covered with detailed guides, practical tips, and a community of fellow travelers ready to share their experiences.</p>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Discover China. All rights reserved.</p>
+            <p>Your gateway to authentic Chinese travel experiences</p>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script>
+        function showAttraction(attractionId) {
+            const attractions = {
+                'great-wall': {
+                    name: 'Great Wall of China',
+                    description: 'The Great Wall is one of the most iconic landmarks in the world, stretching over 13,000 miles across northern China. Built over centuries to protect against invasions, it offers breathtaking views and a glimpse into China\'s ancient history.',
+                    highlights: ['Mutianyu Section - less crowded, great for photos', 'Badaling Section - most accessible from Beijing', 'Jinshanling Section - perfect for hiking enthusiasts', 'Sunrise and sunset views are spectacular'],
+                    transportation: 'From Beijing: Take a bus or train to Badaling (1.5 hours) or Mutianyu (2 hours). Private tours available.',
+                    accommodation: 'Hotels available in Beijing city center. For a unique experience, stay in renovated Great Wall watchtowers at Mutianyu.',
+                    food: 'Local restaurants serve traditional Chinese cuisine. Try Peking Duck in Beijing before your visit.',
+                    tips: 'Best visited in spring (April-May) or autumn (September-October). Wear comfortable shoes and bring water. Avoid national holidays when it gets extremely crowded.'
+                },
+                'the-bund': {
+                    name: 'The Bund, Shanghai',
+                    description: 'The Bund is Shanghai\'s most famous waterfront area, featuring a stunning contrast between colonial-era European buildings on one side and the futuristic Pudong skyline on the other. It\'s the perfect place to experience Shanghai\'s blend of old and new.',
+                    highlights: ['Night views with illuminated skyscrapers', 'Historical architecture from the 1920s-30s', 'Huangpu River cruise', 'Nanjing Road shopping street nearby'],
+                    transportation: 'Easy access via Shanghai Metro Line 2 (Nanjing East Road station). The area is pedestrian-friendly.',
+                    accommodation: 'Luxury hotels like Fairmont Peace Hotel overlook the Bund. Budget options available in nearby Jing\'an district.',
+                    food: 'Shanghai is famous for xiaolongbao (soup dumplings). Try Din Tai Fung or local street food stalls.',
+                    tips: 'Visit at sunset for the best photos. The light show on the Pudong side starts at 7 PM. Weekday mornings are less crowded.'
+                },
+                'panda-base': {
+                    name: 'Chengdu Research Base of Giant Panda Breeding',
+                    description: 'The world\'s largest panda breeding center, home to over 200 giant pandas. Watch these adorable creatures eat bamboo, play, and sleep in a natural habitat setting.',
+                    highlights: ['Baby pandas in the nursery (seasonal)', 'Red pandas in the forest area', 'Panda volunteer program (advance booking required)', 'Educational exhibits on conservation'],
+                    transportation: 'From Chengdu city center: Take bus 902 or a taxi (40 minutes). Metro Line 3 to Panda Avenue station, then shuttle bus.',
+                    accommodation: 'Stay in Chengdu city center. Recommended areas: Chunxi Road for shopping, Wuhou Shrine for culture.',
+                    food: 'Chengdu is the UNESCO City of Gastronomy. Must-try: Sichuan hotpot, mapo tofu, dan dan noodles. Warning: it\'s SPICY!',
+                    tips: 'Arrive early (7:30 AM) to see pandas during feeding time. They\'re most active in the morning. Afternoons they usually sleep. Book tickets online in advance.'
+                },
+                'west-lake': {
+                    name: 'West Lake, Hangzhou',
+                    description: 'A UNESCO World Heritage site, West Lake has inspired Chinese poets and artists for centuries. Its serene waters, pagodas, and gardens represent the ideal of classical Chinese landscape design.',
+                    highlights: ['Leifeng Pagoda with panoramic views', 'Three Pools Mirroring the Moon (on RMB 1 yuan bill)', 'Lingyin Temple - ancient Buddhist monastery', 'Lotus flowers in summer'],
+                    transportation: 'High-speed train from Shanghai (1 hour). West Lake is walkable, or rent a bicycle. Boat tours available.',
+                    accommodation: 'Lakeside hotels offer beautiful views. Budget options in Hangzhou city center are well-connected.',
+                    food: 'Hangzhou cuisine is lighter than Sichuan. Try Dongpo pork, West Lake fish, and Longjing tea (grown locally).',
+                    tips: 'Best in spring (March-May) for cherry blossoms or autumn (September-November) for clear skies. Early morning boat rides are magical.'
+                },
+                'li-river': {
+                    name: 'Li River, Guilin',
+                    description: 'The Li River cruise is one of China\'s most iconic experiences. Karst mountains, bamboo groves, and traditional villages create a landscape that looks like a traditional Chinese painting come to life.',
+                    highlights: ['83km cruise from Guilin to Yangshuo', 'Nine Horse Mural Hill', 'Yellow Cloth Shoal (20 yuan note backdrop)', 'Yangshuo\'s West Street nightlife'],
+                    transportation: 'Fly or take high-speed train to Guilin. Cruise downstream to Yangshuo (4-5 hours). Return by bus.',
+                    accommodation: 'Yangshuo offers boutique hotels and hostels. Stay near West Street for nightlife or in the countryside for peace.',
+                    food: 'Try beer fish (Yangshuo specialty), Guilin rice noodles, and stuffed liu san jie.',
+                    tips: 'Best season: April-October. Bring rain gear (weather changes quickly). The cruise can be touristy - consider a bamboo raft for a more intimate experience.'
+                },
+                'zhangjiajie': {
+                    name: 'Zhangjiajie National Forest Park',
+                    description: 'The towering sandstone pillars that inspired the floating mountains in Avatar. Zhangjiajie is a surreal landscape of over 3,000 quartzite columns, some rising over 1,000 meters.',
+                    highlights: ['Avatar Hallelujah Mountain', 'Glass Bridge (world\'s longest and highest)', 'Tianmen Mountain with Heaven\'s Gate', 'Bailong Elevator (world\'s tallest outdoor elevator)'],
+                    transportation: 'Fly to Zhangjiajie Hehua Airport or take train from Changsha. Park shuttle buses connect major sites.',
+                    accommodation: 'Stay in Wulingyuan district (near park entrance) or Zhangjiajie city. Options from budget hostels to luxury resorts.',
+                    food: 'Local Tujia cuisine. Try three-pot stew (sanxia guo) and spicy fish head.',
+                    tips: 'Allow 2-3 days minimum. The park is huge. Early morning avoids crowds and mist clears for best views. Bring layers - weather changes with altitude.'
+                },
+                'huangshan': {
+                    name: 'Huangshan (Yellow Mountain)',
+                    description: 'Famous for its "four wonders": bizarre pines, grotesque rocks, sea of clouds, and hot springs. Huangshan has been the subject of Chinese art and literature for over 1,000 years.',
+                    highlights: ['Sunrise from Bright Summit', 'Flying-over Rock formation', 'West Sea Grand Canyon', 'Hot springs at the mountain base'],
+                    transportation: 'High-speed train to Huangshan North station, then bus to Tangkou (1 hour). Cable car or hike up the mountain.',
+                    accommodation: 'Stay on the mountain (book well in advance - limited rooms) or in Tangkou at the base. Mountain hotels are basic but worth it for sunrise.',
+                    food: 'Anhui cuisine features stone ear fungus, bamboo shoots, and stinky tofu (not as bad as it sounds!).',
+                    tips: 'Best in autumn (September-November) for clear skies and colorful foliage. The hike up is strenuous - take the cable car if you\'re not fit. Stay overnight for sunrise.'
+                },
+                'lijiang': {
+                    name: 'Lijiang Old Town',
+                    description: 'A UNESCO World Heritage site, Lijiang is the heart of Naxi minority culture. Cobblestone streets, traditional wooden houses, and canals create a romantic atmosphere in the shadow of Jade Dragon Snow Mountain.',
+                    highlights: ['Old Town nightlife and bars', 'Jade Dragon Snow Mountain', 'Blue Moon Valley', 'Naxi ethnic culture and Dongba script'],
+                    transportation: 'Fly to Lijiang Sanyi Airport or take train from Kunming (3 hours). Old Town is pedestrian-only.',
+                    accommodation: 'Boutique guesthouses (kezan) in Old Town offer authentic experience. Book early for traditional courtyard rooms.',
+                    food: 'Try Naxi specialties: crossing-bridge noodles, Yak meat hotpot, and Lijiang Baba (flatbread).',
+                    tips: 'Altitude is 2,400m - take it easy the first day. Early morning and late evening are best to avoid crowds. The old town gets very touristy - explore side streets for authenticity.'
+                },
+                'jiuzhaigou': {
+                    name: 'Jiuzhaigou Valley',
+                    description: 'A fairy-tale landscape of multi-colored lakes, waterfalls, and snow-capped peaks. Jiuzhaigou\'s crystal-clear lakes display incredible colors due to mineral deposits and algae.',
+                    highlights: ['Five Flower Lake (most colorful)', 'Nuorilang Waterfall (widest in China)', 'Long Lake (largest and deepest)', 'Panda Lake'],
+                    transportation: 'Fly to Jiuzhai Huanglong Airport (limited flights) or bus from Chengdu (8-10 hours). Park shuttle buses available.',
+                    accommodation: 'Hotels outside the park entrance range from budget to luxury. Stay in Jiuzhaigou county.',
+                    food: 'Tibetan and Qiang minority cuisine. Try yak meat, butter tea, and tsampa (roasted barley flour).',
+                    tips: 'Best in autumn (October) for colorful forests. Arrive when park opens (7 AM) to beat crowds. The park is at 2,000-3,000m altitude - acclimatize slowly.'
+                },
+                'emei': {
+                    name: 'Emei Mountain',
+                    description: 'One of China\'s four sacred Buddhist mountains, Emei is home to the world\'s tallest golden Buddha and over 1,000 temples. The mountain\'s biodiversity and misty peaks create a spiritual atmosphere.',
+                    highlights: ['Golden Summit above the clouds', 'Ten-Thousand-Year Temple', 'Wild Tibetan macaques', 'Sunrise and sea of clouds'],
+                    transportation: 'High-speed train from Chengdu to Emeishan station (1.5 hours), then bus to the mountain. Cable car to Golden Summit.',
+                    accommodation: 'Temples on the mountain offer basic lodging. Hotels at the base or Golden Summit (book in advance).',
+                    food: 'Emei specialties: Emei tofu, Zhangcha duck (tea-smoked), and wild mushrooms.',
+                    tips: 'Allow 2 days minimum. The hike is challenging - consider cable car. Watch out for monkeys (they steal food and belongings). Best in autumn for clear views.'
+                },
+                'fenghuang': {
+                    name: 'Fenghuang Ancient Town',
+                    description: 'A beautifully preserved ancient town in Hunan province, Fenghuang (Phoenix) is famous for its Miao and Tujia minority stilted houses along the Tuojiang River. The town is especially magical at night when lanterns illuminate the water.',
+                    highlights: ['Tuojiang River at night', 'Miao minority culture and crafts', 'Anc city walls and gates', 'Rainbow Bridge'],
+                    transportation: 'Train to Jishou or Huaihua, then bus to Fenghuang (1 hour). The town is walkable.',
+                    accommodation: 'Riverside guesthouses offer beautiful views. Stay in traditional stilted houses for authentic experience.',
+                    food: 'Try Miao specialties: sour fish soup, blood tofu, and rice wine.',
+                    tips: 'Best in spring or autumn. Early morning before tourists arrive is magical. The town is less commercialized than Lijiang but still popular with Chinese tourists.'
+                },
+                'kanas': {
+                    name: 'Kanas Lake, Xinjiang',
+                    description: 'A mysterious alpine lake in the Altai Mountains that changes color with the seasons. Surrounded by Siberian taiga and inhabited by Tuva and Kazakh nomads, Kanas feels like a different world.',
+                    highlights: ['Color-changing lake (blue to green to silver)', 'Three Bays: Immortal Bay, Moon Bay, Dragon Bay', 'Tuva villages with wooden houses', 'Autumn colors (September-October)'],
+                    transportation: 'Fly to Burqin or Kanas Airport, or drive from Urumqi (6 hours). Park shuttle buses required.',
+                    accommodation: 'Yurts and guesthouses in the park. Wooden lodges available. Book well in advance.',
+                    food: 'Kazakh and Tuva cuisine: lamb skewers, naan bread, yogurt, and mare\'s milk (kumis).',
+                    tips: 'Best in autumn (late September-early October) for golden forests. The park is only accessible June-October. Bring warm clothes - nights are cold even in summer.'
+                },
+                'lushan': {
+                    name: 'Lushan Mountain',
+                    description: 'A famous retreat from summer heat, Lushan is known for its waterfalls, historical villas, and misty landscapes. It was a summer resort for foreign diplomats and Chinese leaders in the early 20th century.',
+                    highlights: ['Sandie Spring Waterfall (three-tiered)', 'Flower Path (immortalized in poetry)', 'Historical villas from 1920s', 'Hanpokou viewpoint'],
+                    transportation: 'Train to Jiujiang, then bus or cable car up the mountain (1 hour). Local buses on the mountain.',
+                    accommodation: 'Hotels in Guling town on the mountain. Many historical villas converted to guesthouses.',
+                    food: 'Try Lushan stone fish, stone fungus, and cloud mist tea (grown on the mountain).',
+                    tips: 'Best in summer (cool temperatures) or autumn. The mountain has a rich political history - visit the Lushan Conference site. Allow 2-3 days to explore.'
+                },
+                'three-gorges': {
+                    name: 'Three Gorges, Yangtze River',
+                    description: 'The Three Gorges (Qutang, Wu, and Xiling) are a series of dramatic river valleys on the Yangtze River. The area is famous for its cliffs, the Three Gorges Dam, and traditional riverside villages.',
+                    highlights: ['Three Gorges Dam (world\'s largest hydroelectric project)', 'Lesser Three Gorges cruise', 'Shennong Stream with hanging coffins', 'Fengdu Ghost City'],
+                    transportation: 'Most visitors take a 3-5 day cruise from Chongqing to Yichang (downstream) or reverse. Flights to Chongqing available.',
+                    accommodation: 'Cruise ships range from budget to luxury 5-star. Cabins have private balconies.',
+                    food: 'Cruises include meals featuring Sichuan and Hubei cuisine. Try spicy fish and local vegetables.',
+                    tips: 'Best season: April-October. Downstream cruise (4 days) is faster than upstream (5 days). The dam visit is educational but the natural gorges are the highlight.'
+                },
+                'putuo': {
+                    name: 'Putuo Mountain',
+                    description: 'One of China\'s four sacred Buddhist mountains, Putuo is a small island in the Zhoushan Archipelago dedicated to Guanyin (Goddess of Mercy). The island features ancient temples on rocky cliffs, golden-roofed monasteries, pristine beaches, and stunning coastal scenery.',
+                    highlights: ['Puji Temple (largest temple complex)', 'Nanhai Guanyin Statue', 'Fayu Temple on the sea', 'Thousand-Step Beach'],
+                    transportation: 'Ferry from Ningbo (15 min) or Shanghai (1.5-4h). High-speed ferry available from Zhujiajian dock.',
+                    accommodation: 'Island hotels near temples (¥500-1500), temple guesthouses (¥100-300), or stay on nearby Zhujiajian island.',
+                    food: 'Temple vegetarian meals (lunch only, ¥20-50) and fresh Zhoushan seafood restaurants (¥80-200).',
+                    tips: 'Best in spring (Apr-Jun) and autumn (Sep-Nov). Dress modestly for temples. Don\'t miss the last ferry back. Buddhist holidays draw huge crowds.'
+                }
+            };
+
+            const attraction = attractions[attractionId];
+            if (!attraction) return;
+
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <span class="close-btn" onclick="this.parentElement.parentElement.remove()">&times;</span>
+                    <h2>${attraction.name}</h2>
+                    <p class="modal-description">${attraction.description}</p>
+                    
+                    <h3>Highlights</h3>
+                    <ul>
+                        ${attraction.highlights.map(h => `<li>${h}</li>`).join('')}
+                    </ul>
+                    
+                    <h3>Transportation</h3>
+                    <p>${attraction.transportation}</p>
+                    
+                    <h3>Accommodation</h3>
+                    <p>${attraction.accommodation}</p>
+                    
+                    <h3>Food</h3>
+                    <p>${attraction.food}</p>
+                    
+                    <h3>Tips</h3>
+                    <p>${attraction.tips}</p>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        // ========== FIREBASE CONFIG ==========
+        // TODO: Replace with your Firebase project config
+        // 1. Go to https://console.firebase.google.com
+        // 2. Create a new project (or use existing)
+        // 3. Add a Web App and copy the config
+        // 4. Enable Google Sign-In in Authentication
+        // 5. Create a Firestore Database in test mode
+        const firebaseConfig = {
+            apiKey: "AIzaSyCIgvZksr4agqveuCH-PoFdB0XaVPjT-Xw",
+            authDomain: "zengzhihua.firebaseapp.com",
+            projectId: "zengzhihua",
+            storageBucket: "zengzhihua.firebasestorage.app",
+            messagingSenderId: "829591235916",
+            appId: "1:829591235916:web:43181f22807cae6c4133e9"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        let currentUser = null;
+
+        auth.onAuthStateChanged(user => {
+            currentUser = user;
+            const signinBtn = document.getElementById('google-signin-btn');
+            const userInfo = document.getElementById('user-info');
+            if (user) {
+                signinBtn.style.display = 'none';
+                userInfo.style.display = 'flex';
+                document.getElementById('user-avatar').src = user.photoURL || '';
+                document.getElementById('user-name').textContent = user.displayName || 'User';
+            } else {
+                signinBtn.style.display = 'block';
+                userInfo.style.display = 'none';
+            }
+        });
+
+        function googleSignIn() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider).catch(err => alert('Sign in failed: ' + err.message));
+        }
+
+        function googleSignOut() {
+            auth.signOut();
+        }
+
+        function timeAgo(timestamp) {
+            if (!timestamp) return 'just now';
+            const seconds = Math.floor((Date.now() - timestamp.toMillis()) / 1000);
+            if (seconds < 60) return 'just now';
+            const minutes = Math.floor(seconds / 60);
+            if (minutes < 60) return minutes + ' min ago';
+            const hours = Math.floor(minutes / 60);
+            if (hours < 24) return hours + 'h ago';
+            const days = Math.floor(hours / 24);
+            return days + 'd ago';
+        }
+
+        function loadTopics() {
+            const container = document.getElementById('forum-topics');
+            db.collection('topics').orderBy('createdAt', 'desc').onSnapshot(snapshot => {
+                if (snapshot.empty) {
+                    container.innerHTML = '<p style="text-align:center;color:#888;padding:2rem;">No discussions yet. Be the first to start a topic!</p>';
+                    return;
+                }
+                let html = '';
+                snapshot.forEach(doc => {
+                    const t = doc.data();
+                    const initials = (t.authorName || 'U').split(' ').map(w => w[0]).join('').substring(0, 2).toUpperCase();
+                    const avatar = t.authorPhoto
+                        ? '<img class="topic-avatar" src="' + t.authorPhoto + '" alt="avatar" style="width:55px;height:55px;border-radius:50%;object-fit:cover;">'
+                        : '<div class="topic-avatar">' + initials + '</div>';
+                    html += '<div class="topic-item" id="topic-' + doc.id + '">';
+                    html += avatar;
+                    html += '<div class="topic-content">';
+                    html += '<h4>' + escapeHtml(t.title) + '</h4>';
+                    html += '<p class="topic-meta">Posted by ' + escapeHtml(t.authorName || 'Anonymous') + ' &bull; ' + timeAgo(t.createdAt) + ' &bull; <span id="reply-count-' + doc.id + '">' + (t.replyCount || 0) + '</span> replies</p>';
+                    html += '<p class="topic-preview">' + escapeHtml(t.content) + '</p>';
+                    html += '<button class="reply-btn" onclick="toggleReplies(\'' + doc.id + '\')">View Replies</button>';
+                    html += '<div id="replies-' + doc.id + '" style="display:none;" class="topic-replies"></div>';
+                    if (currentUser) {
+                        html += '<div class="reply-form"><textarea class="reply-input" id="reply-input-' + doc.id + '" placeholder="Write a reply..."></textarea>';
+                        html += '<button class="reply-submit" onclick="submitReply(\'' + doc.id + '\')">Reply</button></div>';
+                    }
+                    html += '</div></div>';
+                });
+                container.innerHTML = html;
+            }, err => {
+                container.innerHTML = '<p style="text-align:center;color:#888;padding:2rem;">Unable to load discussions. Please check Firebase config.</p>';
+            });
+        }
+
+        function toggleReplies(topicId) {
+            const repliesDiv = document.getElementById('replies-' + topicId);
+            if (repliesDiv.style.display === 'none') {
+                repliesDiv.style.display = 'block';
+                loadReplies(topicId);
+            } else {
+                repliesDiv.style.display = 'none';
+            }
+        }
+
+        function loadReplies(topicId) {
+            const container = document.getElementById('replies-' + topicId);
+            db.collection('topics').doc(topicId).collection('replies').orderBy('createdAt', 'asc').onSnapshot(snapshot => {
+                if (snapshot.empty) {
+                    container.innerHTML = '<p style="color:#999;font-size:0.9rem;">No replies yet.</p>';
+                    return;
+                }
+                let html = '';
+                snapshot.forEach(doc => {
+                    const r = doc.data();
+                    const avatar = r.authorPhoto
+                        ? '<img class="reply-avatar" src="' + r.authorPhoto + '" alt="avatar">'
+                        : '<div class="reply-avatar" style="width:30px;height:30px;border-radius:50%;background:#667eea;color:white;display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:600;flex-shrink:0;">' + (r.authorName || 'U')[0].toUpperCase() + '</div>';
+                    html += '<div class="reply-item">';
+                    html += avatar;
+                    html += '<div class="reply-content">';
+                    html += '<span class="reply-author">' + escapeHtml(r.authorName || 'Anonymous') + '</span>';
+                    html += '<span class="reply-time"> &bull; ' + timeAgo(r.createdAt) + '</span>';
+                    html += '<p class="reply-text">' + escapeHtml(r.content) + '</p>';
+                    html += '</div></div>';
+                });
+                container.innerHTML = html;
+            });
+        }
+
+        function openNewTopic() {
+            if (!currentUser) {
+                alert('Please sign in with Google to post a topic.');
+                googleSignIn();
+                return;
+            }
+            const overlay = document.createElement('div');
+            overlay.className = 'topic-modal-overlay';
+            overlay.innerHTML = '<div class="topic-modal"><h3>Start a New Discussion</h3>'
+                + '<input type="text" id="new-topic-title" placeholder="Topic title">'
+                + '<textarea id="new-topic-content" placeholder="Share your travel experience, tips, or questions..."></textarea>'
+                + '<div class="modal-actions"><button class="btn-cancel" onclick="this.closest(\'.topic-modal-overlay\').remove()">Cancel</button>'
+                + '<button class="btn-submit" onclick="submitTopic()">Post Topic</button></div></div>';
+            overlay.onclick = function(e) { if (e.target === overlay) overlay.remove(); };
+            document.body.appendChild(overlay);
+        }
+
+        function submitTopic() {
+            const title = document.getElementById('new-topic-title').value.trim();
+            const content = document.getElementById('new-topic-content').value.trim();
+            if (!title || !content) { alert('Please fill in both title and content.'); return; }
+            db.collection('topics').add({
+                title: title,
+                content: content,
+                authorId: currentUser.uid,
+                authorName: currentUser.displayName || 'Anonymous',
+                authorPhoto: currentUser.photoURL || '',
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                replyCount: 0
+            }).then(() => {
+                document.querySelector('.topic-modal-overlay').remove();
+            }).catch(err => alert('Failed to post: ' + err.message));
+        }
+
+        function submitReply(topicId) {
+            if (!currentUser) { alert('Please sign in first.'); return; }
+            const input = document.getElementById('reply-input-' + topicId);
+            const content = input.value.trim();
+            if (!content) return;
+            db.collection('topics').doc(topicId).collection('replies').add({
+                content: content,
+                authorId: currentUser.uid,
+                authorName: currentUser.displayName || 'Anonymous',
+                authorPhoto: currentUser.photoURL || '',
+                createdAt: firebase.firestore.FieldValue.serverTimestamp()
+            }).then(() => {
+                input.value = '';
+                db.collection('topics').doc(topicId).update({ replyCount: firebase.firestore.FieldValue.increment(1) });
+            }).catch(err => alert('Failed to reply: ' + err.message));
+        }
+
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Load forum topics when page is ready
+        loadTopics();
+
+        window.onclick = function(event) {
+            if (event.target.className === 'modal') {
+                event.target.remove();
+            }
+        }
+    </script>
+</body>
+</html>

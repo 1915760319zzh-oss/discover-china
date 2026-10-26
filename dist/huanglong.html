@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huanglong - Complete Travel Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-size: 1.8rem; font-weight: bold; letter-spacing: 1px; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; font-size: 1rem; }
+        .nav-links a:hover { opacity: 0.8; }
+        .back-btn { background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.3s; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .hero-banner { height: 500px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        .hero-banner h1 { font-size: 4rem; font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero-banner p { font-size: 1.5rem; margin-top: 1rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+        .content-section { padding: 60px 20px; background: white; }
+        .content-section h2 { font-size: 2.5rem; margin-bottom: 2rem; color: #667eea; border-bottom: 3px solid #667eea; padding-bottom: 1rem; }
+        .content-section h3 { font-size: 1.8rem; margin: 2rem 0 1rem; color: #764ba2; }
+        .content-section p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; color: #555; }
+        .info-box { background: #f8f9fa; padding: 2rem; border-radius: 15px; margin: 2rem 0; border-left: 4px solid #667eea; }
+        .info-box h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .info-box ul { margin-left: 1.5rem; }
+        .info-box li { margin-bottom: 0.8rem; color: #555; line-height: 1.6; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .gallery-item { border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .gallery-item:hover { transform: translateY(-10px); }
+        .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; }
+        .gallery-item .caption { padding: 1rem; background: white; text-align: center; font-weight: 600; color: #667eea; }
+        .transport-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .transport-card { background: #f8f9fa; padding: 2rem; border-radius: 15px; border-top: 4px solid #667eea; }
+        .transport-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .transport-card p { color: #555; line-height: 1.6; }
+        .route-timeline { position: relative; padding-left: 40px; margin: 2rem 0; }
+        .route-timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: #667eea; }
+        .route-item { position: relative; margin-bottom: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px; }
+        .route-item::before { content: ''; position: absolute; left: -33px; top: 20px; width: 15px; height: 15px; border-radius: 50%; background: #667eea; border: 3px solid white; }
+        .route-item h4 { color: #667eea; margin-bottom: 0.5rem; }
+        .route-item p { color: #555; margin: 0; }
+        .restaurant-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .restaurant-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 4px solid #667eea; }
+        .restaurant-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .restaurant-card .cuisine { color: #764ba2; font-weight: 600; margin-bottom: 1rem; }
+        .restaurant-card p { color: #555; margin-bottom: 0.5rem; }
+        .restaurant-card .price { color: #667eea; font-weight: bold; font-size: 1.1rem; }
+        .hotel-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .hotel-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 4px solid #667eea; }
+        .hotel-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .hotel-card .stars { color: #ffc107; margin-bottom: 1rem; }
+        .hotel-card p { color: #555; margin-bottom: 0.5rem; }
+        .hotel-card .price { color: #667eea; font-weight: bold; font-size: 1.2rem; margin-top: 1rem; }
+        .tips-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem; border-radius: 15px; margin: 3rem 0; }
+        .tips-box h3 { color: white; font-size: 2rem; margin-bottom: 1.5rem; }
+        .tips-box ul { margin-left: 1.5rem; }
+        .tips-box li { margin-bottom: 1rem; line-height: 1.6; }
+        footer { background: #333; color: white; text-align: center; padding: 2.5rem 20px; }
+        footer p { margin: 0.5rem 0; opacity: 0.9; }
+        @media (max-width: 768px) { .hero-banner h1 { font-size: 2.5rem; } .hero-banner p { font-size: 1.2rem; } .content-section h2 { font-size: 2rem; } .gallery { grid-template-columns: 1fr; } .nav-links { gap: 1rem; font-size: 0.9rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Discover China</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#attractions">Attractions</a></li>
+                <li><a href="index.html#visa-info">Visa Info</a></li>
+                <li><a href="index.html#forum">Travel Forum</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+            <button class="back-btn" onclick="window.location.href='index.html#attractions'">← Back to Attractions</button>
+        </nav>
+    </header>
+
+    <div class="hero-banner">
+        <div>
+            <h1>Huanglong</h1>
+            <p>黄龙 - Travertine Terraces and Colorful Calcite Pools</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="content-section">
+            <h2>Overview</h2>
+            <p>Huanglong (Yellow Dragon) is a UNESCO World Heritage Site in Sichuan Province, famous for its spectacular travertine terraces, colorful calcite pools, snow-capped peaks, and pristine forests. The scenic area is named after the Huanglong Gorge, where calcium carbonate deposits have created over 3,400 colorful pools in terraced formations spanning 3.6 kilometers. The pools shimmer in shades of blue, green, yellow, and white due to mineral deposits and algae. At an altitude of 3,000-3,600 meters, Huanglong is one of the highest scenic areas in China. The area is often combined with a visit to nearby Jiuzhaigou Valley (2-3 hours away).</p>
+            
+            <div class="info-box">
+                <h4>Quick Facts</h4>
+                <ul>
+                    <li><strong>Location:</strong> Songpan County, Aba Prefecture, Sichuan Province</li>
+                    <li><strong>UNESCO Status:</strong> World Heritage Site since 1992</li>
+                    <li><strong>Altitude:</strong> 3,000 - 3,600 meters (high altitude)</li>
+                    <li><strong>Best Time to Visit:</strong> September-October (autumn colors, clear weather)</li>
+                    <li><strong>Entrance Fee:</strong> ¥170 (peak season Apr-Nov), ¥60 (off-season Dec-Mar)</li>
+                    <li><strong>Opening Hours:</strong> 8:00 AM - 5:00 PM (varies by season)</li>
+                </ul>
+            </div>
+
+            <h2>📸 Gallery - 6 Beautiful Photos</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Colorful Pools">
+                    <div class="caption">Colorful Calcite Pools</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Travertine Terraces">
+                    <div class="caption">Travertine Terrace Formations</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Five Color Pond">
+                    <div class="caption">Five Color Pond (Wucai Chi)</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Snow Mountain">
+                    <div class="caption">Snow-Capped Mountains Behind</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Forest Path">
+                    <div class="caption">Pristine Forest Walking Path</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Huanglong Temple">
+                    <div class="caption">Huanglong Ancient Temple</div>
+                </div>
+            </div>
+
+            <h2>🚗 How to Get There - Transportation</h2>
+            <div class="transport-grid">
+                <div class="transport-card">
+                    <h4>By Air to Jiuzhaigou</h4>
+                    <p><strong>Jiuzhai Huanglong Airport:</strong> Flights from Chengdu (1h, ¥600-1000), Chongqing (1h, ¥800). Airport to Huanglong: 1.5h drive (taxi ¥200-300, or bus ¥50).</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Bus from Chengdu</h4>
+                    <p><strong>From Chengdu:</strong> Bus to Songpan County (8-10h, ¥150-200). Then local bus or taxi to Huanglong (1h, ¥30-50). Long but scenic mountain road.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>From Jiuzhaigou Valley</h4>
+                    <p><strong>Distance:</strong> 2-3 hours drive between Jiuzhaigou and Huanglong. Many tourists visit both. Tour buses available (¥100-150 one way). Or private car (¥300-400).</p>
+                </div>
+                <div class="transport-card">
+                    <h4>Within Scenic Area</h4>
+                    <p><strong>Cable Car:</strong> From entrance to upper area (¥80 one way, ¥40 return). Saves 2-3 hours of steep hiking. Highly recommended due to high altitude.</p>
+                </div>
+            </div>
+
+            <h2>️ Recommended Tour Routes</h2>
+            <div class="route-timeline">
+                <div class="route-item">
+                    <h4>Route 1: Classic One-Day Tour</h4>
+                    <p><strong>Route:</strong> Cable car up → Five Color Pond (top) → Walk down through terraces → Huanglong Temple → Exit<br>
+                    <strong>Duration:</strong> 4-6 hours<br>
+                    <strong>Best for:</strong> First-time visitors, most popular route</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 2: Full Hiking Route</h4>
+                    <p><strong>Route:</strong> Walk up from entrance → Through forest → All terrace pools → Five Color Pond → Cable car down<br>
+                    <strong>Duration:</strong> 6-8 hours<br>
+                    <strong>Best for:</strong> Fit hikers, nature lovers (very strenuous at high altitude)</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 3: Huanglong + Jiuzhaigou (2-3 Days)</h4>
+                    <p><strong>Day 1:</strong> Huanglong full day<br>
+                    <strong>Day 2-3:</strong> Jiuzhaigou Valley (nearby)<br>
+                    <strong>Best for:</strong> Complete natural scenery experience</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 4: Photography Special</h4>
+                    <p><strong>Best Spots:</strong> Five Color Pond (morning light), Travertine terraces (midday), Forest pools (afternoon)<br>
+                    <strong>Tips:</strong> Early arrival to avoid crowds; bring polarizing filter for water shots</p>
+                </div>
+            </div>
+
+            <h2>🍽️ Restaurants Near Huanglong</h2>
+            <div class="restaurant-list">
+                <div class="restaurant-card">
+                    <h4>Huanglong Entrance Restaurants</h4>
+                    <div class="cuisine">Sichuan & Local</div>
+                    <p><strong>Location:</strong> Near scenic area entrance<br>
+                    <strong>Specialty:</strong> Noodles, Rice dishes, Local vegetables<br>
+                    <strong>Hours:</strong> 7:00 AM - 8:00 PM</p>
+                    <div class="price">¥40-80 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Songpan County Restaurants</h4>
+                    <div class="cuisine">Tibetan & Chinese</div>
+                    <p><strong>Location:</strong> Songpan town (30 min from Huanglong)<br>
+                    <strong>Specialty:</strong> Yak meat, Tibetan dishes, Local cuisine<br>
+                    <strong>Hours:</strong> 10:00 AM - 9:00 PM</p>
+                    <div class="price">¥50-100 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Hotel Restaurants</h4>
+                    <div class="cuisine">Chinese & International</div>
+                    <p><strong>Location:</strong> Inside nearby hotels<br>
+                    <strong>Specialty:</strong> Buffet meals, Higher quality, Western options<br>
+                    <strong>Hours:</strong> 7:00 AM - 9:00 PM</p>
+                    <div class="price">¥80-150 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Snacks & Street Food</h4>
+                    <div class="cuisine">Local Snacks</div>
+                    <p><strong>Location:</strong> Along road to Huanglong and entrance area<br>
+                    <strong>Specialty:</strong> Hot water, Instant noodles, Local snacks<br>
+                    <strong>Hours:</strong> 6:00 AM - 7:00 PM</p>
+                    <div class="price">¥15-40 per person</div>
+                </div>
+            </div>
+
+            <h2>🏨 Accommodation Options & Prices</h2>
+            <div class="hotel-list">
+                <div class="hotel-card">
+                    <h4>Huanglong Area Hotels</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> Near scenic area entrance<br>
+                    <strong>Features:</strong> Convenient, Basic amenities, Restaurant<br>
+                    <strong>Note:</strong> Limited options; book early for peak season</p>
+                    <div class="price">¥400-900/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Songpan County Hotels</h4>
+                    <div class="stars">★★★</div>
+                    <p><strong>Location:</strong> Songpan town (30 min from Huanglong)<br>
+                    <strong>Features:</strong> More options, Local atmosphere, Restaurants<br>
+                    <strong>Distance to Entrance:</strong> 30 min drive</p>
+                    <div class="price">¥200-500/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Jiuzhaigou Area Hotels</h4>
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Location:</strong> Near Jiuzhaigou Valley (2-3h from Huanglong)<br>
+                    <strong>Features:</strong> Luxury resorts, Full amenities, Tour services<br>
+                    <strong>Note:</strong> Many stay here and day-trip to Huanglong</p>
+                    <div class="price">¥800-3000/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Chengdu (Base City)</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> Chengdu city (8-10h from Huanglong)<br>
+                    <strong>Features:</strong> Full city amenities, Airport, Train station<br>
+                    <strong>Note:</strong> Most fly from Chengdu; good for pre/post trip</p>
+                    <div class="price">¥300-1000/night</div>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h3>💡 Essential Travel Tips</h3>
+                <ul>
+                    <li><strong>Altitude Sickness:</strong> Huanglong is at 3,000-3,600m - HIGH ALTITUDE. Acclimatize in Chengdu (500m) first. Take it slow, stay hydrated, avoid alcohol. Consider altitude medication (Diamox).</li>
+                    <li><strong>Best Season:</strong> September-October for autumn colors and clear weather. Summer (Jun-Aug) is rainy but accessible. Winter (Nov-Mar) very cold, some areas closed.</li>
+                    <li><strong>Cable Car:</strong> Highly recommended due to altitude. Saves 2-3 hours of steep uphill hiking. ¥80 one way up.</li>
+                    <li><strong>Physical Fitness:</strong> Even with cable car, expect 2-3 hours of walking at high altitude. Not for those with heart/respiratory conditions.</li>
+                    <li><strong>Weather:</strong> Mountain weather changes rapidly. Bring warm layers, rain gear, sun protection. Can be cold even in summer at high altitude.</li>
+                    <li><strong>Combine with Jiuzhaigou:</strong> Most visitors do both (2-3h apart). Plan 3-4 days total for both areas.</li>
+                    <li><strong>Food:</strong> Limited options near Huanglong. Bring snacks and water. Restaurants at entrance are basic.</li>
+                    <li><strong>Photography:</strong> Best light morning and late afternoon. Five Color Pond most photogenic. Bring polarizing filter.</li>
+                    <li><strong>Crowds:</strong> Peak season (Oct) extremely crowded. Arrive early morning. Avoid Chinese holidays.</li>
+                    <li><strong>Payment:</strong> WeChat Pay and Alipay accepted. ATMs limited - bring cash from Chengdu.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Discover China. All rights reserved.</p>
+            <p>Your gateway to authentic Chinese travel experiences</p>
+        </div>
+    </footer>
+</body>
+</html>

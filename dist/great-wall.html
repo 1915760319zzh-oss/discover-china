@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Great Wall of China - Complete Travel Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: opacity 0.3s;
+            font-size: 1rem;
+        }
+
+        .nav-links a:hover {
+            opacity: 0.8;
+        }
+
+        .back-btn {
+            background: rgba(255,255,255,0.2);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s;
+        }
+
+        .back-btn:hover {
+            background: rgba(255,255,255,0.3);
+        }
+
+        .hero-banner {
+            height: 500px;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/great-wall-1.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .hero-banner h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .hero-banner p {
+            font-size: 1.5rem;
+            margin-top: 1rem;
+            text-shadow: 1px 1px 5px rgba(0,0,0,0.5);
+        }
+
+        .content-section {
+            padding: 60px 20px;
+            background: white;
+        }
+
+        .content-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 1rem;
+        }
+
+        .content-section h3 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem;
+            color: #764ba2;
+        }
+
+        .content-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            color: #555;
+        }
+
+        .info-box {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            border-left: 4px solid #667eea;
+        }
+
+        .info-box h4 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-box ul {
+            margin-left: 1.5rem;
+        }
+
+        .info-box li {
+            margin-bottom: 0.8rem;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .gallery-item {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-item .caption {
+            padding: 1rem;
+            background: white;
+            text-align: center;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .transport-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .transport-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            border-top: 4px solid #667eea;
+        }
+
+        .transport-card h4 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+        }
+
+        .transport-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .route-timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 2rem 0;
+        }
+
+        .route-timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #667eea;
+        }
+
+        .route-item {
+            position: relative;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+
+        .route-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 20px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #667eea;
+            border: 3px solid white;
+        }
+
+        .route-item h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+        }
+
+        .route-item p {
+            color: #555;
+            margin: 0;
+        }
+
+        .restaurant-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .restaurant-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 4px solid #667eea;
+        }
+
+        .restaurant-card h4 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .restaurant-card .cuisine {
+            color: #764ba2;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .restaurant-card p {
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        .restaurant-card .price {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+
+        .hotel-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .hotel-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-top: 4px solid #667eea;
+        }
+
+        .hotel-card h4 {
+            color: #667eea;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hotel-card .stars {
+            color: #ffc107;
+            margin-bottom: 1rem;
+        }
+
+        .hotel-card p {
+            color: #555;
+            margin-bottom: 0.5rem;
+        }
+
+        .hotel-card .price {
+            color: #667eea;
+            font-weight: bold;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .tips-box {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem;
+            border-radius: 15px;
+            margin: 3rem 0;
+        }
+
+        .tips-box h3 {
+            color: white;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tips-box ul {
+            margin-left: 1.5rem;
+        }
+
+        .tips-box li {
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 2.5rem 20px;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-banner p {
+                font-size: 1.2rem;
+            }
+
+            .content-section h2 {
+                font-size: 2rem;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Discover China</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#attractions">Attractions</a></li>
+                <li><a href="index.html#visa-info">Visa Info</a></li>
+                <li><a href="index.html#forum">Travel Forum</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+            <button class="back-btn" onclick="window.location.href='index.html#attractions'">← Back to Attractions</button>
+        </nav>
+    </header>
+
+    <div class="hero-banner">
+        <div>
+            <h1>Great Wall of China</h1>
+            <p>万里长城 - One of the World's Greatest Wonders</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="content-section">
+            <h2>Overview</h2>
+            <p>The Great Wall of China is one of the most iconic landmarks in the world, stretching over 13,000 miles (21,000 km) across northern China. Built over centuries to protect against invasions, it offers breathtaking views and a glimpse into China's ancient history. The wall winds through mountains, deserts, and grasslands, creating a spectacular sight that has inspired travelers for generations.</p>
+            
+            <div class="info-box">
+                <h4>Quick Facts</h4>
+                <ul>
+                    <li><strong>Total Length:</strong> 13,171 miles (21,196 km)</li>
+                    <li><strong>Built:</strong> 7th century BC to 1644 AD</li>
+                    <li><strong>UNESCO Status:</strong> World Heritage Site since 1987</li>
+                    <li><strong>Best Time to Visit:</strong> April-May or September-October</li>
+                    <li><strong>Entrance Fee:</strong> ¥35-¥60 depending on section</li>
+                    <li><strong>Opening Hours:</strong> 7:00 AM - 6:00 PM (varies by season)</li>
+                </ul>
+            </div>
+
+            <h2>📸 Gallery - 6 Beautiful Photos</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/great-wall-1.jpg" alt="Great Wall Summer View">
+                    <div class="caption">Summer Crowds on the Great Wall</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/great-wall-2.jpg" alt="Great Wall Autumn Colors">
+                    <div class="caption">Autumn Colors on the Great Wall</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/great-wall-3.jpg" alt="Great Wall Winding Path">
+                    <div class="caption">Winding Path Through Mountains</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/great-wall-4.jpg" alt="Great Wall Sunset View">
+                    <div class="caption">Sunset Views from the Wall</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/great-wall-5.jpg" alt="Great Wall Watchtowers">
+                    <div class="caption">Ancient Watchtowers in Green Mountains</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/great-wall-6.jpg" alt="Great Wall Winter Snow">
+                    <div class="caption">Winter Snow on the Great Wall</div>
+                </div>
+            </div>
+
+            <h2>🚗 How to Get There - Transportation</h2>
+            <div class="transport-grid">
+                <div class="transport-card">
+                    <h4>From Beijing City Center</h4>
+                    <p><strong>By Bus:</strong> Take Bus 877 from Deshengmen Bus Station to Badaling (1.5 hours, ¥12). Buses depart every 20 minutes from 6:00 AM to 12:00 PM.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Train</h4>
+                    <p><strong>S2 Train:</strong> Depart from Beijing North Railway Station to Badaling Station (1.5 hours, ¥6.5). Trains run daily but schedule varies.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Private Car/Taxi</h4>
+                    <p><strong>Taxi:</strong> From downtown Beijing to Badaling (70km, 1.5 hours, ¥300-400 one way). Can be hired for full day tours (¥800-1000).</p>
+                </div>
+                <div class="transport-card">
+                    <h4>Tourist Bus</h4>
+                    <p><strong>Official Tour Bus:</strong> Departs from Qianmen or Beijing Railway Station. Includes guide and entrance ticket (¥150-200 per person).</p>
+                </div>
+            </div>
+
+            <h2>🗺️ Recommended Tour Routes</h2>
+            <div class="route-timeline">
+                <div class="route-item">
+                    <h4>Route 1: Badaling Express (Half Day)</h4>
+                    <p><strong>Duration:</strong> 3-4 hours<br>
+                    <strong>Route:</strong> Entrance → North Section → Watchtower 8 → South Section → Exit<br>
+                    <strong>Difficulty:</strong> Easy (cable car available)<br>
+                    <strong>Best for:</strong> First-time visitors, families with children</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 2: Mutianyu Complete (Full Day)</h4>
+                    <p><strong>Duration:</strong> 5-6 hours<br>
+                    <strong>Route:</strong> Cable car up → Watchtower 14 → Watchtower 20 (highest) → Watchtower 6 → Toboggan down<br>
+                    <strong>Difficulty:</strong> Moderate<br>
+                    <strong>Best for:</strong> Photography enthusiasts, moderate hikers</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 3: Jinshanling to Simatai (Full Day Hike)</h4>
+                    <p><strong>Duration:</strong> 6-8 hours<br>
+                    <strong>Route:</strong> Jinshanling East Gate → Watchtower 24 → Simatai West → Simatai East Gate<br>
+                    <strong>Difficulty:</strong> Challenging (15km hiking)<br>
+                    <strong>Best for:</strong> Experienced hikers, adventure seekers</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 4: Sunrise/Sunset Special</h4>
+                    <p><strong>Duration:</strong> 2-3 hours<br>
+                    <strong>Route:</strong> Arrive 1 hour before sunrise/sunset → Best viewpoint → Photography session<br>
+                    <strong>Difficulty:</strong> Easy to Moderate<br>
+                    <strong>Best for:</strong> Photographers, romantic couples</p>
+                </div>
+            </div>
+
+            <h2>🍽️ Restaurants Near the Scenic Area</h2>
+            <div class="restaurant-list">
+                <div class="restaurant-card">
+                    <h4>Great Wall Hotel Restaurant</h4>
+                    <div class="cuisine">Chinese & Western Cuisine</div>
+                    <p><strong>Location:</strong> Inside Badaling Scenic Area<br>
+                    <strong>Specialty:</strong> Peking Duck, Local mountain vegetables<br>
+                    <strong>Hours:</strong> 11:00 AM - 9:00 PM</p>
+                    <div class="price">¥80-150 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Commissary 88</h4>
+                    <div class="cuisine">Traditional Chinese</div>
+                    <p><strong>Location:</strong> Near Badaling Entrance<br>
+                    <strong>Specialty:</strong> Noodles, Dumplings, Fried Rice<br>
+                    <strong>Hours:</strong> 7:00 AM - 8:00 PM</p>
+                    <div class="price">¥30-60 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Yanqing County Restaurants</h4>
+                    <div class="cuisine">Local Yanqing Cuisine</div>
+                    <p><strong>Location:</strong> Yanqing Town (15km from Badaling)<br>
+                    <strong>Specialty:</strong> Tofu banquet, Wild vegetables, Lamb<br>
+                    <strong>Hours:</strong> 11:00 AM - 9:00 PM</p>
+                    <div class="price">¥50-100 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Starbucks Badaling</h4>
+                    <div class="cuisine">Coffee & Light Meals</div>
+                    <p><strong>Location:</strong> Badaling Visitor Center<br>
+                    <strong>Specialty:</strong> Coffee, Pastries, Sandwiches<br>
+                    <strong>Hours:</strong> 8:00 AM - 6:00 PM</p>
+                    <div class="price">¥30-50 per person</div>
+                </div>
+            </div>
+
+            <h2> Accommodation Options & Prices</h2>
+            <div class="hotel-list">
+                <div class="hotel-card">
+                    <h4>Great Wall Hotel</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> Inside Badaling Scenic Area<br>
+                    <strong>Features:</strong> Mountain views, Restaurant, Parking<br>
+                    <strong>Distance to Wall:</strong> 500 meters</p>
+                    <div class="price">¥600-1200/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Commune by the Great Wall</h4>
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Location:</strong> Shuiguan Great Wall<br>
+                    <strong>Features:</strong> Luxury villas, Spa, Multiple restaurants<br>
+                    <strong>Distance to Wall:</strong> Direct access</p>
+                    <div class="price">¥2000-5000/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Yanqing County Hotels</h4>
+                    <div class="stars">★★★</div>
+                    <p><strong>Location:</strong> Yanqing Town<br>
+                    <strong>Features:</strong> Budget-friendly, Local restaurants nearby<br>
+                    <strong>Distance to Wall:</strong> 15km (30 min drive)</p>
+                    <div class="price">¥200-400/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Beijing City Hotels</h4>
+                    <div class="stars">Various</div>
+                    <p><strong>Location:</strong> Downtown Beijing<br>
+                    <strong>Features:</strong> All amenities, Easy transportation<br>
+                    <strong>Distance to Wall:</strong> 70km (1.5 hours)</p>
+                    <div class="price">¥300-2000/night</div>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h3>💡 Essential Travel Tips</h3>
+                <ul>
+                    <li><strong>Best Time:</strong> Visit in April-May or September-October for mild weather and fewer crowds</li>
+                    <li><strong>Avoid:</strong> National holidays (Oct 1-7, May 1-5) when it's extremely crowded</li>
+                    <li><strong>What to Bring:</strong> Comfortable hiking shoes, water bottle, sunscreen, hat, camera</li>
+                    <li><strong>Physical Fitness:</strong> Choose your section based on fitness level - Badaling is easiest, Jinshanling is most challenging</li>
+                    <li><strong>Cable Car:</strong> Available at Badaling and Mutianyu (¥100-120 round trip) - recommended for elderly or those with limited mobility</li>
+                    <li><strong>Toboggan:</strong> Fun way down at Mutianyu (¥100) - popular with families</li>
+                    <li><strong>Photography:</strong> Best light is early morning or late afternoon; bring wide-angle lens</li>
+                    <li><strong>Restrooms:</strong> Available at entrance areas and major watchtowers</li>
+                    <li><strong>Food & Water:</strong> Bring your own snacks; prices inside are 2-3x higher</li>
+                    <li><strong>Safety:</strong> Stay on marked paths, don't climb on unrestored sections without guide</li>
+                </ul>
+            </div>
+
+            <h2>📍 Section Comparison</h2>
+            <div class="info-box">
+                <h4>Which Section Should You Visit?</h4>
+                <ul>
+                    <li><strong>Badaling:</strong> Most restored, easiest access, most crowded. Best for first-timers and families.</li>
+                    <li><strong>Mutianyu:</strong> Well-restored, less crowded than Badaling, has toboggan. Best overall experience.</li>
+                    <li><strong>Jinshanling:</strong> Partially restored, great for hiking, stunning views. Best for photographers and hikers.</li>
+                    <li><strong>Simatai:</strong> Unrestored, challenging, open for night tours. Best for adventure seekers.</li>
+                    <li><strong>Huanghuacheng:</strong> Lakeside wall, unique scenery. Best for those seeking something different.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Discover China. All rights reserved.</p>
+            <p>Your gateway to authentic Chinese travel experiences</p>
+        </div>
+    </footer>
+</body>
+</html>

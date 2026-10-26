@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emei Mountain - Complete Travel Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-size: 1.8rem; font-weight: bold; letter-spacing: 1px; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; font-size: 1rem; }
+        .nav-links a:hover { opacity: 0.8; }
+        .back-btn { background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.3s; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .hero-banner { height: 500px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/emei-1.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        .hero-banner h1 { font-size: 4rem; font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero-banner p { font-size: 1.5rem; margin-top: 1rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+        .content-section { padding: 60px 20px; background: white; }
+        .content-section h2 { font-size: 2.5rem; margin-bottom: 2rem; color: #667eea; border-bottom: 3px solid #667eea; padding-bottom: 1rem; }
+        .content-section h3 { font-size: 1.8rem; margin: 2rem 0 1rem; color: #764ba2; }
+        .content-section p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; color: #555; }
+        .info-box { background: #f8f9fa; padding: 2rem; border-radius: 15px; margin: 2rem 0; border-left: 4px solid #667eea; }
+        .info-box h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .info-box ul { margin-left: 1.5rem; }
+        .info-box li { margin-bottom: 0.8rem; color: #555; line-height: 1.6; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .gallery-item { border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .gallery-item:hover { transform: translateY(-10px); }
+        .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; }
+        .gallery-item .caption { padding: 1rem; background: white; text-align: center; font-weight: 600; color: #667eea; }
+        .transport-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .transport-card { background: #f8f9fa; padding: 2rem; border-radius: 15px; border-top: 4px solid #667eea; }
+        .transport-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .transport-card p { color: #555; line-height: 1.6; }
+        .route-timeline { position: relative; padding-left: 40px; margin: 2rem 0; }
+        .route-timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: #667eea; }
+        .route-item { position: relative; margin-bottom: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px; }
+        .route-item::before { content: ''; position: absolute; left: -33px; top: 20px; width: 15px; height: 15px; border-radius: 50%; background: #667eea; border: 3px solid white; }
+        .route-item h4 { color: #667eea; margin-bottom: 0.5rem; }
+        .route-item p { color: #555; margin: 0; }
+        .restaurant-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .restaurant-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 4px solid #667eea; }
+        .restaurant-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .restaurant-card .cuisine { color: #764ba2; font-weight: 600; margin-bottom: 1rem; }
+        .restaurant-card p { color: #555; margin-bottom: 0.5rem; }
+        .restaurant-card .price { color: #667eea; font-weight: bold; font-size: 1.1rem; }
+        .hotel-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .hotel-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 4px solid #667eea; }
+        .hotel-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .hotel-card .stars { color: #ffc107; margin-bottom: 1rem; }
+        .hotel-card p { color: #555; margin-bottom: 0.5rem; }
+        .hotel-card .price { color: #667eea; font-weight: bold; font-size: 1.2rem; margin-top: 1rem; }
+        .tips-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem; border-radius: 15px; margin: 3rem 0; }
+        .tips-box h3 { color: white; font-size: 2rem; margin-bottom: 1.5rem; }
+        .tips-box ul { margin-left: 1.5rem; }
+        .tips-box li { margin-bottom: 1rem; line-height: 1.6; }
+        footer { background: #333; color: white; text-align: center; padding: 2.5rem 20px; }
+        footer p { margin: 0.5rem 0; opacity: 0.9; }
+        @media (max-width: 768px) { .hero-banner h1 { font-size: 2.5rem; } .hero-banner p { font-size: 1.2rem; } .content-section h2 { font-size: 2rem; } .gallery { grid-template-columns: 1fr; } .nav-links { gap: 1rem; font-size: 0.9rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Discover China</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#attractions">Attractions</a></li>
+                <li><a href="index.html#visa-info">Visa Info</a></li>
+                <li><a href="index.html#forum">Travel Forum</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+            <button class="back-btn" onclick="window.location.href='index.html#attractions'">← Back to Attractions</button>
+        </nav>
+    </header>
+
+    <div class="hero-banner">
+        <div>
+            <h1>Emei Mountain</h1>
+            <p>峨眉山 - Sacred Buddhist Peak with Golden Summit</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="content-section">
+            <h2>Overview</h2>
+            <p>Mount Emei is one of China's four sacred Buddhist mountains and a UNESCO World Heritage Site. Located in Sichuan Province, it rises to 3,099 meters at its peak (Golden Summit). The mountain is famous for its stunning sunrise above the clouds, ancient temples, diverse wildlife (especially Tibetan macaques), and rich Buddhist culture. With over 100 temples and monasteries dating back 2,000 years, Emei is a living center of Chinese Buddhism. The hike through lush forests, misty peaks, and stone steps is both physically challenging and spiritually rewarding.</p>
+            
+            <div class="info-box">
+                <h4>Quick Facts</h4>
+                <ul>
+                    <li><strong>Location:</strong> Emeishan City, Sichuan Province</li>
+                    <li><strong>UNESCO Status:</strong> World Heritage Site since 1996</li>
+                    <li><strong>Highest Point:</strong> Golden Summit (3,099 meters)</li>
+                    <li><strong>Best Time to Visit:</strong> Spring (Apr-May) and Autumn (Sep-Oct)</li>
+                    <li><strong>Entrance Fee:</strong> ¥160 (peak season), ¥110 (off-season)</li>
+                    <li><strong>Opening Hours:</strong> 6:00 AM - 7:00 PM (varies by season)</li>
+                </ul>
+            </div>
+
+            <h2>📸 Gallery - 6 Beautiful Photos</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/emei-1.jpg" alt="Golden Summit Buddha">
+                    <div class="caption">Golden Buddha Statue Above Sea of Clouds with Snow Peaks</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/emei-2.jpg" alt="Golden Summit Temple">
+                    <div class="caption">Golden Summit (Jin Ding) Temple Close-up</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/emei-3.jpg" alt="Winter Snow at Summit">
+                    <div class="caption">Snow-Covered Temple Terrace at Sunrise</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/emei-4.jpg" alt="Snowy Mountain Path">
+                    <div class="caption">Snowy Ridge Path with Sea of Clouds at Dawn</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/emei-5.jpg" alt="Cliff Walkway Above Clouds">
+                    <div class="caption">Cliffside Walkway Above the Sea of Clouds</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/emei-6.jpg" alt="Golden Summit from Distance">
+                    <div class="caption">Golden Summit Perched on the Cliff Top</div>
+                </div>
+            </div>
+
+            <h2>🚗 How to Get There - Transportation</h2>
+            <div class="transport-grid">
+                <div class="transport-card">
+                    <h4>By Train to Emei Station</h4>
+                    <p><strong>From Chengdu:</strong> High-speed train (1.5h, ¥65). Frequent departures. Emei Station is 30 min from mountain entrance by taxi (¥30-40).</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Bus</h4>
+                    <p><strong>From Chengdu:</strong> Bus from Xinnanmen Bus Station (3-4h, ¥80-100). Arrives at Emei Bus Station, then taxi or local bus to mountain.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>To Mountain Entrance</h4>
+                    <p><strong>From Emei City:</strong> Taxi to Baoguo Temple area (main entrance, 30 min, ¥30-40). Or bus #5 from city center (¥2).</p>
+                </div>
+                <div class="transport-card">
+                    <h4>Up the Mountain</h4>
+                    <p><strong>Cable Cars:</strong> Two cable cars: Wannian (¥65 up) and Golden Summit (¥55 up). Or hike 2-3 days via ancient trails.</p>
+                </div>
+            </div>
+
+            <h2>️ Recommended Tour Routes</h2>
+            <div class="route-timeline">
+                <div class="route-item">
+                    <h4>Route 1: Express Day Trip (1 Day)</h4>
+                    <p><strong>Route:</strong> Baoguo Temple → Bus to Leidongping → Cable car to Golden Summit → Return same way<br>
+                    <strong>Duration:</strong> 8-10 hours<br>
+                    <strong>Best for:</strong> Short on time, want to see summit</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 2: Classic Two-Day Hike</h4>
+                    <p><strong>Day 1:</strong> Baoguo → Qingyin Pavilion → Wannian Temple → Stay at Hongchunping<br>
+                    <strong>Day 2:</strong> Hongchunping → Leidongping → Golden Summit (sunrise) → Cable car down</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 3: Complete Three-Day Trek</h4>
+                    <p><strong>Day 1:</strong> Baoguo → Fuhu Temple → Qingyin Pavilion → Hongchunping<br>
+                    <strong>Day 2:</strong> Hongchunping → Xixian Pool → Leidongping → Jieyin Hall<br>
+                    <strong>Day 3:</strong> Leidongping → Golden Summit (sunrise) → descent</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 4: Temple & Culture Tour</h4>
+                    <p><strong>Focus:</strong> Baoguo Temple, Fuhu Temple, Wannian Temple, Golden Summit Temple<br>
+                    <strong>Activities:</strong> Buddhist ceremonies, Meditation sessions, Monk conversations<br>
+                    <strong>Duration:</strong> 2-3 days</p>
+                </div>
+            </div>
+
+            <h2>🍽️ Restaurants on Emei Mountain</h2>
+            <div class="restaurant-list">
+                <div class="restaurant-card">
+                    <h4>Baoguo Temple Area Restaurants</h4>
+                    <div class="cuisine">Sichuan Cuisine</div>
+                    <p><strong>Location:</strong> Mountain entrance area<br>
+                    <strong>Specialty:</strong> Local dishes, Noodles, Vegetarian options<br>
+                    <strong>Hours:</strong> 7:00 AM - 9:00 PM</p>
+                    <div class="price">¥40-80 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Mountain Top Restaurants</h4>
+                    <div class="cuisine">Simple Chinese</div>
+                    <p><strong>Location:</strong> Near Golden Summit and temples<br>
+                    <strong>Specialty:</strong> Hot meals, Noodles, Rice dishes<br>
+                    <strong>Hours:</strong> 6:30 AM - 8:00 PM</p>
+                    <div class="price">¥60-120 per person (expensive due to location)</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Qingyin Pavilion Area</h4>
+                    <div class="cuisine">Local & Vegetarian</div>
+                    <p><strong>Location:</strong> Mid-mountain<br>
+                    <strong>Specialty:</strong> Buddhist vegetarian cuisine, Local vegetables<br>
+                    <strong>Hours:</strong> 10:00 AM - 8:00 PM</p>
+                    <div class="price">¥50-100 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Emei City Restaurants</h4>
+                    <div class="cuisine">Authentic Sichuan</div>
+                    <p><strong>Location:</strong> Emei city (mountain base)<br>
+                    <strong>Specialty:</strong> Local Sichuan dishes, Hot pot, Street food<br>
+                    <strong>Hours:</strong> 11:00 AM - 10:00 PM</p>
+                    <div class="price">¥30-70 per person</div>
+                </div>
+            </div>
+
+            <h2>🏨 Accommodation Options & Prices</h2>
+            <div class="hotel-list">
+                <div class="hotel-card">
+                    <h4>Golden Summit Hotels</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> At Golden Summit<br>
+                    <strong>Features:</strong> Sunrise access, Basic rooms, Heating<br>
+                    <strong>Note:</strong> Book well in advance; limited rooms; expensive</p>
+                    <div class="price">¥800-1500/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Mountain Temples & Guesthouses</h4>
+                    <div class="stars">★★★</div>
+                    <p><strong>Location:</strong> Various temples on mountain<br>
+                    <strong>Features:</strong> Simple, Clean, Buddhist atmosphere<br>
+                    <strong>Note:</strong> Shared bathrooms; quiet; authentic experience</p>
+                    <div class="price">¥200-500/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Baoguo Temple Area Hotels</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> Mountain entrance<br>
+                    <strong>Features:</strong> Comfortable, Restaurant, Tour services<br>
+                    <strong>Distance to Entrance:</strong> 5-10 min walk</p>
+                    <div class="price">¥400-900/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Emei City Hotels</h4>
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Location:</strong> Emei city<br>
+                    <strong>Features:</strong> Full amenities, Shopping, Transport hub<br>
+                    <strong>Distance to Mountain:</strong> 30 min drive</p>
+                    <div class="price">¥300-800/night</div>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h3>💡 Essential Travel Tips</h3>
+                <ul>
+                    <li><strong>Physical Fitness:</strong> Hiking is strenuous (many stairs). Cable cars available but still lots of walking. Train for stairs before trip.</li>
+                    <li><strong>Altitude:</strong> Golden Summit at 3,099m. Some feel mild altitude sickness. Ascend slowly, stay hydrated.</li>
+                    <li><strong>Monkeys:</strong> Tibetan macaques are common. Don't feed them, don't show food, keep bags closed. They can be aggressive.</li>
+                    <li><strong>Weather:</strong> Mountain weather changes rapidly. Bring rain gear, warm layers (cold at summit even in summer). Check forecast.</li>
+                    <li><strong>Best Season:</strong> Spring (Apr-May) for flowers, Autumn (Sep-Oct) for clear views. Summer is rainy; winter is cold but snowy.</li>
+                    <li><strong>Sunrise:</strong> Golden Summit sunrise is spectacular but weather-dependent. Stay overnight for best chance.</li>
+                    <li><strong>Temple Etiquette:</strong> Remove hats in temples, don't point at Buddha statues, speak quietly, ask before photographing monks.</li>
+                    <li><strong>What to Bring:</strong> Rain poncho, warm jacket, comfortable hiking shoes, water, snacks, flashlight (for early morning hikes).</li>
+                    <li><strong>Crowds:</strong> Avoid Chinese holidays (Oct 1-7, May 1-5). Weekdays much quieter than weekends.</li>
+                    <li><strong>Payment:</strong> WeChat Pay and Alipay accepted everywhere. Some temples accept cash donations only.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Discover China. All rights reserved.</p>
+            <p>Your gateway to authentic Chinese travel experiences</p>
+        </div>
+    </footer>
+</body>
+</html>

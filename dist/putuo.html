@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Putuo Mountain - Complete Travel Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-size: 1.8rem; font-weight: bold; letter-spacing: 1px; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; font-size: 1rem; }
+        .nav-links a:hover { opacity: 0.8; }
+        .back-btn { background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.3s; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .hero-banner { height: 500px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/putuo-1.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        .hero-banner h1 { font-size: 4rem; font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero-banner p { font-size: 1.5rem; margin-top: 1rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+        .content-section { padding: 60px 20px; background: white; }
+        .content-section h2 { font-size: 2.5rem; margin-bottom: 2rem; color: #667eea; border-bottom: 3px solid #667eea; padding-bottom: 1rem; }
+        .content-section h3 { font-size: 1.8rem; margin: 2rem 0 1rem; color: #764ba2; }
+        .content-section p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; color: #555; }
+        .info-box { background: #f8f9fa; padding: 2rem; border-radius: 15px; margin: 2rem 0; border-left: 4px solid #667eea; }
+        .info-box h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .info-box ul { margin-left: 1.5rem; }
+        .info-box li { margin-bottom: 0.8rem; color: #555; line-height: 1.6; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .gallery-item { border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .gallery-item:hover { transform: translateY(-10px); }
+        .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; }
+        .gallery-item .caption { padding: 1rem; background: white; text-align: center; font-weight: 600; color: #667eea; }
+        .transport-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .transport-card { background: #f8f9fa; padding: 2rem; border-radius: 15px; border-top: 4px solid #667eea; }
+        .transport-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .transport-card p { color: #555; line-height: 1.6; }
+        .route-timeline { position: relative; padding-left: 40px; margin: 2rem 0; }
+        .route-timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: #667eea; }
+        .route-item { position: relative; margin-bottom: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px; }
+        .route-item::before { content: ''; position: absolute; left: -33px; top: 20px; width: 15px; height: 15px; border-radius: 50%; background: #667eea; border: 3px solid white; }
+        .route-item h4 { color: #667eea; margin-bottom: 0.5rem; }
+        .route-item p { color: #555; margin: 0; }
+        .restaurant-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .restaurant-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 4px solid #667eea; }
+        .restaurant-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .restaurant-card .cuisine { color: #764ba2; font-weight: 600; margin-bottom: 1rem; }
+        .restaurant-card p { color: #555; margin-bottom: 0.5rem; }
+        .restaurant-card .price { color: #667eea; font-weight: bold; font-size: 1.1rem; }
+        .hotel-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .hotel-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 4px solid #667eea; }
+        .hotel-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .hotel-card .stars { color: #ffc107; margin-bottom: 1rem; }
+        .hotel-card p { color: #555; margin-bottom: 0.5rem; }
+        .hotel-card .price { color: #667eea; font-weight: bold; font-size: 1.2rem; margin-top: 1rem; }
+        .tips-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem; border-radius: 15px; margin: 3rem 0; }
+        .tips-box h3 { color: white; font-size: 2rem; margin-bottom: 1.5rem; }
+        .tips-box ul { margin-left: 1.5rem; }
+        .tips-box li { margin-bottom: 1rem; line-height: 1.6; }
+        footer { background: #333; color: white; text-align: center; padding: 2.5rem 20px; }
+        footer p { margin: 0.5rem 0; opacity: 0.9; }
+        @media (max-width: 768px) { .hero-banner h1 { font-size: 2.5rem; } .hero-banner p { font-size: 1.2rem; } .content-section h2 { font-size: 2rem; } .gallery { grid-template-columns: 1fr; } .nav-links { gap: 1rem; font-size: 0.9rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Discover China</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#attractions">Attractions</a></li>
+                <li><a href="index.html#visa-info">Visa Info</a></li>
+                <li><a href="index.html#forum">Travel Forum</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+            <button class="back-btn" onclick="window.location.href='index.html#attractions'">← Back to Attractions</button>
+        </nav>
+    </header>
+
+    <div class="hero-banner">
+        <div>
+            <h1>Putuo Mountain</h1>
+            <p>普陀山 - Sacred Buddhist Island in the East China Sea</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="content-section">
+            <h2>Overview</h2>
+            <p>Putuo Mountain (Putuoshan) is one of China's four sacred Buddhist mountains, located on a small island in the Zhoushan Archipelago off the coast of Zhejiang Province. Dedicated to Guanyin (the Goddess of Mercy), Putuo has been a major Buddhist pilgrimage site for over 1,000 years. The island features stunning coastal scenery with ancient temples perched on rocky cliffs, golden-roofed monastery complexes, pristine beaches, and lush forests. The largest temple, Puji Temple, is a magnificent complex of halls and courtyards. Putuo combines spiritual significance with natural beauty — dramatic sea cliffs, sandy beaches, and crystal-clear waters make it a unique destination among China's sacred mountains.</p>
+            
+            <div class="info-box">
+                <h4>Quick Facts</h4>
+                <ul>
+                    <li><strong>Location:</strong> Zhoushan Islands, Zhejiang Province</li>
+                    <li><strong>UNESCO Status:</strong> Part of "Mount Putuo" cultural landscape</li>
+                    <li><strong>Island Area:</strong> 12.5 square kilometers</li>
+                    <li><strong>Best Time to Visit:</strong> April-June, September-November (mild weather)</li>
+                    <li><strong>Entrance Fee:</strong> ¥160 (island entry) + individual temple fees (¥5-10 each)</li>
+                    <li><strong>Opening Hours:</strong> 6:30 AM - 9:30 PM (ferry hours vary)</li>
+                </ul>
+            </div>
+
+            <h2> Gallery - 6 Beautiful Photos</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/putuo-1.jpg" alt="Coastal Temple">
+                    <div class="caption">Temple Complex on Rocky Coast</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/putuo-2.jpg" alt="Puji Temple Aerial">
+                    <div class="caption">Aerial View of Puji Temple Complex</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/putuo-3.jpg" alt="Temple by Pond">
+                    <div class="caption">Golden Temple by Lotus Pond</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/putuo-4.jpg" alt="Stone Arch Bridge">
+                    <div class="caption">Ancient Stone Arch Bridge</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/putuo-5.jpg" alt="Ferry to Island">
+                    <div class="caption">Ferry to Putuo Island</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/putuo-6.jpg" alt="Rocky Beach Temples">
+                    <div class="caption">Rocky Beach with Hillside Temples</div>
+                </div>
+            </div>
+
+            <h2> How to Get There - Transportation</h2>
+            <div class="transport-grid">
+                <div class="transport-card">
+                    <h4>Ferry from Shanghai</h4>
+                    <p><strong>From Shanghai:</strong> Bus to Shenjiawan Dock (2.5h, ¥50), then ferry to Putuo (1.5h, ¥100-130). Or direct ferry from Shanghai Wusongkou (4h, ¥150-200). Most popular route for tourists.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>Ferry from Ningbo</h4>
+                    <p><strong>From Ningbo:</strong> Bus to Zhujiajian Dock (1.5h, ¥30), then ferry to Putuo (15 min, ¥30). Fastest route. High-speed ferry available (¥50, 10 min).</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Air to Zhoushan</h4>
+                    <p><strong>Zhoushan Putuoshan Airport:</strong> Flights from Beijing, Shanghai, Guangzhou. Airport to dock: taxi 20 min (¥50). Then ferry to island (15 min).</p>
+                </div>
+                <div class="transport-card">
+                    <h4>On the Island</h4>
+                    <p><strong>Walking & Bus:</strong> Island is small and walkable. Tourist buses connect major temples (¥5-10 per ride). No private cars allowed. Bicycles available for rent.</p>
+                </div>
+            </div>
+
+            <h2> Recommended Tour Routes</h2>
+            <div class="route-timeline">
+                <div class="route-item">
+                    <h4>Route 1: Classic One-Day Pilgrimage</h4>
+                    <p><strong>Route:</strong> Puji Temple → Fayu Temple → Huiji Temple (cable car) → Nanhai Guanyin Statue → Beach<br>
+                    <strong>Duration:</strong> 6-8 hours<br>
+                    <strong>Best for:</strong> First-time visitors, pilgrims</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 2: Two-Day Spiritual Retreat</h4>
+                    <p><strong>Day 1:</strong> Puji Temple → Fayu Temple → Evening chanting at temple<br>
+                    <strong>Day 2:</strong> Huiji Temple (sunrise) → Guanyin Statue → Rocky coast walk → Departure<br>
+                    <strong>Best for:</strong> Deep spiritual experience</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 3: Scenic & Cultural Tour</h4>
+                    <p><strong>Focus:</strong> Coastal scenery + temples + beach<br>
+                    <strong>Highlights:</strong> Thousand-Step Beach, Purple Bamboo Forest, Chaoyin Cave, Guanyin Statue<br>
+                    <strong>Duration:</strong> 1-2 days</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 4: Photography & Nature</h4>
+                    <p><strong>Best Spots:</strong> Sunrise from Huiji Temple, Coastal cliffs, Stone bridge, Beach at sunset<br>
+                    <strong>Tips:</strong> Early morning for misty temple atmosphere; golden hour for coastal shots</p>
+                </div>
+            </div>
+
+            <h2> Restaurants on Putuo Mountain</h2>
+            <div class="restaurant-list">
+                <div class="restaurant-card">
+                    <h4>Temple Vegetarian Restaurants</h4>
+                    <div class="cuisine">Buddhist Vegetarian Cuisine</div>
+                    <p><strong>Location:</strong> Inside major temples (Puji, Fayu)<br>
+                    <strong>Specialty:</strong> Vegetarian Buddhist meals, Tofu dishes, Seasonal vegetables<br>
+                    <strong>Hours:</strong> 10:30 AM - 1:00 PM (lunch only)</p>
+                    <div class="price">¥20-50 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Island Seafood Restaurants</h4>
+                    <div class="cuisine">Zhoushan Seafood</div>
+                    <p><strong>Location:</strong> Near Longwan Village and ferry dock<br>
+                    <strong>Specialty:</strong> Fresh seafood, Steamed fish, Shrimp, Crab<br>
+                    <strong>Hours:</strong> 10:00 AM - 9:00 PM</p>
+                    <div class="price">¥80-200 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Hotel Restaurants</h4>
+                    <div class="cuisine">Chinese & Seafood</div>
+                    <p><strong>Location:</strong> Inside island hotels<br>
+                    <strong>Specialty:</strong> Buffet meals, Higher quality, Seafood sets<br>
+                    <strong>Hours:</strong> 7:00 AM - 9:00 PM</p>
+                    <div class="price">¥80-200 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Street Food & Snacks</h4>
+                    <div class="cuisine">Local Snacks</div>
+                    <p><strong>Location:</strong> Along main paths and temple areas<br>
+                    <strong>Specialty:</strong> Noodles, Rice cakes, Local pastries, Drinks<br>
+                    <strong>Hours:</strong> 7:00 AM - 8:00 PM</p>
+                    <div class="price">¥15-40 per person</div>
+                </div>
+            </div>
+
+            <h2> Accommodation Options & Prices</h2>
+            <div class="hotel-list">
+                <div class="hotel-card">
+                    <h4>Island Hotels (Near Temples)</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> Near Puji Temple and main scenic areas<br>
+                    <strong>Features:</strong> Convenient, Sea views, Restaurant<br>
+                    <strong>Note:</strong> Most popular; book early for peak season</p>
+                    <div class="price">¥500-1500/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Temple Guesthouses (Sushe)</h4>
+                    <div class="stars">★★</div>
+                    <p><strong>Location:</strong> Inside temple complexes<br>
+                    <strong>Features:</strong> Authentic experience, Simple rooms, Vegetarian meals<br>
+                    <strong>Note:</strong> Basic facilities; unique spiritual atmosphere</p>
+                    <div class="price">¥100-300/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Beach Area Hotels</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> Near Thousand-Step Beach<br>
+                    <strong>Features:</strong> Ocean views, Quieter area, Modern amenities<br>
+                    <strong>Distance to Temples:</strong> 15-20 min walk or bus</p>
+                    <div class="price">¥400-1200/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Zhujiajian Island Hotels</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> Zhujiajian (mainland side, 15 min ferry)<br>
+                    <strong>Features:</strong> More options, Beach resorts, Lower prices<br>
+                    <strong>Note:</strong> Good budget alternative; ferry to Putuo daily</p>
+                    <div class="price">¥200-600/night</div>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h3> Essential Travel Tips</h3>
+                <ul>
+                    <li><strong>Best Season:</strong> April-June and September-November for mild weather. Summer (Jul-Aug) is hot and crowded. Winter is quiet but cold and windy.</li>
+                    <li><strong>Ferry Schedule:</strong> Ferries run from 6:30 AM to 9:30 PM (varies by season). Check schedule before planning. Last ferry back is important — don't miss it!</li>
+                    <li><strong>Temple Etiquette:</strong> Dress modestly (cover shoulders and knees). Remove hats inside temples. Don't point fingers at Buddha statues. Photography may be restricted inside halls.</li>
+                    <li><strong>Buddhist Holidays:</strong> Guanyin's birthday (19th day of 2nd, 6th, and 9th lunar months) draws huge crowds. Avoid if you prefer quiet.</li>
+                    <li><strong>Vegetarian Food:</strong> Temple vegetarian meals are a unique experience. Available at lunch only (10:30 AM - 1 PM). Very affordable and delicious.</li>
+                    <li><strong>Cable Car:</strong> Available to Huiji Temple (top of mountain). ¥40 one way. Saves 45 min of steep climbing.</li>
+                    <li><strong>Crowds:</strong> Weekends and holidays are extremely crowded. Weekdays are much quieter. Early morning (before 8 AM) is most peaceful.</li>
+                    <li><strong>Beach:</strong> Thousand-Step Beach is the main swimming beach. Clean and well-maintained. Entrance ¥20.</li>
+                    <li><strong>Weather:</strong> Island weather can change quickly. Bring rain gear. Typhoon season (Jul-Sep) may cancel ferries.</li>
+                    <li><strong>Payment:</strong> WeChat Pay and Alipay accepted everywhere. ATMs available near ferry dock and main temple area.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Discover China. All rights reserved.</p>
+            <p>Your gateway to authentic Chinese travel experiences</p>
+        </div>
+    </footer>
+</body>
+</html>
