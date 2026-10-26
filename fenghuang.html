@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fenghuang Ancient Town - Complete Travel Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-size: 1.8rem; font-weight: bold; letter-spacing: 1px; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; font-size: 1rem; }
+        .nav-links a:hover { opacity: 0.8; }
+        .back-btn { background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.3s; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .hero-banner { height: 500px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/fenghuang-1.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        .hero-banner h1 { font-size: 4rem; font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero-banner p { font-size: 1.5rem; margin-top: 1rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+        .content-section { padding: 60px 20px; background: white; }
+        .content-section h2 { font-size: 2.5rem; margin-bottom: 2rem; color: #667eea; border-bottom: 3px solid #667eea; padding-bottom: 1rem; }
+        .content-section h3 { font-size: 1.8rem; margin: 2rem 0 1rem; color: #764ba2; }
+        .content-section p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; color: #555; }
+        .info-box { background: #f8f9fa; padding: 2rem; border-radius: 15px; margin: 2rem 0; border-left: 4px solid #667eea; }
+        .info-box h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .info-box ul { margin-left: 1.5rem; }
+        .info-box li { margin-bottom: 0.8rem; color: #555; line-height: 1.6; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .gallery-item { border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .gallery-item:hover { transform: translateY(-10px); }
+        .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; }
+        .gallery-item .caption { padding: 1rem; background: white; text-align: center; font-weight: 600; color: #667eea; }
+        .transport-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .transport-card { background: #f8f9fa; padding: 2rem; border-radius: 15px; border-top: 4px solid #667eea; }
+        .transport-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .transport-card p { color: #555; line-height: 1.6; }
+        .route-timeline { position: relative; padding-left: 40px; margin: 2rem 0; }
+        .route-timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: #667eea; }
+        .route-item { position: relative; margin-bottom: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px; }
+        .route-item::before { content: ''; position: absolute; left: -33px; top: 20px; width: 15px; height: 15px; border-radius: 50%; background: #667eea; border: 3px solid white; }
+        .route-item h4 { color: #667eea; margin-bottom: 0.5rem; }
+        .route-item p { color: #555; margin: 0; }
+        .restaurant-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .restaurant-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 4px solid #667eea; }
+        .restaurant-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .restaurant-card .cuisine { color: #764ba2; font-weight: 600; margin-bottom: 1rem; }
+        .restaurant-card p { color: #555; margin-bottom: 0.5rem; }
+        .restaurant-card .price { color: #667eea; font-weight: bold; font-size: 1.1rem; }
+        .hotel-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .hotel-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 4px solid #667eea; }
+        .hotel-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .hotel-card .stars { color: #ffc107; margin-bottom: 1rem; }
+        .hotel-card p { color: #555; margin-bottom: 0.5rem; }
+        .hotel-card .price { color: #667eea; font-weight: bold; font-size: 1.2rem; margin-top: 1rem; }
+        .tips-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem; border-radius: 15px; margin: 3rem 0; }
+        .tips-box h3 { color: white; font-size: 2rem; margin-bottom: 1.5rem; }
+        .tips-box ul { margin-left: 1.5rem; }
+        .tips-box li { margin-bottom: 1rem; line-height: 1.6; }
+        footer { background: #333; color: white; text-align: center; padding: 2.5rem 20px; }
+        footer p { margin: 0.5rem 0; opacity: 0.9; }
+        @media (max-width: 768px) { .hero-banner h1 { font-size: 2.5rem; } .hero-banner p { font-size: 1.2rem; } .content-section h2 { font-size: 2rem; } .gallery { grid-template-columns: 1fr; } .nav-links { gap: 1rem; font-size: 0.9rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Discover China</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#attractions">Attractions</a></li>
+                <li><a href="index.html#visa-info">Visa Info</a></li>
+                <li><a href="index.html#forum">Travel Forum</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+            <button class="back-btn" onclick="window.location.href='index.html#attractions'">← Back to Attractions</button>
+        </nav>
+    </header>
+
+    <div class="hero-banner">
+        <div>
+            <h1>Fenghuang Ancient Town</h1>
+            <p>凤凰古城 - Miao Minority Stilted Houses by the River</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="content-section">
+            <h2>Overview</h2>
+            <p>Fenghuang (Phoenix) Ancient Town is a beautifully preserved town in western Hunan Province, famous for its stilted wooden houses along the Tuojiang River, Miao and Tujia ethnic minority culture, and literary heritage. The town has over 300 years of history and was home to famous Chinese writer Shen Congwen, whose novels brought Fenghuang to national attention. Today it's a popular destination for its atmospheric riverside scenery, traditional architecture, vibrant nightlife, and unique ethnic culture. The town is especially magical at night when the stilted houses are illuminated with red lanterns.</p>
+            
+            <div class="info-box">
+                <h4>Quick Facts</h4>
+                <ul>
+                    <li><strong>Location:</strong> Fenghuang County, Xiangxi, Hunan Province</li>
+                    <li><strong>History:</strong> Over 300 years (Qing Dynasty origins)</li>
+                    <li><strong>Ethnic Groups:</strong> Miao, Tujia, Han Chinese</li>
+                    <li><strong>Best Time to Visit:</strong> March-November (avoid winter cold)</li>
+                    <li><strong>Entrance Fee:</strong> FREE (some attractions inside charge separately)</li>
+                    <li><strong>Opening Hours:</strong> Open 24 hours (shops 9 AM - 11 PM)</li>
+                </ul>
+            </div>
+
+            <h2>📸 Gallery - 6 Beautiful Photos</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/fenghuang-1.jpg" alt="Night Bridge Pavilion">
+                    <div class="caption">Night View of Bridge and Pavilion</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/fenghuang-2.jpg" alt="Ancient City Gate">
+                    <div class="caption">Ancient City Gate by the River</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/fenghuang-3.jpg" alt="Riverside Pagoda">
+                    <div class="caption">Riverside Pagoda with Trees</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/fenghuang-4.jpg" alt="Riverside Buildings Aerial">
+                    <div class="caption">Aerial View of Riverside Buildings</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/fenghuang-5.jpg" alt="Misty Town">
+                    <div class="caption">Misty Morning Over Ancient Town</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/fenghuang-6.jpg" alt="Red Lanterns Night">
+                    <div class="caption">Night Scene with Red Lanterns</div>
+                </div>
+            </div>
+
+            <h2>🚗 How to Get There - Transportation</h2>
+            <div class="transport-grid">
+                <div class="transport-card">
+                    <h4>By Train + Bus</h4>
+                    <p><strong>To Jishou:</strong> Train from Changsha (4h, ¥80) or Zhangjiajie (2h, ¥40). Then bus to Fenghuang (1.5h, ¥30). Most common route.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Bus Direct</h4>
+                    <p><strong>From Changsha:</strong> Direct bus (6-7h, ¥150). <strong>From Zhangjiajie:</strong> Bus (4h, ¥80). <strong>From Jishou:</strong> Bus (1.5h, ¥30).</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Air</h4>
+                    <p><strong>Nearest Airport:</strong> Tongren Fenghuang Airport (30km away). Flights from Changsha, Guiyang. Taxi to town ¥80-100.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>Within Town</h4>
+                    <p><strong>Walking only:</strong> Ancient town is pedestrian-only. Very compact - everything within 15 min walk. River boats available for tours (¥50-80).</p>
+                </div>
+            </div>
+
+            <h2>️ Recommended Tour Routes</h2>
+            <div class="route-timeline">
+                <div class="route-item">
+                    <h4>Route 1: Classic Walking Tour (Half Day)</h4>
+                    <p><strong>Route:</strong> Rainbow Bridge → Shen Congwen's Former Residence → East Gate → Riverside walk → Night market<br>
+                    <strong>Duration:</strong> 3-4 hours<br>
+                    <strong>Best for:</strong> First-time visitors, culture lovers</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 2: Full Day Exploration</h4>
+                    <p><strong>Morning:</strong> Ancient town walking tour, museums<br>
+                    <strong>Afternoon:</strong> River boat ride, Visit nearby Miao villages<br>
+                    <strong>Evening:</strong> Night market, Riverside bars, Photography</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 3: Two-Day Cultural Experience</h4>
+                    <p><strong>Day 1:</strong> Ancient town + Miao village visit + evening river cruise<br>
+                    <strong>Day 2:</strong> Southern Great Wall (15km away) + local market + departure</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 4: Photography & Night Scene</h4>
+                    <p><strong>Best Time:</strong> Early morning (mist on river) and evening (lanterns lit)<br>
+                    <strong>Best Spots:</strong> Rainbow Bridge, Riverside stilted houses, Night market<br>
+                    <strong>Tips:</strong> Bring tripod for night shots</p>
+                </div>
+            </div>
+
+            <h2>🍽️ Restaurants in Fenghuang</h2>
+            <div class="restaurant-list">
+                <div class="restaurant-card">
+                    <h4>Riverside Restaurants</h4>
+                    <div class="cuisine">Hunan & Miao Cuisine</div>
+                    <p><strong>Location:</strong> Along Tuojiang River<br>
+                    <strong>Specialty:</strong> Sour fish, Smoked pork, Local river fish<br>
+                    <strong>Hours:</strong> 10:00 AM - 11:00 PM</p>
+                    <div class="price">¥60-120 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Shen's Family Restaurant</h4>
+                    <div class="cuisine">Traditional Hunan</div>
+                    <p><strong>Location:</strong> Middle of ancient town<br>
+                    <strong>Specialty:</strong> Home-style Hunan dishes, Tofu<br>
+                    <strong>Hours:</strong> 11:00 AM - 10:00 PM</p>
+                    <div class="price">¥40-80 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Miao Street Food Stalls</h4>
+                    <div class="cuisine">Miao Snacks</div>
+                    <p><strong>Location:</strong> Near East Gate and riverside<br>
+                    <strong>Specialty:</strong> Rice tofu, Sticky rice, Grilled fish skewers<br>
+                    <strong>Hours:</strong> 6:00 PM - 12:00 AM</p>
+                    <div class="price">¥20-50 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Riverside Bars & Cafes</h4>
+                    <div class="cuisine">Drinks & Light Food</div>
+                    <p><strong>Location:</strong> Along Tuojiang River<br>
+                    <strong>Specialty:</strong> Cocktails, Coffee, Live music (evening)<br>
+                    <strong>Hours:</strong> 2:00 PM - 2:00 AM</p>
+                    <div class="price">¥40-100 per person</div>
+                </div>
+            </div>
+
+            <h2>🏨 Accommodation Options & Prices</h2>
+            <div class="hotel-list">
+                <div class="hotel-card">
+                    <h4>Riverside Guesthouses (Diaojiaolou)</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> Along Tuojiang River<br>
+                    <strong>Features:</strong> Traditional stilted houses, River views, Balconies<br>
+                    <strong>Note:</strong> Most atmospheric choice; can be noisy at night</p>
+                    <div class="price">¥300-800/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Boutique Inns (Kezhan)</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> Inside ancient town<br>
+                    <strong>Features:</strong> Traditional decor, Courtyard, Personal service<br>
+                    <strong>Distance to River:</strong> 2-5 min walk</p>
+                    <div class="price">¥200-500/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Youth Hostels</h4>
+                    <div class="stars">★★</div>
+                    <p><strong>Location:</strong> Various in ancient town<br>
+                    <strong>Features:</strong> Dorm beds, Social atmosphere, Travel info<br>
+                    <strong>Best for:</strong> Budget travelers, backpackers</p>
+                    <div class="price">¥50-120/night (dorm), ¥150-300 (private)</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Modern Hotels (New Town)</h4>
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Location:</strong> Outside ancient town<br>
+                    <strong>Features:</strong> Modern amenities, Parking, Quieter<br>
+                    <strong>Distance to Ancient Town:</strong> 10-15 min walk</p>
+                    <div class="price">¥400-1000/night</div>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h3>💡 Essential Travel Tips</h3>
+                <ul>
+                    <li><strong>Best Season:</strong> Spring (Mar-May) and Autumn (Sep-Nov) for mild weather. Summer is hot but lively. Winter (Dec-Feb) is cold and quiet.</li>
+                    <li><strong>Crowds:</strong> Avoid Chinese holidays (Oct 1-7, May 1-5) - extremely crowded. Weekdays much quieter than weekends.</li>
+                    <li><strong>Night Scene:</strong> Town transforms at night with lanterns and bar music. Stay overnight for full experience.</li>
+                    <li><strong>Miao Culture:</strong> Respect local customs. Ask before photographing people in traditional dress. Some may expect small tip (¥5-10).</li>
+                    <li><strong>Bargaining:</strong> Expected in markets and small shops. Start at 50% of asking price.</li>
+                    <li><strong>River Boats:</strong> Bamboo raft rides on Tuojiang River are popular (¥50-80). Negotiate price before boarding.</li>
+                    <li><strong>Food:</strong> Local cuisine is spicy (Hunan style). Ask for "bu la" (不辣) if you don't want spice.</li>
+                    <li><strong>Safety:</strong> Town is very safe. Watch step on cobblestones, especially when wet.</li>
+                    <li><strong>Souvenirs:</strong> Silver jewelry, embroidered items, and local tea are specialty purchases.</li>
+                    <li><strong>Payment:</strong> WeChat Pay and Alipay widely accepted. Some small vendors cash only.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Discover China. All rights reserved.</p>
+            <p>Your gateway to authentic Chinese travel experiences</p>
+        </div>
+    </footer>
+</body>
+</html>

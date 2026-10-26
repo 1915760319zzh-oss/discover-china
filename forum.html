@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游遍中国 - 旅游社区</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; line-height: 1.6; color: #333; background: #f8f9fa; }
+        
+        /* 导航栏 */
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1400px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-size: 1.8rem; font-weight: bold; letter-spacing: 1px; cursor: pointer; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; font-size: 1rem; }
+        .nav-links a:hover { opacity: 0.8; }
+        .back-btn { background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.3s; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        
+        /* 用户区域 */
+        .auth-area { display: flex; align-items: center; gap: 10px; margin-left: 15px; }
+        .signin-btn { background: rgba(255,255,255,0.95); color: #333; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-size: 0.9rem; font-weight: 600; transition: background 0.3s; }
+        .signin-btn:hover { background: white; }
+        .user-info { display: flex; align-items: center; gap: 8px; }
+        .user-avatar { width: 32px; height: 32px; border-radius: 50%; border: 2px solid white; }
+        .user-name { color: white; font-size: 0.9rem; font-weight: 500; }
+        .signout-btn { background: rgba(255,255,255,0.2); color: white; border: none; padding: 6px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; }
+        
+        /* 页面标题 */
+        .page-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 60px 20px; text-align: center; }
+        .page-header h1 { font-size: 3rem; font-weight: 700; margin-bottom: 1rem; }
+        .page-header p { font-size: 1.2rem; opacity: 0.9; }
+        
+        /* 分类板块 */
+        .categories { max-width: 1400px; margin: -40px auto 40px; padding: 0 20px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        .category-card { background: white; border-radius: 15px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; border-top: 4px solid #667eea; }
+        .category-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .category-card.active { border-top-color: #764ba2; background: #f8f9ff; }
+        .category-icon { font-size: 2.5rem; margin-bottom: 15px; }
+        .category-card h3 { font-size: 1.3rem; color: #333; margin-bottom: 10px; }
+        .category-card p { color: #666; font-size: 0.95rem; }
+        .category-count { display: inline-block; background: #667eea; color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.85rem; margin-top: 15px; }
+        
+        /* 内容区域 */
+        .content-area { max-width: 1400px; margin: 0 auto; padding: 0 20px 60px; }
+        .section-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; padding-bottom: 20px; border-bottom: 2px solid #e9ecef; }
+        .section-header h2 { font-size: 1.8rem; color: #333; }
+        .new-post-btn { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 30px; border-radius: 25px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 4px 15px rgba(102,126,234,0.4); }
+        .new-post-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(102,126,234,0.5); }
+        
+        /* 帖子列表 */
+        .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 25px; }
+        .post-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; }
+        .post-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.15); }
+        .post-image { width: 100%; height: 220px; object-fit: cover; display: block; }
+        .post-content { padding: 20px; }
+        .post-category { display: inline-block; background: #667eea; color: white; padding: 4px 12px; border-radius: 15px; font-size: 0.8rem; margin-bottom: 10px; }
+        .post-title { font-size: 1.2rem; color: #333; margin-bottom: 10px; font-weight: 600; }
+        .post-excerpt { color: #666; font-size: 0.95rem; margin-bottom: 15px; line-height: 1.5; }
+        .post-meta { display: flex; justify-content: space-between; align-items: center; padding-top: 15px; border-top: 1px solid #e9ecef; }
+        .post-author { display: flex; align-items: center; gap: 10px; }
+        .post-author img { width: 35px; height: 35px; border-radius: 50%; object-fit: cover; }
+        .post-author-name { font-size: 0.9rem; color: #333; font-weight: 500; }
+        .post-time { font-size: 0.85rem; color: #888; }
+        .post-stats { display: flex; gap: 15px; }
+        .post-stat { display: flex; align-items: center; gap: 5px; font-size: 0.85rem; color: #888; }
+        
+        /* 发帖弹窗 */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 2000; align-items: center; justify-content: center; padding: 20px; }
+        .modal-overlay.active { display: flex; }
+        .modal { background: white; border-radius: 20px; max-width: 700px; width: 100%; max-height: 90vh; overflow-y: auto; padding: 40px; }
+        .modal h2 { font-size: 1.8rem; color: #333; margin-bottom: 25px; }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; font-size: 1rem; color: #333; margin-bottom: 8px; font-weight: 500; }
+        .form-group input, .form-group textarea, .form-group select { width: 100%; padding: 12px 15px; border: 2px solid #e9ecef; border-radius: 10px; font-size: 1rem; transition: border-color 0.3s; font-family: inherit; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus { outline: none; border-color: #667eea; }
+        .form-group textarea { min-height: 150px; resize: vertical; }
+        .image-upload { border: 2px dashed #e9ecef; border-radius: 10px; padding: 30px; text-align: center; cursor: pointer; transition: border-color 0.3s; }
+        .image-upload:hover { border-color: #667eea; }
+        .image-upload input { display: none; }
+        .image-preview { max-width: 100%; max-height: 200px; border-radius: 10px; margin-top: 15px; }
+        .modal-actions { display: flex; gap: 15px; justify-content: flex-end; margin-top: 30px; }
+        .btn-cancel { background: #e9ecef; color: #333; border: none; padding: 12px 30px; border-radius: 25px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: background 0.3s; }
+        .btn-cancel:hover { background: #dee2e6; }
+        .btn-submit { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; padding: 12px 30px; border-radius: 25px; cursor: pointer; font-size: 1rem; font-weight: 600; transition: transform 0.3s, box-shadow 0.3s; box-shadow: 0 4px 15px rgba(102,126,234,0.4); }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(102,126,234,0.5); }
+        
+        /* 空状态 */
+        .empty-state { text-align: center; padding: 60px 20px; color: #888; }
+        .empty-state-icon { font-size: 4rem; margin-bottom: 20px; opacity: 0.5; }
+        .empty-state h3 { font-size: 1.5rem; margin-bottom: 10px; }
+        .empty-state p { font-size: 1rem; }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .page-header h1 { font-size: 2rem; }
+            .posts-grid { grid-template-columns: 1fr; }
+            .categories { grid-template-columns: 1fr; }
+            .nav-links { gap: 1rem; font-size: 0.9rem; }
+            .modal { padding: 25px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo" onclick="window.location.href='index.html'">Discover China</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#attractions">Attractions</a></li>
+                <li><a href="index.html#visa-info">Visa Info</a></li>
+                <li><a href="forum.html">游遍中国</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+            <div class="auth-area">
+                <button id="google-signin-btn" class="signin-btn" onclick="googleSignIn()" style="display:none;">Sign In with Google</button>
+                <div id="user-info" class="user-info" style="display:none;">
+                    <img id="user-avatar" class="user-avatar" src="" alt="avatar">
+                    <span id="user-name" class="user-name"></span>
+                    <button class="signout-btn" onclick="googleSignOut()">Sign Out</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="page-header">
+        <h1>游遍中国</h1>
+        <p>分享你的旅行故事，发现中国之美</p>
+    </div>
+
+    <div class="categories">
+        <div class="category-card active" onclick="filterCategory('all')">
+            <div class="category-icon"></div>
+            <h3>全部帖子</h3>
+            <p>浏览所有旅行分享</p>
+            <span class="category-count" id="count-all">0</span>
+        </div>
+        <div class="category-card" onclick="filterCategory('scenery')">
+            <div class="category-icon">️</div>
+            <h3>美景分享</h3>
+            <p>分享你拍摄的美丽风景</p>
+            <span class="category-count" id="count-scenery">0</span>
+        </div>
+        <div class="category-card" onclick="filterCategory('guide')">
+            <div class="category-icon"></div>
+            <h3>旅行攻略</h3>
+            <p>实用的旅行指南和贴士</p>
+            <span class="category-count" id="count-guide">0</span>
+        </div>
+        <div class="category-card" onclick="filterCategory('food')">
+            <div class="category-icon"></div>
+            <h3>美食探索</h3>
+            <p>各地美食推荐和探店</p>
+            <span class="category-count" id="count-food">0</span>
+        </div>
+        <div class="category-card" onclick="filterCategory('culture')">
+            <div class="category-icon">🏛️</div>
+            <h3>文化体验</h3>
+            <p>历史文化和民俗体验</p>
+            <span class="category-count" id="count-culture">0</span>
+        </div>
+        <div class="category-card" onclick="filterCategory('question')">
+            <div class="category-icon">❓</div>
+            <h3>问答交流</h3>
+            <p>提问和解答旅行问题</p>
+            <span class="category-count" id="count-question">0</span>
+        </div>
+    </div>
+
+    <div class="content-area">
+        <div class="section-header">
+            <h2 id="section-title">最新帖子</h2>
+            <button class="new-post-btn" onclick="openNewPost()">+ 发布新帖</button>
+        </div>
+        
+        <div id="posts-container" class="posts-grid">
+            <div class="empty-state">
+                <div class="empty-state-icon">📝</div>
+                <h3>还没有帖子</h3>
+                <p>成为第一个分享旅行故事的人吧！</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- 发帖弹窗 -->
+    <div id="post-modal" class="modal-overlay">
+        <div class="modal">
+            <h2>发布新帖</h2>
+            <div class="form-group">
+                <label>选择分类</label>
+                <select id="post-category">
+                    <option value="scenery">🏞️ 美景分享</option>
+                    <option value="guide">📖 旅行攻略</option>
+                    <option value="food">🍜 美食探索</option>
+                    <option value="culture">️ 文化体验</option>
+                    <option value="question">❓ 问答交流</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>帖子标题</label>
+                <input type="text" id="post-title" placeholder="给你的帖子起个标题">
+            </div>
+            <div class="form-group">
+                <label>帖子内容</label>
+                <textarea id="post-content" placeholder="分享你的旅行故事、攻略或问题..."></textarea>
+            </div>
+            <div class="form-group">
+                <label>添加图片（可选）</label>
+                <div class="image-upload" onclick="document.getElementById('post-image').click()">
+                    <input type="file" id="post-image" accept="image/*" onchange="previewImage(event)">
+                    <div id="upload-placeholder">
+                        <div style="font-size: 2rem; margin-bottom: 10px;">📷</div>
+                        <div>点击上传图片</div>
+                        <div style="font-size: 0.85rem; color: #888; margin-top: 5px;">支持 JPG、PNG 格式</div>
+                    </div>
+                    <img id="image-preview" class="image-preview" style="display:none;">
+                </div>
+            </div>
+            <div class="modal-actions">
+                <button class="btn-cancel" onclick="closeModal()">取消</button>
+                <button class="btn-submit" onclick="submitPost()">发布</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script>
+        // Firebase 配置
+        const firebaseConfig = {
+            apiKey: "AIzaSyCIgvZksr4agqveuCH-PoFdB0XaVPjT-Xw",
+            authDomain: "zengzhihua.firebaseapp.com",
+            projectId: "zengzhihua",
+            storageBucket: "zengzhihua.firebasestorage.app",
+            messagingSenderId: "829591235916",
+            appId: "1:829591235916:web:43181f22807cae6c4133e9"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        let currentUser = null;
+        let currentCategory = 'all';
+
+        // 认证状态监听
+        auth.onAuthStateChanged(user => {
+            currentUser = user;
+            const signinBtn = document.getElementById('google-signin-btn');
+            const userInfo = document.getElementById('user-info');
+            if (user) {
+                signinBtn.style.display = 'none';
+                userInfo.style.display = 'flex';
+                document.getElementById('user-avatar').src = user.photoURL || '';
+                document.getElementById('user-name').textContent = user.displayName || 'User';
+            } else {
+                signinBtn.style.display = 'block';
+                userInfo.style.display = 'none';
+            }
+        });
+
+        function googleSignIn() {
+            const provider = new firebase.auth.GoogleAuthProvider();
+            auth.signInWithPopup(provider).catch(err => alert('登录失败：' + err.message));
+        }
+
+        function googleSignOut() {
+            auth.signOut();
+        }
+
+        // 分类过滤
+        function filterCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll('.category-card').forEach(card => card.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+            
+            const titles = {
+                'all': '最新帖子',
+                'scenery': '美景分享',
+                'guide': '旅行攻略',
+                'food': '美食探索',
+                'culture': '文化体验',
+                'question': '问答交流'
+            };
+            document.getElementById('section-title').textContent = titles[category];
+            loadPosts();
+        }
+
+        // 加载帖子
+        function loadPosts() {
+            const container = document.getElementById('posts-container');
+            let query = db.collection('posts').orderBy('createdAt', 'desc');
+            
+            if (currentCategory !== 'all') {
+                query = query.where('category', '==', currentCategory);
+            }
+
+            query.onSnapshot(snapshot => {
+                updateCategoryCounts();
+                
+                if (snapshot.empty) {
+                    container.innerHTML = '<div class="empty-state"><div class="empty-state-icon">📝</div><h3>还没有帖子</h3><p>成为第一个分享旅行故事的人吧！</p></div>';
+                    return;
+                }
+
+                let html = '';
+                snapshot.forEach(doc => {
+                    const post = doc.data();
+                    const timeStr = timeAgo(post.createdAt);
+                    const categoryNames = {
+                        'scenery': '美景分享',
+                        'guide': '旅行攻略',
+                        'food': '美食探索',
+                        'culture': '文化体验',
+                        'question': '问答交流'
+                    };
+                    
+                    html += '<div class="post-card">';
+                    if (post.imageUrl) {
+                        html += '<img class="post-image" src="' + post.imageUrl + '" alt="' + escapeHtml(post.title) + '">';
+                    }
+                    html += '<div class="post-content">';
+                    html += '<span class="post-category">' + categoryNames[post.category] + '</span>';
+                    html += '<h3 class="post-title">' + escapeHtml(post.title) + '</h3>';
+                    html += '<p class="post-excerpt">' + escapeHtml(post.content.substring(0, 120)) + (post.content.length > 120 ? '...' : '') + '</p>';
+                    html += '<div class="post-meta">';
+                    html += '<div class="post-author">';
+                    if (post.authorPhoto) {
+                        html += '<img src="' + post.authorPhoto + '" alt="avatar">';
+                    }
+                    html += '<span class="post-author-name">' + escapeHtml(post.authorName || '匿名') + '</span>';
+                    html += '<span class="post-time">' + timeStr + '</span>';
+                    html += '</div>';
+                    html += '<div class="post-stats">';
+                    html += '<span class="post-stat">💬 ' + (post.replyCount || 0) + '</span>';
+                    html += '</div>';
+                    html += '</div>';
+                    html += '</div></div>';
+                });
+                container.innerHTML = html;
+            }, err => {
+                container.innerHTML = '<div class="empty-state"><h3>加载失败</h3><p>请检查 Firebase 配置</p></div>';
+            });
+        }
+
+        // 更新分类计数
+        function updateCategoryCounts() {
+            db.collection('posts').get().then(snapshot => {
+                const counts = { all: snapshot.size, scenery: 0, guide: 0, food: 0, culture: 0, question: 0 };
+                snapshot.forEach(doc => {
+                    const cat = doc.data().category;
+                    if (counts[cat] !== undefined) counts[cat]++;
+                });
+                document.getElementById('count-all').textContent = counts.all;
+                document.getElementById('count-scenery').textContent = counts.scenery;
+                document.getElementById('count-guide').textContent = counts.guide;
+                document.getElementById('count-food').textContent = counts.food;
+                document.getElementById('count-culture').textContent = counts.culture;
+                document.getElementById('count-question').textContent = counts.question;
+            });
+        }
+
+        // 打开发帖弹窗
+        function openNewPost() {
+            if (!currentUser) {
+                alert('请先登录 Google 账号');
+                googleSignIn();
+                return;
+            }
+            document.getElementById('post-modal').classList.add('active');
+        }
+
+        // 关闭弹窗
+        function closeModal() {
+            document.getElementById('post-modal').classList.remove('active');
+            document.getElementById('post-title').value = '';
+            document.getElementById('post-content').value = '';
+            document.getElementById('post-image').value = '';
+            document.getElementById('image-preview').style.display = 'none';
+            document.getElementById('upload-placeholder').style.display = 'block';
+        }
+
+        // 预览图片
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('image-preview').src = e.target.result;
+                    document.getElementById('image-preview').style.display = 'block';
+                    document.getElementById('upload-placeholder').style.display = 'none';
+                };
+                reader.readAsDataURL(file);
+            }
+        }
+
+        // 提交帖子
+        function submitPost() {
+            const category = document.getElementById('post-category').value;
+            const title = document.getElementById('post-title').value.trim();
+            const content = document.getElementById('post-content').value.trim();
+            const imagePreview = document.getElementById('image-preview');
+            const imageUrl = imagePreview.style.display !== 'none' ? imagePreview.src : '';
+
+            if (!title || !content) {
+                alert('请填写标题和内容');
+                return;
+            }
+
+            db.collection('posts').add({
+                category: category,
+                title: title,
+                content: content,
+                imageUrl: imageUrl,
+                authorId: currentUser.uid,
+                authorName: currentUser.displayName || '匿名',
+                authorPhoto: currentUser.photoURL || '',
+                createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+                replyCount: 0
+            }).then(() => {
+                closeModal();
+            }).catch(err => alert('发布失败：' + err.message));
+        }
+
+        // 时间格式化
+        function timeAgo(timestamp) {
+            if (!timestamp) return '刚刚';
+            const seconds = Math.floor((Date.now() - timestamp.toMillis()) / 1000);
+            if (seconds < 60) return '刚刚';
+            const minutes = Math.floor(seconds / 60);
+            if (minutes < 60) return minutes + '分钟前';
+            const hours = Math.floor(minutes / 60);
+            if (hours < 24) return hours + '小时前';
+            const days = Math.floor(hours / 24);
+            return days + '天前';
+        }
+
+        // HTML 转义
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // 点击弹窗外部关闭
+        document.getElementById('post-modal').addEventListener('click', function(e) {
+            if (e.target === this) closeModal();
+        });
+
+        // 页面加载时加载帖子
+        loadPosts();
+    </script>
+</body>
+</html>

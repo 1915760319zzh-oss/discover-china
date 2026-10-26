@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kanas Lake - Complete Travel Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-size: 1.8rem; font-weight: bold; letter-spacing: 1px; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; font-size: 1rem; }
+        .nav-links a:hover { opacity: 0.8; }
+        .back-btn { background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.3s; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .hero-banner { height: 500px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/kanas-1.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        .hero-banner h1 { font-size: 4rem; font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero-banner p { font-size: 1.5rem; margin-top: 1rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+        .content-section { padding: 60px 20px; background: white; }
+        .content-section h2 { font-size: 2.5rem; margin-bottom: 2rem; color: #667eea; border-bottom: 3px solid #667eea; padding-bottom: 1rem; }
+        .content-section h3 { font-size: 1.8rem; margin: 2rem 0 1rem; color: #764ba2; }
+        .content-section p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; color: #555; }
+        .info-box { background: #f8f9fa; padding: 2rem; border-radius: 15px; margin: 2rem 0; border-left: 4px solid #667eea; }
+        .info-box h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .info-box ul { margin-left: 1.5rem; }
+        .info-box li { margin-bottom: 0.8rem; color: #555; line-height: 1.6; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .gallery-item { border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .gallery-item:hover { transform: translateY(-10px); }
+        .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; }
+        .gallery-item .caption { padding: 1rem; background: white; text-align: center; font-weight: 600; color: #667eea; }
+        .transport-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .transport-card { background: #f8f9fa; padding: 2rem; border-radius: 15px; border-top: 4px solid #667eea; }
+        .transport-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .transport-card p { color: #555; line-height: 1.6; }
+        .route-timeline { position: relative; padding-left: 40px; margin: 2rem 0; }
+        .route-timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: #667eea; }
+        .route-item { position: relative; margin-bottom: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px; }
+        .route-item::before { content: ''; position: absolute; left: -33px; top: 20px; width: 15px; height: 15px; border-radius: 50%; background: #667eea; border: 3px solid white; }
+        .route-item h4 { color: #667eea; margin-bottom: 0.5rem; }
+        .route-item p { color: #555; margin: 0; }
+        .restaurant-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .restaurant-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 4px solid #667eea; }
+        .restaurant-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .restaurant-card .cuisine { color: #764ba2; font-weight: 600; margin-bottom: 1rem; }
+        .restaurant-card p { color: #555; margin-bottom: 0.5rem; }
+        .restaurant-card .price { color: #667eea; font-weight: bold; font-size: 1.1rem; }
+        .hotel-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .hotel-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 4px solid #667eea; }
+        .hotel-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .hotel-card .stars { color: #ffc107; margin-bottom: 1rem; }
+        .hotel-card p { color: #555; margin-bottom: 0.5rem; }
+        .hotel-card .price { color: #667eea; font-weight: bold; font-size: 1.2rem; margin-top: 1rem; }
+        .tips-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem; border-radius: 15px; margin: 3rem 0; }
+        .tips-box h3 { color: white; font-size: 2rem; margin-bottom: 1.5rem; }
+        .tips-box ul { margin-left: 1.5rem; }
+        .tips-box li { margin-bottom: 1rem; line-height: 1.6; }
+        footer { background: #333; color: white; text-align: center; padding: 2.5rem 20px; }
+        footer p { margin: 0.5rem 0; opacity: 0.9; }
+        @media (max-width: 768px) { .hero-banner h1 { font-size: 2.5rem; } .hero-banner p { font-size: 1.2rem; } .content-section h2 { font-size: 2rem; } .gallery { grid-template-columns: 1fr; } .nav-links { gap: 1rem; font-size: 0.9rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Discover China</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#attractions">Attractions</a></li>
+                <li><a href="index.html#visa-info">Visa Info</a></li>
+                <li><a href="index.html#forum">Travel Forum</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+            <button class="back-btn" onclick="window.location.href='index.html#attractions'">← Back to Attractions</button>
+        </nav>
+    </header>
+
+    <div class="hero-banner">
+        <div>
+            <h1>Kanas Lake</h1>
+            <p>喀纳斯 - Mysterious Color-Changing Lake in Altai Mountains</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="content-section">
+            <h2>Overview</h2>
+            <p>Kanas Lake is a stunning alpine lake in the Altai Mountains of northern Xinjiang, near the borders of Russia, Kazakhstan, and Mongolia. The lake is famous for its color-changing waters — shifting from blue to green to silver depending on the weather and season — and local legends of a mysterious lake monster. Surrounded by dense taiga forests, snow-capped peaks, and Tuva Mongolian villages, Kanas is often called "God's Backyard Garden." The area is home to the Tuva people, an ethnic minority with unique culture and traditions. Autumn (late September to early October) is the most spectacular season when the forests turn brilliant gold and red.</p>
+            
+            <div class="info-box">
+                <h4>Quick Facts</h4>
+                <ul>
+                    <li><strong>Location:</strong> Burqin County, Altai Prefecture, Xinjiang</li>
+                    <li><strong>Lake Depth:</strong> 188.5 meters (deepest in northwest China)</li>
+                    <li><strong>Altitude:</strong> 1,374 meters above sea level</li>
+                    <li><strong>Best Time to Visit:</strong> Late September - early October (autumn colors)</li>
+                    <li><strong>Entrance Fee:</strong> ¥185 (includes park bus) + ¥80 (observation platform)</li>
+                    <li><strong>Opening Hours:</strong> 8:00 AM - 7:00 PM (peak season)</li>
+                </ul>
+            </div>
+
+            <h2> Gallery - 6 Beautiful Photos</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/kanas-1.jpg" alt="Kanas Lake Sign">
+                    <div class="caption">Kanas Lake Scenic Sign</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/kanas-2.jpg" alt="Aerial Lake View">
+                    <div class="caption">Aerial View of Kanas Lake</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/kanas-3.jpg" alt="Lakeside Wildflower Path">
+                    <div class="caption">Lakeside Path with Wildflowers</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/kanas-4.jpg" alt="Forest Road by Lake">
+                    <div class="caption">Forest Road Along the Lake</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/kanas-5.jpg" alt="Turquoise Lake Panorama">
+                    <div class="caption">Turquoise Kanas Lake Panorama</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/kanas-6.jpg" alt="Lake Shore with Snow Mountains">
+                    <div class="caption">Lake Shore with Snow Mountains</div>
+                </div>
+            </div>
+
+            <h2>🚗 How to Get There - Transportation</h2>
+            <div class="transport-grid">
+                <div class="transport-card">
+                    <h4>By Air + Car</h4>
+                    <p><strong>Fly to Burqin:</strong> Kanas Airport (seasonal, Jun-Oct). Flights from Urumqi (1h, ¥800-1200). Airport to Kanas: 2h drive (taxi ¥300-400).</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Air to Altay</h4>
+                    <p><strong>Altay Airport:</strong> Flights from Urumqi (1h, ¥600-900). Then drive to Burqin (2h) and Kanas (3h more). Total 5h drive.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Car from Urumqi</h4>
+                    <p><strong>Distance:</strong> 700km (10-12h drive). Route: Urumqi → Karamay → Burqin → Kanas. Mountain roads, some rough sections. 4WD recommended.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>Within Scenic Area</h4>
+                    <p><strong>Park Bus:</strong> Included in entrance fee. Runs between all major stops (Kanas Lake, Moon Bay, Dragon Bay, Fairy Bay). Private cars not allowed inside.</p>
+                </div>
+            </div>
+
+            <h2>️ Recommended Tour Routes</h2>
+            <div class="route-timeline">
+                <div class="route-item">
+                    <h4>Route 1: Classic Kanas Lake Tour (1 Day)</h4>
+                    <p><strong>Route:</strong> Enter park → Bus to Kanas Lake → Lakeside walk → Observation platform → Three bays (Moon, Dragon, Fairy) → Exit<br>
+                    <strong>Duration:</strong> 6-8 hours<br>
+                    <strong>Best for:</strong> First-time visitors</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 2: Kanas + Hemu Village (2 Days)</h4>
+                    <p><strong>Day 1:</strong> Kanas Lake full exploration<br>
+                    <strong>Day 2:</strong> Drive to Hemu Village (Tuva settlement, 2h) → Explore village → Return<br>
+                    <strong>Best for:</strong> Cultural experience + nature</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 3: Photography Tour (2-3 Days)</h4>
+                    <p><strong>Best Spots:</strong> Kanas Lake sunrise, Moon Bay sunset, Fairy Bay morning mist, Autumn forest<br>
+                    <strong>Tips:</strong> Early mornings and late afternoons for best light; bring wide-angle lens</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 4: Hiking Adventure (3 Days)</h4>
+                    <p><strong>Day 1:</strong> Kanas Lake → Hiking trail to White Lake<br>
+                    <strong>Day 2:</strong> White Lake → Friendship Peak (border area)<br>
+                    <strong>Day 3:</strong> Return via different trail → Three bays</p>
+                </div>
+            </div>
+
+            <h2>🍽️ Restaurants Near Kanas</h2>
+            <div class="restaurant-list">
+                <div class="restaurant-card">
+                    <h4>Kanas Village Restaurants</h4>
+                    <div class="cuisine">Xinjiang & Tuva Cuisine</div>
+                    <p><strong>Location:</strong> Inside scenic area (Jiandeng Village)<br>
+                    <strong>Specialty:</strong> Lamb skewers, Hand-pulled noodles, Milk tea<br>
+                    <strong>Hours:</strong> 8:00 AM - 9:00 PM</p>
+                    <div class="price">¥50-100 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Tuva Yurt Restaurants</h4>
+                    <div class="cuisine">Traditional Tuva Mongolian</div>
+                    <p><strong>Location:</strong> Near Kanas Lake<br>
+                    <strong>Specialty:</strong> Roasted whole lamb, Yogurt, Naan bread<br>
+                    <strong>Hours:</strong> 11:00 AM - 9:00 PM</p>
+                    <div class="price">¥80-150 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Burqin Town Restaurants</h4>
+                    <div class="cuisine">Xinjiang Chinese</div>
+                    <p><strong>Location:</strong> Burqin County (outside park)<br>
+                    <strong>Specialty:</strong> Big plate chicken, Lamb pilaf, Local fish<br>
+                    <strong>Hours:</strong> 11:00 AM - 10:00 PM</p>
+                    <div class="price">¥40-80 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Hotel Restaurants</h4>
+                    <div class="cuisine">Chinese & International</div>
+                    <p><strong>Location:</strong> Inside hotels near park<br>
+                    <strong>Specialty:</strong> Buffet meals, Higher quality, Western options<br>
+                    <strong>Hours:</strong> 7:00 AM - 9:00 PM</p>
+                    <div class="price">¥80-200 per person</div>
+                </div>
+            </div>
+
+            <h2>🏨 Accommodation Options & Prices</h2>
+            <div class="hotel-list">
+                <div class="hotel-card">
+                    <h4>Kanas Lake Resorts</h4>
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Location:</strong> Near Kanas Lake<br>
+                    <strong>Features:</strong> Lake views, Modern amenities, Restaurant<br>
+                    <strong>Note:</strong> Very limited rooms; book months in advance</p>
+                    <div class="price">¥1200-3000/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Tuva Yurt Homestays</h4>
+                    <div class="stars">★★★</div>
+                    <p><strong>Location:</strong> Jiandeng Tuva Village<br>
+                    <strong>Features:</strong> Authentic yurt experience, Local food, Cultural immersion<br>
+                    <strong>Note:</strong> Basic facilities; unique experience</p>
+                    <div class="price">¥200-500/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Burqin Town Hotels</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> Burqin County town<br>
+                    <strong>Features:</strong> Comfortable, Full amenities, Restaurants nearby<br>
+                    <strong>Distance to Kanas:</strong> 2-3h drive</p>
+                    <div class="price">¥300-700/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Hemu Village Guesthouses</h4>
+                    <div class="stars">★★★</div>
+                    <p><strong>Location:</strong> Hemu Village (2h from Kanas)<br>
+                    <strong>Features:</strong> Traditional wooden houses, Village atmosphere<br>
+                    <strong>Note:</strong> Great alternative if Kanas is full</p>
+                    <div class="price">¥200-600/night</div>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h3>💡 Essential Travel Tips</h3>
+                <ul>
+                    <li><strong>Best Season:</strong> Late September - early October for autumn colors (ABSOLUTE PEAK). June-August for green forests. Winter (Nov-Mar) extremely cold and road closures.</li>
+                    <li><strong>Book Early:</strong> Peak autumn season books out months ahead. Reserve hotels and flights early.</li>
+                    <li><strong>Remote Location:</strong> Kanas is very remote. Bring medications, snacks, and supplies. Limited shops inside park.</li>
+                    <li><strong>Weather:</strong> Mountain weather changes rapidly. Bring warm layers even in summer. Snow possible in autumn.</li>
+                    <li><strong>Altitude:</strong> Lake at 1,374m - generally no altitude issues. Some hiking trails are strenuous.</li>
+                    <li><strong>Permits:</strong> Border area near Russia/Kazakhstan/Mongolia. Carry passport/ID at all times. Check current regulations.</li>
+                    <li><strong>Photography:</strong> Best light early morning and late afternoon. Autumn colors peak late September.</li>
+                    <li><strong>Tuva Culture:</strong> Respect local customs. Ask before photographing people. Some Tuva families welcome visitors.</li>
+                    <li><strong>Transport:</strong> Private cars not allowed inside park. Use park bus system (included in ticket).</li>
+                    <li><strong>Payment:</strong> WeChat Pay and Alipay accepted. ATMs limited - bring cash from Burqin or Urumqi.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Discover China. All rights reserved.</p>
+            <p>Your gateway to authentic Chinese travel experiences</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zhangjiajie - Complete Travel Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-size: 1.8rem; font-weight: bold; letter-spacing: 1px; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; font-size: 1rem; }
+        .nav-links a:hover { opacity: 0.8; }
+        .back-btn { background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.3s; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .hero-banner { height: 500px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/zhangjiajie-1.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        .hero-banner h1 { font-size: 4rem; font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero-banner p { font-size: 1.5rem; margin-top: 1rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+        .content-section { padding: 60px 20px; background: white; }
+        .content-section h2 { font-size: 2.5rem; margin-bottom: 2rem; color: #667eea; border-bottom: 3px solid #667eea; padding-bottom: 1rem; }
+        .content-section h3 { font-size: 1.8rem; margin: 2rem 0 1rem; color: #764ba2; }
+        .content-section p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; color: #555; }
+        .info-box { background: #f8f9fa; padding: 2rem; border-radius: 15px; margin: 2rem 0; border-left: 4px solid #667eea; }
+        .info-box h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .info-box ul { margin-left: 1.5rem; }
+        .info-box li { margin-bottom: 0.8rem; color: #555; line-height: 1.6; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .gallery-item { border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .gallery-item:hover { transform: translateY(-10px); }
+        .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; }
+        .gallery-item .caption { padding: 1rem; background: white; text-align: center; font-weight: 600; color: #667eea; }
+        .transport-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .transport-card { background: #f8f9fa; padding: 2rem; border-radius: 15px; border-top: 4px solid #667eea; }
+        .transport-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .transport-card p { color: #555; line-height: 1.6; }
+        .route-timeline { position: relative; padding-left: 40px; margin: 2rem 0; }
+        .route-timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: #667eea; }
+        .route-item { position: relative; margin-bottom: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px; }
+        .route-item::before { content: ''; position: absolute; left: -33px; top: 20px; width: 15px; height: 15px; border-radius: 50%; background: #667eea; border: 3px solid white; }
+        .route-item h4 { color: #667eea; margin-bottom: 0.5rem; }
+        .route-item p { color: #555; margin: 0; }
+        .restaurant-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .restaurant-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 4px solid #667eea; }
+        .restaurant-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .restaurant-card .cuisine { color: #764ba2; font-weight: 600; margin-bottom: 1rem; }
+        .restaurant-card p { color: #555; margin-bottom: 0.5rem; }
+        .restaurant-card .price { color: #667eea; font-weight: bold; font-size: 1.1rem; }
+        .hotel-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .hotel-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 4px solid #667eea; }
+        .hotel-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .hotel-card .stars { color: #ffc107; margin-bottom: 1rem; }
+        .hotel-card p { color: #555; margin-bottom: 0.5rem; }
+        .hotel-card .price { color: #667eea; font-weight: bold; font-size: 1.2rem; margin-top: 1rem; }
+        .tips-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem; border-radius: 15px; margin: 3rem 0; }
+        .tips-box h3 { color: white; font-size: 2rem; margin-bottom: 1.5rem; }
+        .tips-box ul { margin-left: 1.5rem; }
+        .tips-box li { margin-bottom: 1rem; line-height: 1.6; }
+        footer { background: #333; color: white; text-align: center; padding: 2.5rem 20px; }
+        footer p { margin: 0.5rem 0; opacity: 0.9; }
+        @media (max-width: 768px) { .hero-banner h1 { font-size: 2.5rem; } .hero-banner p { font-size: 1.2rem; } .content-section h2 { font-size: 2rem; } .gallery { grid-template-columns: 1fr; } .nav-links { gap: 1rem; font-size: 0.9rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Discover China</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#attractions">Attractions</a></li>
+                <li><a href="index.html#visa-info">Visa Info</a></li>
+                <li><a href="index.html#forum">Travel Forum</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+            <button class="back-btn" onclick="window.location.href='index.html#attractions'">← Back to Attractions</button>
+        </nav>
+    </header>
+
+    <div class="hero-banner">
+        <div>
+            <h1>Zhangjiajie</h1>
+            <p>张家界 - Avatar Mountains & Glass Bridge in the Clouds</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="content-section">
+            <h2>Overview</h2>
+            <p>Zhangjiajie National Forest Park is famous for its towering sandstone pillars that inspired the floating mountains in the movie Avatar. Located in Hunan Province, the park features over 3,000 quartzite columns, some rising over 1,000 meters. The surreal landscape, combined with the world's longest and highest glass bridge, makes Zhangjiajie one of China's most spectacular destinations.</p>
+            
+            <div class="info-box">
+                <h4>Quick Facts</h4>
+                <ul>
+                    <li><strong>Location:</strong> Zhangjiajie City, Hunan Province</li>
+                    <li><strong>Park Size:</strong> 481 square kilometers</li>
+                    <li><strong>UNESCO Status:</strong> Global Geopark since 2004</li>
+                    <li><strong>Best Time to Visit:</strong> April-October (avoid rainy season)</li>
+                    <li><strong>Entrance Fee:</strong> ¥228 (valid for 4 days)</li>
+                    <li><strong>Opening Hours:</strong> 7:00 AM - 6:00 PM (varies by season)</li>
+                </ul>
+            </div>
+
+            <h2>📸 Gallery - 6 Beautiful Photos</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/zhangjiajie-1.jpg" alt="Zhangjiajie Pillars in Mist">
+                    <div class="caption">Sandstone Pillars Rising Through the Clouds</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/zhangjiajie-2.jpg" alt="Cliff Viewing Platform">
+                    <div class="caption">Cliff-Edge Viewing Platform Overlooking the Valley</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/zhangjiajie-3.jpg" alt="Tianmen Mountain Entrance">
+                    <div class="caption">Tianmen Mountain Scenic Area Entrance</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/zhangjiajie-4.jpg" alt="Avatar Mountains">
+                    <div class="caption">The Famous "Avatar Hallelujah Mountain" Pillar</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/zhangjiajie-5.jpg" alt="Cliff Walkway">
+                    <div class="caption">Crowded Cliff Walkway with Traditional Pavilions</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/zhangjiajie-6.jpg" alt="Zhangjiajie with Bailong Elevator">
+                    <div class="caption">Sandstone Peaks with Bailong Elevator Visible</div>
+                </div>
+            </div>
+
+            <h2>🚗 How to Get There - Transportation</h2>
+            <div class="transport-grid">
+                <div class="transport-card">
+                    <h4>Fly to Zhangjiajie</h4>
+                    <p><strong>Zhangjiajie Hehua Airport:</strong> Direct flights from Beijing (2.5h), Shanghai (2.5h), Guangzhou (2h). Airport to city: ¥30, 30 min.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>High-Speed Train</h4>
+                    <p><strong>From Changsha:</strong> 2-2.5 hours, ¥150-200. Zhangjiajie West Railway Station is 10 km from city center.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>To National Forest Park</h4>
+                    <p><strong>From City:</strong> Bus from Zhangjiajie Central Bus Station to Wulingyuan (40 min, ¥13). Then park entrance shuttle.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>Within the Park</h4>
+                    <p><strong>Park Shuttle Buses:</strong> Free with entrance ticket. Connect all major scenic areas. Runs 7:00 AM - 6:00 PM.</p>
+                </div>
+            </div>
+
+            <h2>🗺️ Recommended Tour Routes</h2>
+            <div class="route-timeline">
+                <div class="route-item">
+                    <h4>Route 1: Yuanjiajie Area (Half Day)</h4>
+                    <p><strong>Highlights:</strong> Avatar Hallelujah Mountain, First Bridge Under Heaven, Enchanting Terrace<br>
+                    <strong>Access:</strong> Bailong Elevator up (¥72), walk around, bus down<br>
+                    <strong>Duration:</strong> 3-4 hours</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 2: Tianzi Mountain (Half Day)</h4>
+                    <p><strong>Highlights:</strong> Imperial Writing Brush Peaks, Fairy Scattering Flowers, Helong Park<br>
+                    <strong>Access:</strong> Cable car up (¥72), walk viewpoints, cable car down<br>
+                    <strong>Duration:</strong> 3-4 hours</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 3: Golden Whip Stream (Half Day)</h4>
+                    <p><strong>Highlights:</strong> Peaceful valley walk, Golden Whip Rock, Longevity Spring<br>
+                    <strong>Access:</strong> Walk entire 5.7 km trail (flat, easy)<br>
+                    <strong>Duration:</strong> 2-3 hours</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 4: Glass Bridge & Canyon (Full Day)</h4>
+                    <p><strong>Highlights:</strong> World's longest glass bridge, Zhangjiajie Grand Canyon, boat ride<br>
+                    <strong>Cost:</strong> ¥219 (includes bridge and canyon)<br>
+                    <strong>Duration:</strong> Full day</p>
+                </div>
+            </div>
+
+            <h2>🍽️ Restaurants Near Zhangjiajie</h2>
+            <div class="restaurant-list">
+                <div class="restaurant-card">
+                    <h4>Wulingyuan Town Restaurants</h4>
+                    <div class="cuisine">Tujia Minority Cuisine</div>
+                    <p><strong>Location:</strong> Wulingyuan Town (near park entrance)<br>
+                    <strong>Specialty:</strong> Three-pot stew (sanxia guo), Spicy fish head<br>
+                    <strong>Hours:</strong> 11:00 AM - 9:00 PM</p>
+                    <div class="price">¥40-80 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Zhangjiajie City Restaurants</h4>
+                    <div class="cuisine">Hunan Cuisine</div>
+                    <p><strong>Location:</strong> Downtown Zhangjiajie<br>
+                    <strong>Specialty:</strong> Spicy Hunan dishes, Smoked meat<br>
+                    <strong>Hours:</strong> 11:00 AM - 10:00 PM</p>
+                    <div class="price">¥50-100 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Park Area Snack Stalls</h4>
+                    <div class="cuisine">Quick Snacks</div>
+                    <p><strong>Location:</strong> Inside the park (major stops)<br>
+                    <strong>Specialty:</strong> Noodles, Rice, Corn, Tea eggs<br>
+                    <strong>Hours:</strong> 7:00 AM - 5:00 PM</p>
+                    <div class="price">¥20-40 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Tujia Minority Restaurants</h4>
+                    <div class="cuisine">Authentic Tujia</div>
+                    <p><strong>Location:</strong> Tujia villages near park<br>
+                    <strong>Specialty:</strong> Tujia bacon, Rice tofu, Wild vegetables<br>
+                    <strong>Hours:</strong> 11:00 AM - 8:00 PM</p>
+                    <div class="price">¥60-120 per person</div>
+                </div>
+            </div>
+
+            <h2>🏨 Accommodation Options & Prices</h2>
+            <div class="hotel-list">
+                <div class="hotel-card">
+                    <h4>Zhangjiajie Pullman Hotel</h4>
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Location:</strong> Wulingyuan District<br>
+                    <strong>Features:</strong> Luxury, Mountain views, Spa<br>
+                    <strong>Distance to Park:</strong> 5 min drive</p>
+                    <div class="price">¥800-1500/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Wulingyuan Mid-Range Hotels</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> Wulingyuan Town<br>
+                    <strong>Features:</strong> Comfortable, Good restaurants nearby<br>
+                    <strong>Distance to Park:</strong> 10 min walk</p>
+                    <div class="price">¥300-600/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Zhangjiajie City Hotels</h4>
+                    <div class="stars">★★★</div>
+                    <p><strong>Location:</strong> Downtown Zhangjiajie<br>
+                    <strong>Features:</strong> Budget-friendly, Shopping, Transport hub<br>
+                    <strong>Distance to Park:</strong> 40 min by bus</p>
+                    <div class="price">¥150-350/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Hostels & Guesthouses</h4>
+                    <div class="stars">★★</div>
+                    <p><strong>Location:</strong> Wulingyuan and park area<br>
+                    <strong>Features:</strong> Budget, Social atmosphere<br>
+                    <strong>Distance to Park:</strong> Walking distance</p>
+                    <div class="price">¥50-150/night</div>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h3>💡 Essential Travel Tips</h3>
+                <ul>
+                    <li><strong>Allow 2-3 Days:</strong> The park is huge - don't try to see everything in one day</li>
+                    <li><strong>Best Time:</strong> April-October; September-October for clearest skies and autumn colors</li>
+                    <li><strong>Early Morning:</strong> Arrive at 7 AM opening to avoid crowds and get best photos</li>
+                    <li><strong>Weather:</strong> Misty/rainy days create magical atmosphere but reduce visibility</li>
+                    <li><strong>What to Bring:</strong> Comfortable hiking shoes, rain jacket, water, snacks, camera</li>
+                    <li><strong>Physical Fitness:</strong> Some areas require hiking; cable cars/elevators available for most spots</li>
+                    <li><strong>Altitude:</strong> Not extremely high (1,000-1,300m) but bring layers - cooler at top</li>
+                    <li><strong>Photography:</strong> Best light early morning; mist creates dramatic effects</li>
+                    <li><strong>Payment:</strong> WeChat Pay and Alipay accepted; carry some cash for small vendors</li>
+                    <li><strong>Combine with:</strong> Tianmen Mountain (separate ticket, ¥258) for full Zhangjiajie experience</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Discover China. All rights reserved.</p>
+            <p>Your gateway to authentic Chinese travel experiences</p>
+        </div>
+    </footer>
+</body>
+</html>

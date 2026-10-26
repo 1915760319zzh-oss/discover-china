@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Bund, Shanghai - Complete Travel Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-size: 1.8rem; font-weight: bold; letter-spacing: 1px; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; font-size: 1rem; }
+        .nav-links a:hover { opacity: 0.8; }
+        .back-btn { background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.3s; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .hero-banner { height: 500px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/the-bund-1.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        .hero-banner h1 { font-size: 4rem; font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero-banner p { font-size: 1.5rem; margin-top: 1rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+        .content-section { padding: 60px 20px; background: white; }
+        .content-section h2 { font-size: 2.5rem; margin-bottom: 2rem; color: #667eea; border-bottom: 3px solid #667eea; padding-bottom: 1rem; }
+        .content-section h3 { font-size: 1.8rem; margin: 2rem 0 1rem; color: #764ba2; }
+        .content-section p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; color: #555; }
+        .info-box { background: #f8f9fa; padding: 2rem; border-radius: 15px; margin: 2rem 0; border-left: 4px solid #667eea; }
+        .info-box h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .info-box ul { margin-left: 1.5rem; }
+        .info-box li { margin-bottom: 0.8rem; color: #555; line-height: 1.6; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .gallery-item { border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .gallery-item:hover { transform: translateY(-10px); }
+        .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; }
+        .gallery-item .caption { padding: 1rem; background: white; text-align: center; font-weight: 600; color: #667eea; }
+        .transport-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .transport-card { background: #f8f9fa; padding: 2rem; border-radius: 15px; border-top: 4px solid #667eea; }
+        .transport-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .transport-card p { color: #555; line-height: 1.6; }
+        .route-timeline { position: relative; padding-left: 40px; margin: 2rem 0; }
+        .route-timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: #667eea; }
+        .route-item { position: relative; margin-bottom: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px; }
+        .route-item::before { content: ''; position: absolute; left: -33px; top: 20px; width: 15px; height: 15px; border-radius: 50%; background: #667eea; border: 3px solid white; }
+        .route-item h4 { color: #667eea; margin-bottom: 0.5rem; }
+        .route-item p { color: #555; margin: 0; }
+        .restaurant-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .restaurant-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 4px solid #667eea; }
+        .restaurant-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .restaurant-card .cuisine { color: #764ba2; font-weight: 600; margin-bottom: 1rem; }
+        .restaurant-card p { color: #555; margin-bottom: 0.5rem; }
+        .restaurant-card .price { color: #667eea; font-weight: bold; font-size: 1.1rem; }
+        .hotel-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .hotel-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 4px solid #667eea; }
+        .hotel-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .hotel-card .stars { color: #ffc107; margin-bottom: 1rem; }
+        .hotel-card p { color: #555; margin-bottom: 0.5rem; }
+        .hotel-card .price { color: #667eea; font-weight: bold; font-size: 1.2rem; margin-top: 1rem; }
+        .tips-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem; border-radius: 15px; margin: 3rem 0; }
+        .tips-box h3 { color: white; font-size: 2rem; margin-bottom: 1.5rem; }
+        .tips-box ul { margin-left: 1.5rem; }
+        .tips-box li { margin-bottom: 1rem; line-height: 1.6; }
+        footer { background: #333; color: white; text-align: center; padding: 2.5rem 20px; }
+        footer p { margin: 0.5rem 0; opacity: 0.9; }
+        @media (max-width: 768px) { .hero-banner h1 { font-size: 2.5rem; } .hero-banner p { font-size: 1.2rem; } .content-section h2 { font-size: 2rem; } .gallery { grid-template-columns: 1fr; } .nav-links { gap: 1rem; font-size: 0.9rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Discover China</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#attractions">Attractions</a></li>
+                <li><a href="index.html#visa-info">Visa Info</a></li>
+                <li><a href="index.html#forum">Travel Forum</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+            <button class="back-btn" onclick="window.location.href='index.html#attractions'">← Back to Attractions</button>
+        </nav>
+    </header>
+
+    <div class="hero-banner">
+        <div>
+            <h1>The Bund, Shanghai</h1>
+            <p>上海外滩 - Where History Meets Modernity</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="content-section">
+            <h2>Overview</h2>
+            <p>The Bund is Shanghai's most famous waterfront area, featuring a stunning contrast between colonial-era European buildings on one side and the futuristic Pudong skyline on the other. Stretching 1.5 km along the Huangpu River, it's the perfect place to experience Shanghai's unique blend of old and new. At night, the illuminated skyscrapers create one of the most spectacular cityscapes in the world.</p>
+            
+            <div class="info-box">
+                <h4>Quick Facts</h4>
+                <ul>
+                    <li><strong>Location:</strong> Zhongshan East 1st Road, Huangpu District, Shanghai</li>
+                    <li><strong>Length:</strong> 1.5 km along the Huangpu River</li>
+                    <li><strong>Best Time to Visit:</strong> Evening for night views (light show starts 7 PM)</li>
+                    <li><strong>Entrance Fee:</strong> FREE (public promenade)</li>
+                    <li><strong>Opening Hours:</strong> 24 hours (best visited 6 PM - 10 PM)</li>
+                    <li><strong>Time Needed:</strong> 1-2 hours for walking, 3-4 hours with cruise</li>
+                </ul>
+            </div>
+
+            <h2>📸 Gallery - 6 Beautiful Photos</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/the-bund-1.jpg" alt="The Bund Street View">
+                    <div class="caption">Street View of The Bund with Oriental Pearl Tower</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/the-bund-2.jpg" alt="The Bund Riverside Walk">
+                    <div class="caption">Riverside Promenade with Pudong Skyline</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/the-bund-3.jpg" alt="Colonial Architecture">
+                    <div class="caption">Historic Colonial Buildings Along the River</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/the-bund-4.jpg" alt="The Bund Sunset">
+                    <div class="caption">Sunset Views from Custom House Clock Tower</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/the-bund-5.jpg" alt="Pudong Skyline">
+                    <div class="caption">Oriental Pearl Tower and Modern Skyscrapers</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/the-bund-6.jpg" alt="The Bund Night Lights">
+                    <div class="caption">Illuminated Skyline at Night</div>
+                </div>
+            </div>
+
+            <h2>🚗 How to Get There - Transportation</h2>
+            <div class="transport-grid">
+                <div class="transport-card">
+                    <h4>By Metro (Recommended)</h4>
+                    <p><strong>Line 2 or 10:</strong> Get off at Nanjing East Road Station (南京东路站), Exit 2 or 3. Walk 10 minutes east to The Bund. Cost: ¥3-4.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Taxi/Ride-hailing</h4>
+                    <p><strong>DiDi/Taxi:</strong> Tell driver "Waitan" (外滩). From People's Square: 10 min, ¥15-20. From Pudong: 20 min via tunnel, ¥30-40.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Bus</h4>
+                    <p><strong>Bus Routes:</strong> 33, 55, 123, 135, 307 all stop near The Bund. Cost: ¥2. Good for budget travelers.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Ferry</h4>
+                    <p><strong>Huangpu River Ferry:</strong> Take ferry from Pudong (Dongchang Road) to Puxi. Cost: ¥2. Scenic and cheap way to cross the river.</p>
+                </div>
+            </div>
+
+            <h2>🗺️ Recommended Tour Routes</h2>
+            <div class="route-timeline">
+                <div class="route-item">
+                    <h4>Route 1: Classic Bund Walk (1-2 hours)</h4>
+                    <p><strong>Start:</strong> Waibaidu Bridge (Garden Bridge) → Walk south along the promenade → Pass all historic buildings → End at Jinling East Road Ferry Terminal<br>
+                    <strong>Highlights:</strong> 52 historic buildings, river views, photo opportunities<br>
+                    <strong>Best Time:</strong> Sunset to night (5 PM - 9 PM)</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 2: Bund + Nanjing Road (3-4 hours)</h4>
+                    <p><strong>Start:</strong> People's Square → Walk east on Nanjing Road Pedestrian Street → Arrive at The Bund → Continue to Yu Garden area<br>
+                    <strong>Highlights:</strong> Shopping, historic architecture, local snacks<br>
+                    <strong>Best for:</strong> First-time visitors wanting comprehensive experience</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 3: Huangpu River Cruise (2 hours)</h4>
+                    <p><strong>Start:</strong> Shiliupu Wharf or Qinhuangdao Wharf → 45-min cruise → See both Bund and Pudong from water<br>
+                    <strong>Cost:</strong> ¥120-180 per person<br>
+                    <strong>Best Time:</strong> Evening cruise (7 PM - 9 PM) for light show</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 4: Photography Special (2-3 hours)</h4>
+                    <p><strong>Start:</strong> Arrive 30 min before sunset → Best spots: Waibaidu Bridge, Peace Hotel corner, Custom House clock tower → Stay for night light show<br>
+                    <strong>Tips:</strong> Bring tripod, wide-angle lens. Best from Pudong side looking west.</p>
+                </div>
+            </div>
+
+            <h2>️ Restaurants Near The Bund</h2>
+            <div class="restaurant-list">
+                <div class="restaurant-card">
+                    <h4>M on the Bund</h4>
+                    <div class="cuisine">Fine Dining - French/Italian</div>
+                    <p><strong>Location:</strong> 5F, No. 18 Zhongshan Dong Yi Road<br>
+                    <strong>Specialty:</strong> European cuisine with Bund views<br>
+                    <strong>Hours:</strong> 11:30 AM - 2:30 PM, 5:30 PM - 11:00 PM</p>
+                    <div class="price">¥500-800 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Lost Heaven</h4>
+                    <div class="cuisine">Yunnan Cuisine</div>
+                    <p><strong>Location:</strong> No. 17 Zhongshan Dong Yi Road<br>
+                    <strong>Specialty:</strong> Authentic Yunnan dishes, exotic flavors<br>
+                    <strong>Hours:</strong> 11:30 AM - 10:30 PM</p>
+                    <div class="price">¥150-250 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Yang's Fry Dumpling</h4>
+                    <div class="cuisine">Shanghai Street Food</div>
+                    <p><strong>Location:</strong> Multiple locations near The Bund<br>
+                    <strong>Specialty:</strong> Shanghai xiaolongbao (soup dumplings)<br>
+                    <strong>Hours:</strong> 7:00 AM - 8:00 PM</p>
+                    <div class="price">¥20-40 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Mr & Mrs Bund</h4>
+                    <div class="cuisine">Modern French</div>
+                    <p><strong>Location:</strong> 6F, No. 18 Zhongshan Dong Yi Road<br>
+                    <strong>Specialty:</strong> Contemporary French with river views<br>
+                    <strong>Hours:</strong> 6:00 PM - 12:00 AM</p>
+                    <div class="price">¥600-1000 per person</div>
+                </div>
+            </div>
+
+            <h2>🏨 Accommodation Options & Prices</h2>
+            <div class="hotel-list">
+                <div class="hotel-card">
+                    <h4>Fairmont Peace Hotel</h4>
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Location:</strong> No. 20 Nanjing East Road (on The Bund)<br>
+                    <strong>Features:</strong> Historic luxury, Jazz bar, River views<br>
+                    <strong>Distance to Bund:</strong> On The Bund</p>
+                    <div class="price">¥2000-5000/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>The Peninsula Shanghai</h4>
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Location:</strong> No. 32 Zhongshan Dong Yi Road<br>
+                    <strong>Features:</strong> Rooftop bar, Spa, Bund views<br>
+                    <strong>Distance to Bund:</strong> On The Bund</p>
+                    <div class="price">¥3000-8000/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Hotel Indigo Shanghai</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> No. 585 Zhongshan Dong Er Road<br>
+                    <strong>Features:</strong> Modern design, Rooftop pool<br>
+                    <strong>Distance to Bund:</strong> 5 min walk</p>
+                    <div class="price">¥800-1500/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Budget Hotels (Nanjing Road Area)</h4>
+                    <div class="stars">★★★</div>
+                    <p><strong>Location:</strong> Nanjing Road Pedestrian Street<br>
+                    <strong>Features:</strong> Central location, Shopping nearby<br>
+                    <strong>Distance to Bund:</strong> 10-15 min walk</p>
+                    <div class="price">¥300-600/night</div>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h3>💡 Essential Travel Tips</h3>
+                <ul>
+                    <li><strong>Best Time:</strong> Visit at sunset (5-6 PM) and stay for the night light show (starts 7 PM)</li>
+                    <li><strong>Avoid:</strong> Weekends and holidays when it's extremely crowded</li>
+                    <li><strong>Photography:</strong> Best photos from Pudong side (Lujiazui) looking west at The Bund</li>
+                    <li><strong>Walking:</strong> Wear comfortable shoes - the promenade is 1.5 km long</li>
+                    <li><strong>Cruise:</strong> Book Huangpu River cruise in advance during peak season</li>
+                    <li><strong>Weather:</strong> Shanghai is hot and humid in summer (June-August), cold in winter (Dec-Feb)</li>
+                    <li><strong>Safety:</strong> Watch for pickpockets in crowded areas, especially on Nanjing Road</li>
+                    <li><strong>Payment:</strong> Most places accept WeChat Pay and Alipay; carry some cash as backup</li>
+                    <li><strong>Restrooms:</strong> Available at major shopping malls and metro stations nearby</li>
+                    <li><strong>Language:</strong> Download translation app - English is not widely spoken outside tourist areas</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Discover China. All rights reserved.</p>
+            <p>Your gateway to authentic Chinese travel experiences</p>
+        </div>
+    </footer>
+</body>
+</html>

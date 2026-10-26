@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>West Lake, Hangzhou - Complete Travel Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-size: 1.8rem; font-weight: bold; letter-spacing: 1px; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; font-size: 1rem; }
+        .nav-links a:hover { opacity: 0.8; }
+        .back-btn { background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.3s; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .hero-banner { height: 500px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/west-lake-1.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        .hero-banner h1 { font-size: 4rem; font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero-banner p { font-size: 1.5rem; margin-top: 1rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+        .content-section { padding: 60px 20px; background: white; }
+        .content-section h2 { font-size: 2.5rem; margin-bottom: 2rem; color: #667eea; border-bottom: 3px solid #667eea; padding-bottom: 1rem; }
+        .content-section h3 { font-size: 1.8rem; margin: 2rem 0 1rem; color: #764ba2; }
+        .content-section p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; color: #555; }
+        .info-box { background: #f8f9fa; padding: 2rem; border-radius: 15px; margin: 2rem 0; border-left: 4px solid #667eea; }
+        .info-box h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .info-box ul { margin-left: 1.5rem; }
+        .info-box li { margin-bottom: 0.8rem; color: #555; line-height: 1.6; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .gallery-item { border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .gallery-item:hover { transform: translateY(-10px); }
+        .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; }
+        .gallery-item .caption { padding: 1rem; background: white; text-align: center; font-weight: 600; color: #667eea; }
+        .transport-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .transport-card { background: #f8f9fa; padding: 2rem; border-radius: 15px; border-top: 4px solid #667eea; }
+        .transport-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .transport-card p { color: #555; line-height: 1.6; }
+        .route-timeline { position: relative; padding-left: 40px; margin: 2rem 0; }
+        .route-timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: #667eea; }
+        .route-item { position: relative; margin-bottom: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px; }
+        .route-item::before { content: ''; position: absolute; left: -33px; top: 20px; width: 15px; height: 15px; border-radius: 50%; background: #667eea; border: 3px solid white; }
+        .route-item h4 { color: #667eea; margin-bottom: 0.5rem; }
+        .route-item p { color: #555; margin: 0; }
+        .restaurant-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .restaurant-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 4px solid #667eea; }
+        .restaurant-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .restaurant-card .cuisine { color: #764ba2; font-weight: 600; margin-bottom: 1rem; }
+        .restaurant-card p { color: #555; margin-bottom: 0.5rem; }
+        .restaurant-card .price { color: #667eea; font-weight: bold; font-size: 1.1rem; }
+        .hotel-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .hotel-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 4px solid #667eea; }
+        .hotel-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .hotel-card .stars { color: #ffc107; margin-bottom: 1rem; }
+        .hotel-card p { color: #555; margin-bottom: 0.5rem; }
+        .hotel-card .price { color: #667eea; font-weight: bold; font-size: 1.2rem; margin-top: 1rem; }
+        .tips-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem; border-radius: 15px; margin: 3rem 0; }
+        .tips-box h3 { color: white; font-size: 2rem; margin-bottom: 1.5rem; }
+        .tips-box ul { margin-left: 1.5rem; }
+        .tips-box li { margin-bottom: 1rem; line-height: 1.6; }
+        footer { background: #333; color: white; text-align: center; padding: 2.5rem 20px; }
+        footer p { margin: 0.5rem 0; opacity: 0.9; }
+        @media (max-width: 768px) { .hero-banner h1 { font-size: 2.5rem; } .hero-banner p { font-size: 1.2rem; } .content-section h2 { font-size: 2rem; } .gallery { grid-template-columns: 1fr; } .nav-links { gap: 1rem; font-size: 0.9rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Discover China</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#attractions">Attractions</a></li>
+                <li><a href="index.html#visa-info">Visa Info</a></li>
+                <li><a href="index.html#forum">Travel Forum</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+            <button class="back-btn" onclick="window.location.href='index.html#attractions'">← Back to Attractions</button>
+        </nav>
+    </header>
+
+    <div class="hero-banner">
+        <div>
+            <h1>West Lake, Hangzhou</h1>
+            <p>杭州西湖 - A UNESCO World Heritage Masterpiece</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="content-section">
+            <h2>Overview</h2>
+            <p>West Lake (Xi Hu) is a freshwater lake in Hangzhou, Zhejiang Province, and one of China's most famous scenic spots. A UNESCO World Heritage Site since 2011, it has inspired Chinese poets, painters, and philosophers for over 1,000 years. The lake covers 6.39 square kilometers and is surrounded by hills on three sides. Its serene waters, pagodas, temples, and gardens represent the ideal of classical Chinese landscape design.</p>
+            
+            <div class="info-box">
+                <h4>Quick Facts</h4>
+                <ul>
+                    <li><strong>Location:</strong> Hangzhou, Zhejiang Province (170 km from Shanghai)</li>
+                    <li><strong>Size:</strong> 6.39 sq km (2.47 sq miles)</li>
+                    <li><strong>UNESCO Status:</strong> World Heritage Site since 2011</li>
+                    <li><strong>Best Time to Visit:</strong> March-May (spring blossoms) or September-November (autumn colors)</li>
+                    <li><strong>Entrance Fee:</strong> FREE (lake access), some attractions charge ¥10-30</li>
+                    <li><strong>Opening Hours:</strong> 24 hours (boat tours: 8:00 AM - 5:00 PM)</li>
+                </ul>
+            </div>
+
+            <h2>📸 Gallery - 6 Beautiful Photos</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/west-lake-1.jpg" alt="Aerial View of West Lake">
+                    <div class="caption">Aerial View of West Lake with Pavilions</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/west-lake-2.jpg" alt="Lotus Flowers and Stone Bridge">
+                    <div class="caption">Lotus Flowers and Stone Bridge</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/west-lake-3.jpg" alt="Pavilion on Lake Bridge">
+                    <div class="caption">Pavilion on the Lake Bridge</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/west-lake-4.jpg" alt="Willow Trees by the Lake">
+                    <div class="caption">Willow Trees by the Lake</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/west-lake-5.jpg" alt="Lotus Pond at West Lake">
+                    <div class="caption">Lotus Pond at West Lake</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/west-lake-6.jpg" alt="Boats on Lake with Pagoda">
+                    <div class="caption">Boats on the Lake with Pagoda</div>
+                </div>
+            </div>
+
+            <h2>🚗 How to Get There - Transportation</h2>
+            <div class="transport-grid">
+                <div class="transport-card">
+                    <h4>From Shanghai (High-Speed Train)</h4>
+                    <p><strong>Train:</strong> Shanghai Hongqiao to Hangzhou East Station (45-60 min, ¥73-117). Then Metro Line 1 to Longxiangqiao Station, walk 10 min to West Lake.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Metro (Within Hangzhou)</h4>
+                    <p><strong>Metro Line 1:</strong> Longxiangqiao Station (龙翔桥站) - closest to West Lake. Exit C, walk 10 minutes. Cost: ¥2-4.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Bus</h4>
+                    <p><strong>Bus Routes:</strong> K1, K2, K7, Y1, Y2, Y3 all stop near West Lake. Cost: ¥2. Very convenient from anywhere in Hangzhou.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Taxi/Ride-hailing</h4>
+                    <p><strong>DiDi/Taxi:</strong> From Hangzhou East Railway Station: 20 min, ¥25-35. From Hangzhou Xiaoshan Airport: 40 min, ¥100-130.</p>
+                </div>
+            </div>
+
+            <h2>🗺️ Recommended Tour Routes</h2>
+            <div class="route-timeline">
+                <div class="route-item">
+                    <h4>Route 1: Classic West Lake Walk (3-4 hours)</h4>
+                    <p><strong>Start:</strong> Broken Bridge (断桥) → Bai Causeway → Solitary Hill → West Lake Museum → Su Causeway → Flower Harbor Park → Leifeng Pagoda<br>
+                    <strong>Distance:</strong> 8 km walking<br>
+                    <strong>Best for:</strong> First-time visitors, photographers</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 2: Boat Tour (1-2 hours)</h4>
+                    <p><strong>Start:</strong> Hubin Park Wharf → Three Pools Mirroring the Moon → Return<br>
+                    <strong>Cost:</strong> ¥55 per person (includes island landing)<br>
+                    <strong>Best Time:</strong> Morning (9-11 AM) for calm water and good light</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 3: Cycling Around the Lake (2-3 hours)</h4>
+                    <p><strong>Route:</strong> Full circle around West Lake (15 km)<br>
+                    <strong>Bike Rental:</strong> ¥20-30 per hour, available at multiple spots<br>
+                    <strong>Best for:</strong> Active travelers, families</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 4: Cultural & Temple Tour (Full Day)</h4>
+                    <p><strong>Start:</strong> Lingyin Temple (飞来峰) → Faxi Temple → West Lake → Leifeng Pagoda → Hefang Street (evening)<br>
+                    <strong>Highlights:</strong> Ancient Buddhist temples, tea culture, local snacks</p>
+                </div>
+            </div>
+
+            <h2>🍽️ Restaurants Near West Lake</h2>
+            <div class="restaurant-list">
+                <div class="restaurant-card">
+                    <h4>Lou Wai Lou</h4>
+                    <div class="cuisine">Traditional Hangzhou Cuisine</div>
+                    <p><strong>Location:</strong> No. 30, Gushan Road (on Solitary Hill)<br>
+                    <strong>Specialty:</strong> West Lake Vinegar Fish, Dongpo Pork, Longjing Shrimp<br>
+                    <strong>Hours:</strong> 11:00 AM - 9:00 PM</p>
+                    <div class="price">¥100-200 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Zhi Wei Guan</h4>
+                    <div class="cuisine">Hangzhou Snacks</div>
+                    <p><strong>Location:</strong> No. 87, Yan'an Road<br>
+                    <strong>Specialty:</strong> Xiaolongbao, Wontons, Noodles<br>
+                    <strong>Hours:</strong> 6:00 AM - 9:00 PM</p>
+                    <div class="price">¥30-60 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Grandma's Home (Waipojia)</h4>
+                    <div class="cuisine">Home-style Chinese</div>
+                    <p><strong>Location:</strong> Multiple locations near West Lake<br>
+                    <strong>Specialty:</strong> Braised pork, Tofu dishes, Seasonal vegetables<br>
+                    <strong>Hours:</strong> 10:00 AM - 10:00 PM</p>
+                    <div class="price">¥50-80 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Longjing Tea House</h4>
+                    <div class="cuisine">Tea & Light Meals</div>
+                    <p><strong>Location:</strong> Longjing Village (west of West Lake)<br>
+                    <strong>Specialty:</strong> Longjing green tea, Tea-infused dishes<br>
+                    <strong>Hours:</strong> 9:00 AM - 6:00 PM</p>
+                    <div class="price">¥40-80 per person</div>
+                </div>
+            </div>
+
+            <h2>🏨 Accommodation Options & Prices</h2>
+            <div class="hotel-list">
+                <div class="hotel-card">
+                    <h4>Four Seasons Hotel Hangzhou</h4>
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Location:</strong> No. 9, Lingyin Road (west of West Lake)<br>
+                    <strong>Features:</strong> Lake views, Spa, Fine dining<br>
+                    <strong>Distance to Lake:</strong> 5 min walk</p>
+                    <div class="price">¥2500-5000/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>West Lake State Guest House</h4>
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Location:</strong> No. 84, Nanshan Road (on the lake)<br>
+                    <strong>Features:</strong> Historic, Garden setting, Lake access<br>
+                    <strong>Distance to Lake:</strong> On the lake</p>
+                    <div class="price">¥1500-3000/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Hangzhou Marriott Hotel Qianjiang</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> Qianjiang New City<br>
+                    <strong>Features:</strong> Modern, Business district, Metro access<br>
+                    <strong>Distance to Lake:</strong> 20 min by metro</p>
+                    <div class="price">¥600-1200/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Budget Hotels (Hubin Area)</h4>
+                    <div class="stars">★★★</div>
+                    <p><strong>Location:</strong> Hubin Road shopping district<br>
+                    <strong>Features:</strong> Central location, Shopping, Street food<br>
+                    <strong>Distance to Lake:</strong> 5-10 min walk</p>
+                    <div class="price">¥250-500/night</div>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h3>💡 Essential Travel Tips</h3>
+                <ul>
+                    <li><strong>Best Season:</strong> Spring (March-May) for cherry blossoms and mild weather; Autumn (September-November) for clear skies and osmanthus flowers</li>
+                    <li><strong>Avoid:</strong> Summer (June-August) is hot and humid; Winter (December-February) is cold but beautiful with snow</li>
+                    <li><strong>Early Morning:</strong> Visit at 6-7 AM for peaceful atmosphere and best photography light</li>
+                    <li><strong>Bicycle Rental:</strong> Great way to explore - many rental stations around the lake (¥20-30/hour)</li>
+                    <li><strong>Boat Tours:</strong> Book in advance during weekends and holidays</li>
+                    <li><strong>Tea Tasting:</strong> Visit Longjing Village for authentic Longjing green tea experience</li>
+                    <li><strong>Payment:</strong> WeChat Pay and Alipay accepted everywhere</li>
+                    <li><strong>Language:</strong> Download translation app - English not widely spoken</li>
+                    <li><strong>Combine with:</strong> Lingyin Temple, Song Dynasty Town, Hefang Street for full day</li>
+                    <li><strong>Photography:</strong> Best spots: Broken Bridge, Leifeng Pagoda, Three Pools at sunset</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Discover China. All rights reserved.</p>
+            <p>Your gateway to authentic Chinese travel experiences</p>
+        </div>
+    </footer>
+</body>
+</html>

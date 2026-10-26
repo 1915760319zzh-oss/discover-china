@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Three Gorges - Complete Travel Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-size: 1.8rem; font-weight: bold; letter-spacing: 1px; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; font-size: 1rem; }
+        .nav-links a:hover { opacity: 0.8; }
+        .back-btn { background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.3s; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .hero-banner { height: 500px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/three-gorges-1.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        .hero-banner h1 { font-size: 4rem; font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero-banner p { font-size: 1.5rem; margin-top: 1rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+        .content-section { padding: 60px 20px; background: white; }
+        .content-section h2 { font-size: 2.5rem; margin-bottom: 2rem; color: #667eea; border-bottom: 3px solid #667eea; padding-bottom: 1rem; }
+        .content-section h3 { font-size: 1.8rem; margin: 2rem 0 1rem; color: #764ba2; }
+        .content-section p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; color: #555; }
+        .info-box { background: #f8f9fa; padding: 2rem; border-radius: 15px; margin: 2rem 0; border-left: 4px solid #667eea; }
+        .info-box h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .info-box ul { margin-left: 1.5rem; }
+        .info-box li { margin-bottom: 0.8rem; color: #555; line-height: 1.6; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .gallery-item { border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .gallery-item:hover { transform: translateY(-10px); }
+        .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; }
+        .gallery-item .caption { padding: 1rem; background: white; text-align: center; font-weight: 600; color: #667eea; }
+        .transport-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .transport-card { background: #f8f9fa; padding: 2rem; border-radius: 15px; border-top: 4px solid #667eea; }
+        .transport-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .transport-card p { color: #555; line-height: 1.6; }
+        .route-timeline { position: relative; padding-left: 40px; margin: 2rem 0; }
+        .route-timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: #667eea; }
+        .route-item { position: relative; margin-bottom: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px; }
+        .route-item::before { content: ''; position: absolute; left: -33px; top: 20px; width: 15px; height: 15px; border-radius: 50%; background: #667eea; border: 3px solid white; }
+        .route-item h4 { color: #667eea; margin-bottom: 0.5rem; }
+        .route-item p { color: #555; margin: 0; }
+        .restaurant-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .restaurant-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 4px solid #667eea; }
+        .restaurant-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .restaurant-card .cuisine { color: #764ba2; font-weight: 600; margin-bottom: 1rem; }
+        .restaurant-card p { color: #555; margin-bottom: 0.5rem; }
+        .restaurant-card .price { color: #667eea; font-weight: bold; font-size: 1.1rem; }
+        .hotel-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .hotel-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 4px solid #667eea; }
+        .hotel-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .hotel-card .stars { color: #ffc107; margin-bottom: 1rem; }
+        .hotel-card p { color: #555; margin-bottom: 0.5rem; }
+        .hotel-card .price { color: #667eea; font-weight: bold; font-size: 1.2rem; margin-top: 1rem; }
+        .tips-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem; border-radius: 15px; margin: 3rem 0; }
+        .tips-box h3 { color: white; font-size: 2rem; margin-bottom: 1.5rem; }
+        .tips-box ul { margin-left: 1.5rem; }
+        .tips-box li { margin-bottom: 1rem; line-height: 1.6; }
+        footer { background: #333; color: white; text-align: center; padding: 2.5rem 20px; }
+        footer p { margin: 0.5rem 0; opacity: 0.9; }
+        @media (max-width: 768px) { .hero-banner h1 { font-size: 2.5rem; } .hero-banner p { font-size: 1.2rem; } .content-section h2 { font-size: 2rem; } .gallery { grid-template-columns: 1fr; } .nav-links { gap: 1rem; font-size: 0.9rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Discover China</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#attractions">Attractions</a></li>
+                <li><a href="index.html#visa-info">Visa Info</a></li>
+                <li><a href="index.html#forum">Travel Forum</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+            <button class="back-btn" onclick="window.location.href='index.html#attractions'">← Back to Attractions</button>
+        </nav>
+    </header>
+
+    <div class="hero-banner">
+        <div>
+            <h1>Three Gorges</h1>
+            <p>三峡 - Mighty Yangtze River Through Dramatic Cliffs</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="content-section">
+            <h2>Overview</h2>
+            <p>The Three Gorges is a spectacular 193-kilometer stretch of the Yangtze River in central China, comprising Qutang Gorge, Wu Gorge, and Xiling Gorge. The region features towering limestone cliffs (up to 1,000m high), narrow ravages, and the world's largest hydroelectric dam — the Three Gorges Dam. For centuries, the gorges have inspired Chinese poets and painters. Today, cruises through the gorges offer breathtaking scenery, ancient temples, hanging coffins, and the engineering marvel of the dam itself. The area was significantly altered by the dam's rising waters (completed 2009), but the dramatic cliff scenery remains stunning.</p>
+            
+            <div class="info-box">
+                <h4>Quick Facts</h4>
+                <ul>
+                    <li><strong>Location:</strong> Chongqing to Yichang, Hubei Province</li>
+                    <li><strong>Total Length:</strong> 193 kilometers (120 miles)</li>
+                    <li><strong>Three Gorges:</strong> Qutang (8km), Wu (45km), Xiling (66km)</li>
+                    <li><strong>Best Time to Visit:</strong> April-October (cruise season)</li>
+                    <li><strong>Cruise Duration:</strong> 3-5 days (Chongqing to Yichang downstream)</li>
+                    <li><strong>Cruise Cost:</strong> ¥1,500-5,000 depending on cabin class</li>
+                </ul>
+            </div>
+
+            <h2>📸 Gallery - 6 Beautiful Photos</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/three-gorges-1.jpg" alt="Yangtze Gorge">
+                    <div class="caption">Yangtze River Gorge with Ships</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/three-gorges-2.jpg" alt="Cruise Ship">
+                    <div class="caption">Cruise Ship Through the Gorges</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/three-gorges-3.jpg" alt="Three Gorges Peak">
+                    <div class="caption">Peak of Three Gorges Stone Marker</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/three-gorges-4.jpg" alt="Mountain Walkway">
+                    <div class="caption">Mountain Walkway with Panoramic View</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/three-gorges-5.jpg" alt="Sunlit Cliffs">
+                    <div class="caption">Sunlit Cliffs and River Boats</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/three-gorges-6.jpg" alt="Autumn Gorges">
+                    <div class="caption">Autumn Colors Over the Gorges</div>
+                </div>
+            </div>
+
+            <h2>🚗 How to Get There - Transportation</h2>
+            <div class="transport-grid">
+                <div class="transport-card">
+                    <h4>To Chongqing (Starting Point)</h4>
+                    <p><strong>By Air:</strong> Chongqing Jiangbei Airport - flights from Beijing (2.5h, ¥800), Shanghai (3h, ¥700), Guangzhou (2h, ¥600). <strong>By Train:</strong> High-speed from Chengdu (1.5h, ¥150), Wuhan (5h, ¥300).</p>
+                </div>
+                <div class="transport-card">
+                    <h4>To Yichang (End Point)</h4>
+                    <p><strong>By Air:</strong> Yichang Sanxia Airport - flights from Beijing, Shanghai, Guangzhou. <strong>By Train:</strong> From Wuhan (2h, ¥100), from Yichang to Chongqing (upstream cruise).</p>
+                </div>
+                <div class="transport-card">
+                    <h4>Cruise Departure</h4>
+                    <p><strong>From Chongqing:</strong> Most cruises depart from Chaotianmen Dock (central Chongqing). Arrive 2 hours before departure. Taxi from airport: ¥50-70.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>Alternative: Day Trips</h4>
+                    <p><strong>From Yichang:</strong> Day cruises to Three Gorges Dam (5-6h, ¥200-300). <strong>From Chongqing:</strong> Day trips to nearby gorge sections. Full cruise recommended for complete experience.</p>
+                </div>
+            </div>
+
+            <h2>️ Recommended Tour Routes</h2>
+            <div class="route-timeline">
+                <div class="route-item">
+                    <h4>Route 1: Classic Downstream Cruise (3-4 Days)</h4>
+                    <p><strong>Route:</strong> Chongqing → Fengdu (Ghost City) → Qutang Gorge → Wu Gorge → Three Gorges Dam → Yichang<br>
+                    <strong>Duration:</strong> 3-4 days downstream (faster with current)<br>
+                    <strong>Best for:</strong> First-time visitors, complete experience</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 2: Upstream Cruise (4-5 Days)</h4>
+                    <p><strong>Route:</strong> Yichang → Three Gorges Dam → Wu Gorge → Qutang Gorge → Chongqing<br>
+                    <strong>Duration:</strong> 4-5 days upstream (slower against current)<br>
+                    <strong>Best for:</strong> More time to enjoy scenery</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 3: Day Trip to Dam</h4>
+                    <p><strong>From Yichang:</strong> Bus to dam site → Tour dam facilities → Ship lock experience → Return<br>
+                    <strong>Duration:</strong> 5-6 hours<br>
+                    <strong>Best for:</strong> Short on time, engineering enthusiasts</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 4: Extended Yangtze Tour (7 Days)</h4>
+                    <p><strong>Combine:</strong> Chongqing (2 days) → Three Gorges cruise (3-4 days) → Wuhan or Yichang (1-2 days)<br>
+                    <strong>Best for:</strong> Comprehensive Yangtze experience</p>
+                </div>
+            </div>
+
+            <h2>🍽️ Restaurants & Dining</h2>
+            <div class="restaurant-list">
+                <div class="restaurant-card">
+                    <h4>Cruise Ship Dining</h4>
+                    <div class="cuisine">Chinese & International Buffet</div>
+                    <p><strong>Location:</strong> On board cruise ships<br>
+                    <strong>Specialty:</strong> Buffet meals included in cruise price, Some à la carte options<br>
+                    <strong>Hours:</strong> Breakfast 7-9 AM, Lunch 11:30-1:30 PM, Dinner 6-8 PM</p>
+                    <div class="price">Included in cruise (¥200-500 value per day)</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Chongqing Restaurants</h4>
+                    <div class="cuisine">Sichuan & Chongqing Hotpot</div>
+                    <p><strong>Location:</strong> Chongqing city center<br>
+                    <strong>Specialty:</strong> Famous Chongqing hotpot, Spicy noodles, Street food<br>
+                    <strong>Hours:</strong> 11:00 AM - 11:00 PM</p>
+                    <div class="price">¥50-150 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Shore Excursion Restaurants</h4>
+                    <div class="cuisine">Local Hubei & Sichuan</div>
+                    <p><strong>Location:</strong> Fengdu, Badong, and other port towns<br>
+                    <strong>Specialty:</strong> Local fish dishes, Regional specialties<br>
+                    <strong>Hours:</strong> 10:00 AM - 9:00 PM</p>
+                    <div class="price">¥40-100 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Yichang Restaurants</h4>
+                    <div class="cuisine">Hubei Cuisine</div>
+                    <p><strong>Location:</strong> Yichang city (end of cruise)<br>
+                    <strong>Specialty:</strong> River fish, Local vegetables, Hubei dishes<br>
+                    <strong>Hours:</strong> 11:00 AM - 10:00 PM</p>
+                    <div class="price">¥40-80 per person</div>
+                </div>
+            </div>
+
+            <h2>🏨 Accommodation Options & Prices</h2>
+            <div class="hotel-list">
+                <div class="hotel-card">
+                    <h4>Cruise Ship Cabins (Standard)</h4>
+                    <div class="stars">★★★</div>
+                    <p><strong>Location:</strong> On board cruise ship<br>
+                    <strong>Features:</strong> Twin bed, Private bathroom, Window<br>
+                    <strong>Note:</strong> Most popular choice; all meals included</p>
+                    <div class="price">¥1,500-2,500/person (3-4 day cruise)</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Cruise Ship Cabins (Luxury)</h4>
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Location:</strong> Upper decks of cruise ship<br>
+                    <strong>Features:</strong> Suite, Balcony, Premium dining, Butler service<br>
+                    <strong>Note:</strong> Best experience; limited cabins</p>
+                    <div class="price">¥3,500-5,000/person (3-4 day cruise)</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Chongqing Hotels</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> Near Chaotianmen dock<br>
+                    <strong>Features:</strong> Full amenities, Easy dock access<br>
+                    <strong>Distance to Dock:</strong> 5-15 min walk or short taxi</p>
+                    <div class="price">¥300-800/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Yichang Hotels</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> Yichang city center<br>
+                    <strong>Features:</strong> Comfortable, Near transport hub<br>
+                    <strong>Note:</strong> Good base for dam day trips</p>
+                    <div class="price">¥250-600/night</div>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h3>💡 Essential Travel Tips</h3>
+                <ul>
+                    <li><strong>Best Season:</strong> April-October for cruises. Spring (Apr-May) for mild weather and flowers. Autumn (Sep-Oct) for clear skies. Summer is hot but peak season.</li>
+                    <li><strong>Book Early:</strong> Cruises sell out, especially peak season (Apr-Oct). Book 2-3 months in advance for best cabin selection.</li>
+                    <li><strong>Cruise Class:</strong> Standard cabins are fine - you'll spend most time on deck enjoying scenery. Luxury for extra comfort and balcony.</li>
+                    <li><strong>Motion Sickness:</strong> River is generally calm, but some may feel motion. Bring medication if sensitive.</li>
+                    <li><strong>Photography:</strong> Best light morning and evening. Qutang Gorge (narrowest) most dramatic. Bring wide-angle lens.</li>
+                    <li><strong>Shore Excursions:</strong> Most cruises include 2-3 shore stops. Optional excursions available for extra cost.</li>
+                    <li><strong>Three Gorges Dam:</strong> Engineering marvel. Tour includes observation deck and ship lock experience. Allow 3-4 hours.</li>
+                    <li><strong>Weather:</strong> Gorge microclimate - can be cooler and mistier than cities. Bring layers and rain jacket.</li>
+                    <li><strong>Food:</strong> Cruise meals are buffet-style and generally good. Special dietary needs - notify cruise line in advance.</li>
+                    <li><strong>Payment:</strong> WeChat Pay and Alipay accepted on ships and at ports. Bring some cash for small vendors.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Discover China. All rights reserved.</p>
+            <p>Your gateway to authentic Chinese travel experiences</p>
+        </div>
+    </footer>
+</body>
+</html>

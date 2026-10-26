@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lijiang Old Town - Complete Travel Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif; line-height: 1.6; color: #333; background: #f5f5f5; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 1rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 20px rgba(0,0,0,0.15); }
+        .navbar { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        .logo { font-size: 1.8rem; font-weight: bold; letter-spacing: 1px; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; transition: opacity 0.3s; font-size: 1rem; }
+        .nav-links a:hover { opacity: 0.8; }
+        .back-btn { background: rgba(255,255,255,0.2); color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; font-size: 1rem; transition: background 0.3s; }
+        .back-btn:hover { background: rgba(255,255,255,0.3); }
+        .hero-banner { height: 500px; background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('images/lijiang-1.jpg'); background-size: cover; background-position: center; display: flex; align-items: center; justify-content: center; color: white; text-align: center; }
+        .hero-banner h1 { font-size: 4rem; font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero-banner p { font-size: 1.5rem; margin-top: 1rem; text-shadow: 1px 1px 5px rgba(0,0,0,0.5); }
+        .content-section { padding: 60px 20px; background: white; }
+        .content-section h2 { font-size: 2.5rem; margin-bottom: 2rem; color: #667eea; border-bottom: 3px solid #667eea; padding-bottom: 1rem; }
+        .content-section h3 { font-size: 1.8rem; margin: 2rem 0 1rem; color: #764ba2; }
+        .content-section p { font-size: 1.1rem; line-height: 1.8; margin-bottom: 1.5rem; color: #555; }
+        .info-box { background: #f8f9fa; padding: 2rem; border-radius: 15px; margin: 2rem 0; border-left: 4px solid #667eea; }
+        .info-box h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .info-box ul { margin-left: 1.5rem; }
+        .info-box li { margin-bottom: 0.8rem; color: #555; line-height: 1.6; }
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 3rem 0; }
+        .gallery-item { border-radius: 15px; overflow: hidden; box-shadow: 0 5px 20px rgba(0,0,0,0.1); transition: transform 0.3s; }
+        .gallery-item:hover { transform: translateY(-10px); }
+        .gallery-item img { width: 100%; height: 300px; object-fit: cover; display: block; }
+        .gallery-item .caption { padding: 1rem; background: white; text-align: center; font-weight: 600; color: #667eea; }
+        .transport-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .transport-card { background: #f8f9fa; padding: 2rem; border-radius: 15px; border-top: 4px solid #667eea; }
+        .transport-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 1rem; }
+        .transport-card p { color: #555; line-height: 1.6; }
+        .route-timeline { position: relative; padding-left: 40px; margin: 2rem 0; }
+        .route-timeline::before { content: ''; position: absolute; left: 15px; top: 0; bottom: 0; width: 3px; background: #667eea; }
+        .route-item { position: relative; margin-bottom: 2rem; padding: 1.5rem; background: #f8f9fa; border-radius: 10px; }
+        .route-item::before { content: ''; position: absolute; left: -33px; top: 20px; width: 15px; height: 15px; border-radius: 50%; background: #667eea; border: 3px solid white; }
+        .route-item h4 { color: #667eea; margin-bottom: 0.5rem; }
+        .route-item p { color: #555; margin: 0; }
+        .restaurant-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .restaurant-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-left: 4px solid #667eea; }
+        .restaurant-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .restaurant-card .cuisine { color: #764ba2; font-weight: 600; margin-bottom: 1rem; }
+        .restaurant-card p { color: #555; margin-bottom: 0.5rem; }
+        .restaurant-card .price { color: #667eea; font-weight: bold; font-size: 1.1rem; }
+        .hotel-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem; margin: 2rem 0; }
+        .hotel-card { background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); border-top: 4px solid #667eea; }
+        .hotel-card h4 { color: #667eea; font-size: 1.3rem; margin-bottom: 0.5rem; }
+        .hotel-card .stars { color: #ffc107; margin-bottom: 1rem; }
+        .hotel-card p { color: #555; margin-bottom: 0.5rem; }
+        .hotel-card .price { color: #667eea; font-weight: bold; font-size: 1.2rem; margin-top: 1rem; }
+        .tips-box { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 3rem; border-radius: 15px; margin: 3rem 0; }
+        .tips-box h3 { color: white; font-size: 2rem; margin-bottom: 1.5rem; }
+        .tips-box ul { margin-left: 1.5rem; }
+        .tips-box li { margin-bottom: 1rem; line-height: 1.6; }
+        footer { background: #333; color: white; text-align: center; padding: 2.5rem 20px; }
+        footer p { margin: 0.5rem 0; opacity: 0.9; }
+        @media (max-width: 768px) { .hero-banner h1 { font-size: 2.5rem; } .hero-banner p { font-size: 1.2rem; } .content-section h2 { font-size: 2rem; } .gallery { grid-template-columns: 1fr; } .nav-links { gap: 1rem; font-size: 0.9rem; } }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="logo">Discover China</div>
+            <ul class="nav-links">
+                <li><a href="index.html#home">Home</a></li>
+                <li><a href="index.html#attractions">Attractions</a></li>
+                <li><a href="index.html#visa-info">Visa Info</a></li>
+                <li><a href="index.html#forum">Travel Forum</a></li>
+                <li><a href="index.html#about">About</a></li>
+            </ul>
+            <button class="back-btn" onclick="window.location.href='index.html#attractions'">← Back to Attractions</button>
+        </nav>
+    </header>
+
+    <div class="hero-banner">
+        <div>
+            <h1>Lijiang Old Town</h1>
+            <p>丽江古城 - Naxi Culture and Cobblestone Streets</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="content-section">
+            <h2>Overview</h2>
+            <p>Lijiang Old Town is a UNESCO World Heritage Site nestled in the mountains of Yunnan Province. With over 800 years of history, it showcases the unique architecture and culture of the Naxi people. The town's cobblestone streets, ancient water channels, and ornate wooden buildings create a fairy-tale atmosphere. Surrounded by snow-capped mountains and lush valleys, Lijiang has been a major trading post on the ancient Tea Horse Road for centuries.</p>
+            
+            <div class="info-box">
+                <h4>Quick Facts</h4>
+                <ul>
+                    <li><strong>Location:</strong> Lijiang City, Yunnan Province</li>
+                    <li><strong>UNESCO Status:</strong> World Heritage Site since 1997</li>
+                    <li><strong>Altitude:</strong> 2,400 meters (acclimatize slowly)</li>
+                    <li><strong>Best Time to Visit:</strong> March-May and September-November</li>
+                    <li><strong>Old Town Maintenance Fee:</strong> ¥50 (valid for 1 year)</li>
+                    <li><strong>Opening Hours:</strong> Open 24 hours (shops typically 9 AM - 10 PM)</li>
+                </ul>
+            </div>
+
+            <h2>📸 Gallery - 6 Beautiful Photos</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/lijiang-1.jpg" alt="Lijiang Old Town Entrance">
+                    <div class="caption">Lijiang Old Town Entrance with Flower-Lined Canal</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/lijiang-2.jpg" alt="Umbrella Alley">
+                    <div class="caption">Colorful Umbrellas Over the Ancient Street</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/lijiang-3.jpg" alt="Black Dragon Pool">
+                    <div class="caption">Black Dragon Pool Pavilion with Jade Dragon Snow Mountain</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/lijiang-4.jpg" alt="Blue Moon Valley">
+                    <div class="caption">Turquoise Blue Moon Valley with Snow-Capped Peaks</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/lijiang-5.jpg" alt="Lijiang Canal View">
+                    <div class="caption">Canal-side Cafes with Mountain Backdrop</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="images/lijiang-6.jpg" alt="Blue Moon Valley Boardwalk">
+                    <div class="caption">Wooden Boardwalk Through Blue Moon Valley</div>
+                </div>
+            </div>
+
+            <h2>🚗 How to Get There - Transportation</h2>
+            <div class="transport-grid">
+                <div class="transport-card">
+                    <h4>By Air</h4>
+                    <p><strong>Lijiang Sanyi Airport:</strong> Flights from Kunming (1h, ¥400), Chengdu (1.5h, ¥600), Beijing (3.5h, ¥1200). Airport to Old Town: taxi ¥80-100, bus ¥20.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Train</h4>
+                    <p><strong>From Kunming:</strong> High-speed train (3.5h, ¥220). <strong>From Chengdu:</strong> Overnight train (10h, ¥250 sleeper). Lijiang Station is 30 min from Old Town by taxi (¥30).</p>
+                </div>
+                <div class="transport-card">
+                    <h4>By Bus</h4>
+                    <p><strong>From Kunming:</strong> Long-distance bus (8-10h, ¥200). <strong>From Dali:</strong> Bus (3h, ¥80). Buses arrive at Lijiang Bus Station, walk or take taxi to Old Town.</p>
+                </div>
+                <div class="transport-card">
+                    <h4>Within Old Town</h4>
+                    <p><strong>Walking only:</strong> No cars allowed inside Old Town. Luggage carts available. For Jade Dragon Snow Mountain: bus from town (¥15) or tour (¥200-300).</p>
+                </div>
+            </div>
+
+            <h2>️ Recommended Tour Routes</h2>
+            <div class="route-timeline">
+                <div class="route-item">
+                    <h4>Route 1: Old Town Walking Tour (Half Day)</h4>
+                    <p><strong>Route:</strong> South Gate → Sifang Street → Wooden Mansion → Wangu Tower → Black Dragon Pool<br>
+                    <strong>Duration:</strong> 3-4 hours<br>
+                    <strong>Best for:</strong> First-time visitors, culture lovers</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 2: Jade Dragon Snow Mountain (Full Day)</h4>
+                    <p><strong>Route:</strong> Old Town → Mountain bus → Cable car to 4,506m → Glacier Park → Blue Moon Valley → Return<br>
+                    <strong>Duration:</strong> 8-10 hours<br>
+                    <strong>Cost:</strong> ¥200-300 (tour with transport and entry)</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 3: Lijiang + Surroundings (3 Days)</h4>
+                    <p><strong>Day 1:</strong> Old Town exploration<br>
+                    <strong>Day 2:</strong> Jade Dragon Snow Mountain<br>
+                    <strong>Day 3:</strong> Baisha Village or Shuhe Ancient Town</p>
+                </div>
+                <div class="route-item">
+                    <h4>Route 4: Cultural Experience</h4>
+                    <p><strong>Activities:</strong> Naxi music performance, Dongba calligraphy class, Tea Horse Road museum, Local market visit<br>
+                    <strong>Duration:</strong> Full day</p>
+                </div>
+            </div>
+
+            <h2>🍽️ Restaurants in Lijiang</h2>
+            <div class="restaurant-list">
+                <div class="restaurant-card">
+                    <h4>88 Snack Shop</h4>
+                    <div class="cuisine">Naxi Local Cuisine</div>
+                    <p><strong>Location:</strong> Wuyi Street, Old Town<br>
+                    <strong>Specialty:</strong> Rice noodles, Grilled fish, Yak meat<br>
+                    <strong>Hours:</strong> 10:00 AM - 10:00 PM</p>
+                    <div class="price">¥30-60 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Mu Family Restaurant</h4>
+                    <div class="cuisine">Traditional Naxi Banquet</div>
+                    <p><strong>Location:</strong> Near Wooden Mansion<br>
+                    <strong>Specialty:</strong> Eight-dish Naxi banquet, Local wine<br>
+                    <strong>Hours:</strong> 11:00 AM - 9:00 PM</p>
+                    <div class="price">¥80-150 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Arabica Coffee Lijiang</h4>
+                    <div class="cuisine">Cafe & Western Food</div>
+                    <p><strong>Location:</strong> Xinhua Street<br>
+                    <strong>Specialty:</strong> Yunnan coffee, Cakes, Light meals<br>
+                    <strong>Hours:</strong> 8:00 AM - 10:00 PM</p>
+                    <div class="price">¥40-80 per person</div>
+                </div>
+                <div class="restaurant-card">
+                    <h4>Old Town Night Market</h4>
+                    <div class="cuisine">Street Food</div>
+                    <p><strong>Location:</strong> Qiyi Street area<br>
+                    <strong>Specialty:</strong> Grilled fish, Skewers, Local snacks<br>
+                    <strong>Hours:</strong> 6:00 PM - 12:00 AM</p>
+                    <div class="price">¥20-50 per person</div>
+                </div>
+            </div>
+
+            <h2>🏨 Accommodation Options & Prices</h2>
+            <div class="hotel-list">
+                <div class="hotel-card">
+                    <h4>Boutique Guesthouses (Kezhan)</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> Inside Old Town<br>
+                    <strong>Features:</strong> Traditional Naxi style, Courtyard, Personal service<br>
+                    <strong>Note:</strong> Most authentic experience; book early for peak season</p>
+                    <div class="price">¥300-800/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>InterContinental Lijiang</h4>
+                    <div class="stars">★★★★★</div>
+                    <p><strong>Location:</strong> Old Town edge<br>
+                    <strong>Features:</strong> Luxury, Spa, Mountain views, Modern amenities<br>
+                    <strong>Distance to Center:</strong> 5 min walk</p>
+                    <div class="price">¥1200-2500/night</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Youth Hostels</h4>
+                    <div class="stars">★★</div>
+                    <p><strong>Location:</strong> Various in Old Town<br>
+                    <strong>Features:</strong> Dorm beds, Social atmosphere, Travel info<br>
+                    <strong>Best for:</strong> Budget travelers, backpackers</p>
+                    <div class="price">¥50-150/night (dorm), ¥200-400 (private)</div>
+                </div>
+                <div class="hotel-card">
+                    <h4>Resort Hotels (New Town)</h4>
+                    <div class="stars">★★★★</div>
+                    <p><strong>Location:</strong> Lijiang New Town<br>
+                    <strong>Features:</strong> Modern, Parking, Larger rooms<br>
+                    <strong>Distance to Old Town:</strong> 10-15 min taxi (¥15-20)</p>
+                    <div class="price">¥400-1000/night</div>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h3>💡 Essential Travel Tips</h3>
+                <ul>
+                    <li><strong>Altitude:</strong> Lijiang is at 2,400m - take it easy first day, drink water, avoid alcohol. Some feel mild altitude sickness.</li>
+                    <li><strong>Best Season:</strong> Spring (Mar-May) and Autumn (Sep-Nov) for mild weather and clear skies. Summer is rainy; winter is cold but less crowded.</li>
+                    <li><strong>Crowds:</strong> Avoid Chinese national holidays (Oct 1-7, May 1-5) - extremely crowded and prices double.</li>
+                    <li><strong>Maintenance Fee:</strong> ¥50 Old Town fee is required; usually included in hotel booking. Keep receipt.</li>
+                    <li><strong>Bargaining:</strong> Expected in markets and small shops. Start at 50% of asking price.</li>
+                    <li><strong>Safety:</strong> Old Town is very safe, but watch for pickpockets in crowded areas.</li>
+                    <li><strong>Dress:</strong> Layers essential - cool mornings/evenings, warm afternoons. Comfortable shoes for cobblestones.</li>
+                    <li><strong>Photography:</strong> Ask permission before photographing Naxi people. Some may expect small tip (¥5-10).</li>
+                    <li><strong>Naxi Culture:</strong> Respect local customs. Don't touch religious artifacts. Remove shoes when entering homes.</li>
+                    <li><strong>Payment:</strong> WeChat Pay and Alipay widely accepted. ATMs available. Cash needed for small vendors.</li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 Discover China. All rights reserved.</p>
+            <p>Your gateway to authentic Chinese travel experiences</p>
+        </div>
+    </footer>
+</body>
+</html>
